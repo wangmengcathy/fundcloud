@@ -7,8 +7,12 @@
 			{{$project->desp}}
 		</project>
 		
-		<h5>Tags:</h5>
-		<ul>
-			<li>{{$project->tag}}</li>
-		</ul>
+		@unless($project->tags->isEmpty())
+			<h5>Tags:</h5>
+			<ul>
+				@foreach($project->tags as $tag)
+					<li>{{$tag->name}}</li>
+				@endforeach
+			</ul>
+		@endunless
 @stop

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 
-use Request;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Requests\CreateProjectRequest;
 use App\Project;
-
+use App\Tag;
+use Auth;
 
 class ProjectController extends Controller
 {
@@ -29,12 +32,13 @@ class ProjectController extends Controller
      */
     public function create()
     {
-//        $tags = Tag::pluck('name','id')->all();
+        $tags = Tag::pluck('name','id')->all();
+        
         if(\Auth::guest()){
             return redirect('projects');
         }
         
-        return view('projects.create');
+        return view('projects.create',compact('tags'));
     }
 
     /**
@@ -43,12 +47,20 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(CreateProjectRequest $request)
     {
-       
-        $input = Request::all();
-        $input['raisedmoney'] = 0;
-        \Auth::user()->projects()->save(new Project($input));
+       /**
+        *create a project
+        **/
+        $request['raisedmoney'] = 0;
+        
+        $project = Auth::user()->projects()->create($request->all());
+        
+        $tagIds = $request->input('tag_list');
+        
+        $project->tags()->attach($tagIds);
+        
+        
         \Session::flash('flash_message','Your project has been created!');
         
         return redirect('projects');
@@ -75,13 +87,10 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-//        $tags = Tag::pluck('name','id')->all();
-        if(\Auth::guest()){
-            return redirect('projects');
-        }
+        $tags = Tag::pluck('name','id')->all();
         
         $project = Project::findOrFail($id);
-        return view('projects.edit',compact('project'));
+        return view('projects.edit',compact('project','tags'));
     }
 
     /**
@@ -95,7 +104,11 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
         
-        $project->update(Request::all());
+        $project->update($request->all());
+        
+        $tagIds = $request->input('tag_list');
+        
+        $project->tags()->sync($tagIds);
                
         return redirect('projects');
     }
