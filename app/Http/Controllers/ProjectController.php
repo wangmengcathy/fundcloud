@@ -100,7 +100,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update($id,CreateProjectRequest $request )
     {
         $project = Project::findOrFail($id);
         
