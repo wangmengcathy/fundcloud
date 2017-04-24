@@ -62,6 +62,26 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
+    </div>
+
+    <!-- <hr/> -->
+    <!-- recommend region -->
+
+    <div class="recommend">
+        <div class="panel panel-info">
+          <div class="panel-heading">Recommended For You</div>
+<!--           <div class="panel-body">Recommended content here</div> -->
+            <!-- content here !!! -->
         </div>
     </div>
+
+     <div class="popular">
+        <div class="panel panel-info">
+          <div class="panel-heading">What's popular now</div>
+<!--           <div class="panel-body">Recommended content here</div> -->
+            <!-- content here !!! -->
+        </div>
+    </div>
+
+</div>
 @endsection
