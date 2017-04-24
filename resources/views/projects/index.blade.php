@@ -1,7 +1,9 @@
-@extends('app')
+@extends('layouts.app')
 
 	@section('content')
-		<h1>Projects</h1>
+	<div class="containers">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<h1 id = "head">Projects</h1>
 		<hr/>
 		@foreach($projects as $project)
 			<article>
@@ -11,4 +13,5 @@
 				<div class="body">{{$project->desp}}</div>
 			</article>
 		@endforeach
-@stop
+	</div>
+	@endsection
