@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -14,7 +13,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Scripts -->
     <script>
@@ -22,10 +20,6 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-   
 </head>
 <body>
     <div id="app">
@@ -42,15 +36,12 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/home') }}" id = "lefttop">
+                    <a class="navbar-brand" href="{{ url('/') }}" id = "lefttop">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     <script>
                         document.getElementById("lefttop").innerHTML += "\u26F1";
                     </script>
-                    <a class="navbar-brand" href="{{ url('/projects/create') }}" id = "lefttop">
-                        <span>Start a project</span>
-                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -66,20 +57,6 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li>
-                                <svg width="30" height="30"> 
-                                        <g id = "search-tag" >
-                                        <img src="http://worldartsme.com/images/search-button-clipart-1.jpg" alt="Smiley face" height="25" width="25" id = "i1">
-                                        </g>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg width="30" height="30"> 
-                                        <div class="form-group" id="search-bar">
-                                            <input type="text" class="form-control" id="search-content">
-                                        </div>
-                                </svg>
-                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -104,16 +81,11 @@
                 </div>
             </div>
         </nav>
-        <div class = "content">
+
         @yield('content')
-        </div>
     </div>
 
     <!-- Scripts -->
-       
     <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-            $(document).ready(topBar); 
-    </script>
 </body>
 </html>
