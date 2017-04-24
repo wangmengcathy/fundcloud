@@ -14,6 +14,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<<<<<<< HEAD
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+=======
     <style>
 
     #search-bar{
@@ -23,6 +26,7 @@
         cursor: pointer;
     }
     </style>
+>>>>>>> origin/master
 
     <!-- Scripts -->
     <script>
@@ -33,6 +37,9 @@
     <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<<<<<<< HEAD
+   
+=======
     <script>
             function main() {
                 $(document).ready(function(){
@@ -50,6 +57,7 @@
             }
             $(document).ready(main); 
     </script>
+>>>>>>> origin/master
 </head>
 <body>
     <div id="app">
@@ -66,7 +74,11 @@
                     </button>
 
                     <!-- Branding Image -->
+<<<<<<< HEAD
+                    <a class="navbar-brand" href="{{ url('/home') }}" id = "lefttop">
+=======
                     <a class="navbar-brand" href="{{ url('/') }}" id = "lefttop">
+>>>>>>> origin/master
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     <script>
@@ -128,7 +140,11 @@
                 </div>
             </div>
         </nav>
+<<<<<<< HEAD
+        <div class = "content">
+=======
         <div id = "content">
+>>>>>>> origin/master
         @yield('content')
         </div>
     </div>
@@ -136,5 +152,8 @@
     <!-- Scripts -->
        
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+            $(document).ready(topBar); 
+    </script>
 </body>
 </html>
