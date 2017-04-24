@@ -14,7 +14,19 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+=======
+    <style>
+
+    #search-bar{
+        display: none;
+    }
+    #i1{
+        cursor: pointer;
+    }
+    </style>
+>>>>>>> origin/master
 
     <!-- Scripts -->
     <script>
@@ -25,7 +37,27 @@
     <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<<<<<<< HEAD
    
+=======
+    <script>
+            function main() {
+                $(document).ready(function(){
+                    $("#i1").click(function(){
+                        $("#i1").css("display", "none");
+                        $("#search-bar").css("display", "inline-block");
+                    });
+                });
+                $(document).ready(function(){
+                    $("#content").click(function(){
+                        $("#i1").css("display", "inline-block");
+                        $("#search-bar").css("display", "none");
+                    });
+                });
+            }
+            $(document).ready(main); 
+    </script>
+>>>>>>> origin/master
 </head>
 <body>
     <div id="app">
@@ -42,7 +74,11 @@
                     </button>
 
                     <!-- Branding Image -->
+<<<<<<< HEAD
                     <a class="navbar-brand" href="{{ url('/home') }}" id = "lefttop">
+=======
+                    <a class="navbar-brand" href="{{ url('/') }}" id = "lefttop">
+>>>>>>> origin/master
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     <script>
@@ -104,7 +140,11 @@
                 </div>
             </div>
         </nav>
+<<<<<<< HEAD
         <div class = "content">
+=======
+        <div id = "content">
+>>>>>>> origin/master
         @yield('content')
         </div>
     </div>

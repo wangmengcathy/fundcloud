@@ -6,6 +6,7 @@
     #i1{
         cursor: pointer;
     }
+<<<<<<< HEAD
     .content{
     	padding: 30px;
         padding-top: 5px;
@@ -28,6 +29,8 @@
         position:absolute; 
         top:350px;
     }
+=======
+>>>>>>> origin/master
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
