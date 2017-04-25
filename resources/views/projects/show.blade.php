@@ -16,8 +16,7 @@
 			</ul>
 		@endunless
 		<h5>Raised Money: {{$project->raisedmoney}}</h5>
-
+		<a class="btn" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
 				
-
 @stop
 

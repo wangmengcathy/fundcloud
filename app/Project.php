@@ -38,7 +38,9 @@ class Project extends Model
     public function tags(){
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
-    
+    public function commenst(){
+        return $this->hasMany(Comment::class);
+    }
     public function getTagListAttribute(){
         return $this->tags()->pluck('id')->all();
     }
