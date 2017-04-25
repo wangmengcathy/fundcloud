@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTablePledge extends Migration
+class CreatePledgeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTablePledge extends Migration
      */
     public function up()
     {
-        Schema::create('pledge',function(Blueprint $table){
+        Schema::create('project_user',function(Blueprint $table){
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('project_id')->unsigned()->index();
@@ -21,7 +21,7 @@ class CreateTablePledge extends Migration
             $table->timestamps();
             $table->float('amount',10,2);
             $table->string('transaction_status');
-          });
+            });
     }
 
     /**

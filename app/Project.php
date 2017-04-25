@@ -30,7 +30,11 @@ class Project extends Model
     public function creater(){
         return $this->belongsTo('App\User');
     }
-    
+    public function sponsers(){
+        return $this->belongsToMany('App\User')
+                    ->withPivot('amount','transaction_status')
+                    ->withTimestamps();
+    }
     public function tags(){
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }

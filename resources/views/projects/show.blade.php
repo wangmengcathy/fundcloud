@@ -16,4 +16,8 @@
 			</ul>
 		@endunless
 		<h5>Raised Money: {{$project->raisedmoney}}</h5>
+
+				
+
 @stop
+
