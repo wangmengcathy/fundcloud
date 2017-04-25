@@ -14,6 +14,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/autocomplete.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -76,7 +77,6 @@
                             <li>
                                 <svg width="30" height="30"> 
                                         <div class="form-group" id="search-bar">
-                                            <input type="text" class="form-control" id="search-content">
                                         </div>
                                 </svg>
                             </li>
@@ -127,8 +127,20 @@
     <!-- Scripts -->
        
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/autocomplete.js') }}"></script>
     <script>
             $(document).ready(topBar); 
+            var words = ['boat', 'dog', 'drink', 'drink a coffee', 'elephant', 'fruit', 'London'];
+            $(document).ready(function(){
+                $('#search-bar').autocomplete({
+                    hints: words,
+                    width: 300,
+                    height: 30,
+                    onSubmit: function(text) {
+                        window.location="{{ url('/home/search') }}" + "/" + text;
+                    }
+                });
+            });
     </script>
 </body>
 </html>

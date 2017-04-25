@@ -2,6 +2,8 @@
 	
 	#search-bar{
         display: none;
+        padding-top: 10px;
+        padding-right: 20px;
     }
     #i1{
         cursor: pointer;
@@ -76,7 +78,6 @@
         background: #0077B5;
         color: white;
     }
-
     
 
 /*!

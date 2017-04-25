@@ -31,3 +31,7 @@ Route::get('/home', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home/search/{search_content}', 'HomeController@search');

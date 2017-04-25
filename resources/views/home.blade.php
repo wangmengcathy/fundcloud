@@ -69,6 +69,14 @@
 
     <div class="recommend">
         <div class="panel panel-info">
+          <div class="panel-heading">Follow feeds</div>
+<!--           <div class="panel-body">Recommended content here</div> -->
+            <!-- content here !!! -->
+        </div>
+    </div>
+
+    <div class="recommend">
+        <div class="panel panel-info">
           <div class="panel-heading">Recommended For You</div>
 <!--           <div class="panel-body">Recommended content here</div> -->
             <!-- content here !!! -->
