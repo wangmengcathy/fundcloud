@@ -14,7 +14,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/autocomplete.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
     <script>
@@ -29,7 +31,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom:0px">
             <div class="container">
                 <div class="navbar-header">
 
@@ -52,7 +54,6 @@
                         <span>Start a project</span>
                     </a>
                 </div>
-
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
@@ -76,7 +77,6 @@
                             <li>
                                 <svg width="30" height="30"> 
                                         <div class="form-group" id="search-bar">
-                                            <input type="text" class="form-control" id="search-content">
                                         </div>
                                 </svg>
                             </li>
@@ -104,16 +104,43 @@
                 </div>
             </div>
         </nav>
-        <div class = "content">
-        @yield('content')
+        <div class="content">
+            @if(Session::has('flash_message'))
+                <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{Session::get('flash_message')}}
+                </div>
+            @endif
+            @yield('content')
         </div>
+        
+        
+    </div>
+    <hr/> 
+    <div class="social-buttons">
+        <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
+        <a href="https://www.google.com/" class="fa fa-google"></a>
+        <a href="https://www.linkedin.com" class="fa fa-linkedin"></a>
     </div>
 
     <!-- Scripts -->
        
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/autocomplete.js') }}"></script>
     <script>
             $(document).ready(topBar); 
+            var words = ['boat', 'dog', 'drink', 'drink a coffee', 'elephant', 'fruit', 'London'];
+            $(document).ready(function(){
+                $('#search-bar').autocomplete({
+                    hints: words,
+                    width: 300,
+                    height: 30,
+                    onSubmit: function(text) {
+                        window.location="{{ url('/home/search') }}" + "/" + text;
+                    }
+                });
+            });
     </script>
 </body>
 </html>
