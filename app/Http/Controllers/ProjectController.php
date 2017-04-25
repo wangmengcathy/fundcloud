@@ -40,11 +40,7 @@ class ProjectController extends Controller
     public function create()
     {
         $tags = Tag::pluck('name','id')->all();
-        
-        if(\Auth::guest()){
-            return redirect('projects');
-        }
-        
+
         return view('projects.create',compact('tags'));
     }
     
@@ -76,8 +72,10 @@ class ProjectController extends Controller
         *create a project
         **/
         $request['raisedmoney'] = 0;
+        $request['user_id'] = Auth::user()->id;
+        $project = new Project($request->all());
         
-        $project = Auth::user()->projects()->create($request->all());
+        Auth::user()->posts()->save($project);
         
         $tagIds = $request->input('tag_list');
         

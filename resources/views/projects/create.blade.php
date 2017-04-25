@@ -6,7 +6,6 @@
 		
 	{!!Form::open(['url'=>'projects'])!!}
 		@include('projects.form', ['submitButtonText'=>'Add Project'])
-			
 	{!!Form::close()!!}
 	
 	@include('errors.list')
