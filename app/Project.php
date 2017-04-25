@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-
+use Auth;
 class Project extends Model
 {
     protected $primaryKey = 'pid';
@@ -38,8 +38,15 @@ class Project extends Model
     public function tags(){
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
-    public function commenst(){
+    public function comments(){
         return $this->hasMany(Comment::class);
+    }
+    public function addComment($body){
+        Comment::create([
+            'body' => $body,
+            'project_pid' => $this->pid,
+            'user_id' => Auth::user()->id,
+          ]);
     }
     public function getTagListAttribute(){
         return $this->tags()->pluck('id')->all();
