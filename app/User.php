@@ -28,6 +28,8 @@ class User extends Authenticatable
     ];
     
     public function projects(){
-        return $this->hasMany('App\Project');
+        return $this->belongsToMany('App\Project')
+                ->withPivot('amount','transaction_status')
+                ->withTimestamps();
     }
 }

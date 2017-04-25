@@ -6,10 +6,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProjectRequest;
+use App\Http\Requests\CreatePledgeRequest;
 use App\Project;
 use App\Tag;
 use Auth;
-
+use Input;
 class ProjectController extends Controller
 {
     /**
@@ -46,7 +47,23 @@ class ProjectController extends Controller
         
         return view('projects.create',compact('tags'));
     }
-
+    
+    public function pledge($id){
+        
+        
+        return view('projects.pledge',compact('id'));
+        
+    }
+    public function pledgestore(CreatePledgeRequest $request){
+        
+        $amount = $request['amount'];
+        $project = Input::get('id');
+        $sponser = Auth::user()->id;
+        $project = Project::findOrFail($project);
+        $project->sponsers()->attach($sponser,['amount'=>$amount,'transaction_status'=>'pending']);
+        \Session::flash('flash_message', "Thanks for your sponsorship!");
+        return redirect('projects');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -66,12 +83,11 @@ class ProjectController extends Controller
         
         $project->tags()->attach($tagIds);
         
-        
         \Session::flash('flash_message','Your project has been created!');
         
         return redirect('projects');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -96,8 +112,10 @@ class ProjectController extends Controller
         $tags = Tag::pluck('name','id')->all();
         
         $project = Project::findOrFail($id);
+        
         return view('projects.edit',compact('project','tags'));
     }
+    
 
     /**
      * Update the specified resource in storage.
