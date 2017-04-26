@@ -7,6 +7,7 @@
 			{{$project->desp}}
 		</project>
 		
+		<a class="btn" href="/projects/<?php echo $project->pid;?>/others">Creater:{{$creater->name}}</a>
 		@unless($project->tags->isEmpty())
 			<h5>Tags:</h5>
 			<ul>
