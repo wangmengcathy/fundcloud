@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\CreatePledgeRequest;
 use App\Project;
+use Carbon\Carbon;
 use App\User;
 use App\Tag;
 use Auth;
 use Input;
+use App\PublishedProject;
+
 class ProjectController extends Controller
 {
     /**
@@ -27,8 +30,22 @@ class ProjectController extends Controller
     
     public function index()
     {
-        
+        //valid projects
         $projects = Project::orderBy('pid', 'DESC')->validproject()->get();
+        //expired projects
+        $exprojects = Project::orderBy('pid', 'DESC')->expiredproject()->get();
+        
+        foreach($exprojects as $exproject){
+            if($exproject->raisedmoney >= $exproject->minmoney){
+                $results = PublishedProject::select('pid')->where('pid','=',$exproject->pid)->get();
+                //the expired projects has not been inserted into published_projects
+                if($results == '[]'){
+                    PublishedProject::insert(
+                        ['pid' => $exproject->pid, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now(), 'materials' => 'xxx', 'fundmoney' => $exproject->raisedmoney, 'status' => 'pending']
+                    );
+                }
+            }
+        }
         
         return view('projects.index',compact('projects'));
     }
