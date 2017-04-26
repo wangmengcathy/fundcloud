@@ -27,7 +27,7 @@ class Project extends Model
     /**
     *A project is owned by a user
     **/
-    public function creater(){
+    public function user(){
         return $this->belongsTo('App\User');
     }
     public function sponsers(){

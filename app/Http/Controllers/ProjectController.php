@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\CreatePledgeRequest;
 use App\Project;
+use App\User;
 use App\Tag;
 use Auth;
 use Input;
@@ -95,8 +96,8 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        
-        return view('projects.show',compact('project'));
+        $creater = User::findOrFail($project->user_id);
+        return view('projects.show',compact('project','creater'));
     }
 
     /**

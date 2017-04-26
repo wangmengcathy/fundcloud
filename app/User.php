@@ -34,4 +34,7 @@ class User extends Authenticatable
                 ->withPivot('amount','transaction_status')
                 ->withTimestamps();
     }
+    public function followers(){
+        return $this -> belongsToMany('App\Follower');
+    }
 }

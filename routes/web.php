@@ -17,6 +17,9 @@ Route::resource('projects','ProjectController');
 Route::get('projects/{id}/pledge','ProjectController@pledge');
 Route::post('/pledgestore','ProjectController@pledgestore');
 Route::post('/projects/{project}/comments','CommentsController@store');
+Route::get('/projects/{project}/others','OthersController@others');
+Route::post('/projects/follow','OthersController@follow');
+Route::post('/projects/unfollow','OthersController@unfollow');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
