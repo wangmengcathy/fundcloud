@@ -23,6 +23,9 @@ class Project extends Model
     public function scopeValidProject($query){
         $query->where('endtime','>',Carbon::now());
     }
+    public function scopeExpiredProject($query){
+        $query->where('endtime','<=',Carbon::now());
+    }
     
     /**
     *A project is owned by a user
