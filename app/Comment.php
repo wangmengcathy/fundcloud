@@ -15,4 +15,8 @@ class Comment extends Model
     public function projects(){
         return $this->belongsTo(Project::class);
     }
+
+    public function users(){
+    	return $this->belongsToMany('User');
+    }
 }

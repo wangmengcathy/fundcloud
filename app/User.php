@@ -37,4 +37,7 @@ class User extends Authenticatable
     public function followers(){
         return $this -> belongsToMany('App\Follower');
     }
+    public function commments(){
+        return $this -> belongsToMany('App\Comment');
+    }
 }
