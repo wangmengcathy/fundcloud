@@ -2,7 +2,11 @@
 
 	@section('content')
 		<h1>{{$project->pname}}</h1>
+		<p>
+			End Time: {{$project->endtime->diffForHumans()}}
+		</p>
 		<hr/>
+
 		<project>
 			{{$project->desp}}
 		</project>
@@ -17,7 +21,17 @@
 			</ul>
 		@endunless
 		<h5>Raised Money: {{$project->raisedmoney}}</h5>
+		<h5>Raised Money: {{$project->maxmoney}}</h5>
+		
+		<div class="progress">
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
+			aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($project->raisedmoney)/($project->maxmoney)*100;?>%">
+				{{($project->raisedmoney)/($project->maxmoney)*100}}%
+			</div>
+		</div>
+		
 		<a class="btn" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
+
 		<hr>
 		
 		<div class="comments">
