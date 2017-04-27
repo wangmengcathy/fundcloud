@@ -47,7 +47,7 @@ class ProjectController extends Controller
                 }
             }
         }
-
+        return view('projects.index',compact('projects'));
     }
     
     /**
