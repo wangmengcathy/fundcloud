@@ -97,6 +97,9 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                    <a href="/projects/<?php echo Auth::user()->id;?>/others">Profile</a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif
@@ -106,12 +109,16 @@
         </nav>
         <div class="content">
             @if(Session::has('flash_message'))
-                <div class="alert alert-success">
+                <div class="alert alert-success alert-disappear">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 {{Session::get('flash_message')}}
                 </div>
             @endif
             @yield('content')
+
+        </div>
+        <div class="content2">
+            @yield('content2')
         </div>
         
         
@@ -130,6 +137,8 @@
     <script src="{{ asset('js/autocomplete.js') }}"></script>
     <script>
             $(document).ready(topBar); 
+            $(document).ready(alertDisappear); 
+            
             var words = ['boat', 'dog', 'drink', 'drink a coffee', 'elephant', 'fruit', 'London'];
             $(document).ready(function(){
                 $('#search-bar').autocomplete({

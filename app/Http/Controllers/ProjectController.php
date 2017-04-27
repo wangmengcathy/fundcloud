@@ -7,13 +7,16 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\CreatePledgeRequest;
+use Storage;
 use App\Project;
 use Carbon\Carbon;
 use App\User;
 use App\Tag;
+use App\Like;
 use Auth;
 use Input;
 use App\PublishedProject;
+
 use DB;
 
 class ProjectController extends Controller
@@ -120,7 +123,23 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
         $creater = User::findOrFail($project->user_id);
-        return view('projects.show',compact('project','creater'));
+
+        $count = Like::where('project_id', '=', $id)->count();
+        $already_like = Like::where('project_id', '=', $id)
+                            ->where('user_id', '=', Auth::user()->id)
+                            ->count();
+
+        $comments_author = DB::table('comments')
+                                ->join('users', 'users.id', '=', 'comments.user_id')
+                                ->where('comments.project_pid', '=', $id)
+                                ->select('comments.body', 'users.name', 'comments.created_at')
+                                ->get();
+        $pledge_record = DB::table('project_user')
+                             ->where('project_pid', '=', $id)
+                             ->get();
+
+        return view('projects.show',
+            compact('project','creater','count','already_like','comments_author', 'pledge_record'));
     }
 
     /**
@@ -155,8 +174,8 @@ class ProjectController extends Controller
         $tagIds = $request->input('tag_list');
         
         $project->tags()->sync($tagIds);
-               
-        return redirect('projects');
+
+        return redirect()->route('projects.show', [$id => $id]);
     }
 
     /**
