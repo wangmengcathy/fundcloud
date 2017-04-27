@@ -14,6 +14,7 @@ use App\Tag;
 use Auth;
 use Input;
 use App\PublishedProject;
+use DB;
 
 class ProjectController extends Controller
 {
@@ -34,7 +35,7 @@ class ProjectController extends Controller
         $projects = Project::orderBy('pid', 'DESC')->validproject()->get();
         //expired projects
         $exprojects = Project::orderBy('pid', 'DESC')->expiredproject()->get();
-        
+        //expried projects reach the minmoney
         foreach($exprojects as $exproject){
             if($exproject->raisedmoney >= $exproject->minmoney){
                 $results = PublishedProject::select('pid')->where('pid','=',$exproject->pid)->get();
@@ -46,10 +47,9 @@ class ProjectController extends Controller
                 }
             }
         }
-        
-        return view('projects.index',compact('projects'));
-    }
 
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -75,6 +75,12 @@ class ProjectController extends Controller
         $sponser = Auth::user()->id;
         $project = Project::findOrFail($project);
         $project->sponsers()->attach($sponser,['amount'=>$amount,'transaction_status'=>'pending']);
+        
+        //update the raised money for the pledged project
+        DB::table('projects')
+        ->where('pid', $project->pid)
+        ->update(['raisedmoney' => ($project->raisedmoney)+$amount]);
+        
         \Session::flash('flash_message', "Thanks for your sponsorship!");
         return redirect('projects');
     }
