@@ -52,9 +52,11 @@ class OthersController extends Controller
             $following = DB::table('followers')->where('user_id', '=', Auth::user()->id)
                             ->Where('following_id','=',$creater_id)->get();
         }
+        //the current user doesn't follow the creater
         if($following == '[]'){
             $following = false;
         }
+        //the current user follows the creater
         else{
             $following = true;
         }

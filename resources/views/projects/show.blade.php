@@ -2,9 +2,15 @@
 
 	@section('content')
 		<h1>{{$project->pname}}</h1>
+		<p>
+			End Time: {{$project->endtime->diffForHumans()}}
+		</p>
 		<hr/>
-		{{$creater->id}}
-		
+
+		<project>
+			{{$project->desp}}
+		</project>
+
 		<a class="btn" href="/projects/<?php echo $creater->id;?>/others">Creater:{{$creater->name}}</a>
 		@unless($project->tags->isEmpty())
 			<h5>Tags:</h5>
@@ -59,6 +65,30 @@
 
 		<div style="padding: 15px;">
 			<a class="btn btn-primary" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
+
+		
+		<div class="progress">
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
+			aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($project->raisedmoney)/($project->maxmoney)*100;?>%">
+				{{($project->raisedmoney)/($project->maxmoney)*100}}%
+			</div>
+		</div>
+		
+		<a class="btn" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
+
+		<hr>
+		
+		<div class="comments">
+			<ul class="list-group">
+			@foreach ($project->comments as $comment)
+				<li class="list-group-item">
+				<strong>
+					{{$comment->created_at->diffForHumans()}}:&nbsp;
+				</strong>
+				{{$comment->body}}
+				</li>
+			@endforeach
+			</ul>
 		</div>
 
 
