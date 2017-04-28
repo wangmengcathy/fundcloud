@@ -22,7 +22,12 @@ Route::post('/projects/follow','OthersController@follow');
 Route::post('/projects/unfollow','OthersController@unfollow');
 
 
+
 Route::get('/profile','UserController@profile');
+
+Route::post('/projects/like','LikeController@like');
+Route::post('/projects/unlike','LikeController@unlike');
+
 
 Route::post('/projects/like','LikeController@like');
 Route::post('/projects/unlike','LikeController@unlike');

@@ -10,11 +10,15 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<project>
 			{{$project->desp}}
 		</project>
 		
 		
+=======
+		<a class="btn" href="/projects/<?php echo $creater->id;?>/others">Creater:{{$creater->name}}</a>
+>>>>>>> origin/master
 =======
 		<a class="btn" href="/projects/<?php echo $creater->id;?>/others">Creater:{{$creater->name}}</a>
 >>>>>>> origin/master
@@ -72,9 +76,12 @@
 		<h5>Raised Money: {{$project->raisedmoney}}</h5>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<h5>Maximum Money: {{$project->maxmoney}}</h5>
 		
 =======
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 		<p>pledge of {{$project->minmoney}} total</p>
@@ -87,6 +94,9 @@
 		<!-- 	*************************   progress bar    ****************************** -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 =======
 >>>>>>> origin/master
@@ -98,8 +108,11 @@
 		</div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		<a class="btn btn-success" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 =======
