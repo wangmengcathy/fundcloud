@@ -8,23 +8,18 @@
 		
 		<hr/>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		<project>
 			{{$project->desp}}
 		</project>
 		
 		
-=======
 		<a class="btn" href="/projects/<?php echo $creater->id;?>/others">Creater:{{$creater->name}}</a>
->>>>>>> origin/master
-=======
+
+
 		<a class="btn" href="/projects/<?php echo $creater->id;?>/others">Creater:{{$creater->name}}</a>
->>>>>>> origin/master
-=======
+
 		<a class="btn" href="/projects/<?php echo $creater->id;?>/others">Creater:{{$creater->name}}</a>
->>>>>>> origin/master
+
 		@unless($project->tags->isEmpty())
 			<h5>Tags:</h5>
 			<ul>
@@ -74,16 +69,11 @@
 		<!-- 	*************************        pledge    ****************************** -->
 
 		<h5>Raised Money: {{$project->raisedmoney}}</h5>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 		<h5>Maximum Money: {{$project->maxmoney}}</h5>
 		
-=======
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
+
 		<p>pledge of {{$project->minmoney}} total</p>
 
 		<div style="padding: 15px;">
@@ -93,31 +83,16 @@
 
 		<!-- 	*************************   progress bar    ****************************** -->
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
+
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
 			aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($project->raisedmoney)/($project->maxmoney)*100;?>%">
 				{{($project->raisedmoney)/($project->maxmoney)*100}}%
 			</div>
 		</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		
 		<a class="btn btn-success" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-
 
 
 
