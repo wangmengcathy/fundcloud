@@ -26,11 +26,15 @@ CREATE TABLE `comments` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `project_pid` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `replied_id` int(11) unsigned DEFAULT NULL,
+  `replied_name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `body` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`),
+  KEY `replied_id_idx` (`replied_id`),
+  CONSTRAINT `replied_id` FOREIGN KEY (`replied_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +43,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,18,1,'my first comment','2017-04-25 19:42:21','2017-04-25 19:42:26'),(2,18,1,'here is my comment','2017-04-26 00:21:50','2017-04-26 00:21:50'),(4,10,1,'I\'m commenting the 5th project','2017-04-26 00:38:45','2017-04-26 00:38:45'),(5,10,1,'another comments','2017-04-26 00:43:26','2017-04-26 00:43:26'),(6,10,1,'another try!','2017-04-26 00:49:09','2017-04-26 00:49:09'),(7,18,1,'cathy leaves a comment here.','2017-04-26 00:49:44','2017-04-26 00:49:44'),(8,3,3,'good','2017-04-28 00:40:42','2017-04-28 00:40:42'),(9,19,3,'22','2017-04-28 00:48:05','2017-04-28 00:48:05'),(10,19,3,'33','2017-04-28 00:48:14','2017-04-28 00:48:14'),(11,4,3,'22','2017-04-28 01:08:11','2017-04-28 01:08:11'),(12,4,3,'33','2017-04-28 01:08:26','2017-04-28 01:08:26');
+INSERT INTO `comments` VALUES (1,18,1,NULL,NULL,'my first comment','2017-04-25 19:42:21','2017-04-25 19:42:26'),(2,18,1,NULL,NULL,'here is my comment','2017-04-26 00:21:50','2017-04-26 00:21:50'),(4,10,1,NULL,NULL,'I\'m commenting the 5th project','2017-04-26 00:38:45','2017-04-26 00:38:45'),(5,10,1,NULL,NULL,'another comments','2017-04-26 00:43:26','2017-04-26 00:43:26'),(6,10,1,NULL,NULL,'another try!','2017-04-26 00:49:09','2017-04-26 00:49:09'),(7,18,1,NULL,NULL,'cathy leaves a comment here.','2017-04-26 00:49:44','2017-04-26 00:49:44'),(8,3,3,NULL,NULL,'good','2017-04-28 00:40:42','2017-04-28 00:40:42'),(28,19,3,NULL,NULL,'add','2017-04-28 23:19:23','2017-04-28 23:19:23'),(29,19,3,NULL,NULL,'reply','2017-04-28 23:19:30','2017-04-28 23:19:30'),(30,19,3,NULL,NULL,'qqqq','2017-04-28 23:29:24','2017-04-28 23:29:24'),(31,19,3,NULL,NULL,'1111','2017-04-28 23:29:50','2017-04-28 23:29:50'),(32,19,3,1,NULL,'222','2017-04-28 23:30:10','2017-04-28 23:30:10'),(33,19,3,3,NULL,'3333','2017-04-28 23:32:13','2017-04-28 23:32:13'),(34,19,3,3,NULL,'ssss','2017-04-28 23:38:56','2017-04-28 23:38:56'),(35,19,3,3,'yiqin','qqqq','2017-04-28 23:52:41','2017-04-28 23:52:41'),(36,19,3,3,'yiqin','aaaaa','2017-04-29 00:36:04','2017-04-29 00:36:04'),(37,19,3,3,'yiqin','44444','2017-04-29 01:29:10','2017-04-29 01:29:10');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +98,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES (3,4,'2017-04-27 20:16:25','2017-04-27 20:16:25');
+INSERT INTO `likes` VALUES (3,4,'2017-04-27 20:16:25','2017-04-27 20:16:25'),(3,19,'2017-04-28 20:36:22','2017-04-28 20:36:22');
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,6 +274,31 @@ INSERT INTO `published_projects` VALUES (1,'2017-04-27 01:16:14','2017-04-27 01:
 UNLOCK TABLES;
 
 --
+-- Table structure for table `rates`
+--
+
+DROP TABLE IF EXISTS `rates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rates` (
+  `user_id` int(11) DEFAULT NULL,
+  `project_pid` int(11) DEFAULT NULL,
+  `rating` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rates`
+--
+
+LOCK TABLES `rates` WRITE;
+/*!40000 ALTER TABLE `rates` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rates` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tags`
 --
 
@@ -293,6 +322,32 @@ LOCK TABLES `tags` WRITE;
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
 INSERT INTO `tags` VALUES (1,'jazz','2017-04-19 23:13:55','2017-04-19 23:13:59'),(2,'music','2017-04-19 23:14:07','2017-04-19 23:14:10'),(3,'people','2017-04-19 23:14:18','2017-04-19 23:14:21'),(4,'photos','2017-04-19 23:14:31','2017-04-19 23:14:33');
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_profiles`
+--
+
+DROP TABLE IF EXISTS `user_profiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_profiles` (
+  `id` int(11) NOT NULL,
+  `hometown` varchar(45) DEFAULT NULL,
+  `interest` varchar(45) DEFAULT NULL,
+  `creditcard` varchar(45) DEFAULT NULL,
+  `legalname` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_profiles`
+--
+
+LOCK TABLES `user_profiles` WRITE;
+/*!40000 ALTER TABLE `user_profiles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -334,4 +389,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-27 20:50:52
+-- Dump completed on 2017-04-28 17:43:00
