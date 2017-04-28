@@ -48,7 +48,7 @@ class OthersController extends Controller
         if (Auth::user()){
             // if the user tries to go to his/her own profile, redirect to user's profile action.
             if ($creater_id == Auth::user()->id){
-             //  return Redirect::to_action('#');
+               return redirect('/profile');
             } 
              //checkt if the current user is already following $username
             $following = DB::table('followers')->where('user_id', '=', Auth::user()->id)

@@ -24,6 +24,8 @@ Route::post('/projects/unfollow','OthersController@unfollow');
 
 
 Route::get('/profile','UserController@profile');
+Route::post('/profile','UserController@storeprofile');
+
 
 Route::post('/projects/like','LikeController@like');
 Route::post('/projects/unlike','LikeController@unlike');
