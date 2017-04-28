@@ -20,14 +20,14 @@
 	<!-- 	*************************        Like    ****************************** -->
 
 		<p>  
-			{{$count}}
+			
 			@if (Auth::user() && $already_like == 0)
 				{!!Form::open(['action'=>'LikeController@like'])!!}			
 				{!!Form::token()!!}
 				<input type="hidden" name="project_id" id="postvalue" value="{{$project->pid}}" />
 					<button type="sumbit" style="all:none">
 						<img src="http://www.stickylife.com/images/u/fc35d68ad835449f961625e7e31dbede-800.png" width = "20px" height = "20px">
-					</button>
+					</button> {{$count}}
 				{!!Form::close()!!}
 				@include('errors.list')
 			@endif
@@ -38,7 +38,7 @@
 				<input type="hidden" name="project_id" id="postvalue" value="{{$project->pid}}" />
 					<button type="sumbit" style="all:none">
 						<img src='https://s.w.org/images/core/emoji/2.2.1/svg/2764.svg' width = "20px" height = "20px">
-					</button>
+					</button> {{$count}}
 
 				{!!Form::close()!!}
 				@include('errors.list')

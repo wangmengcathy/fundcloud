@@ -51,6 +51,17 @@ class ProjectController extends Controller
                 }
             }
         }
+        //check whether reach maxmoney,if yes, insert into published project table
+        
+        $allprojects = DB::table('projects')->get();
+        
+        foreach($allprojects as $project){
+            
+            $result = PublishedProject::select('pid')->where('pid','=',$project->pid)->first();
+            if($result == null &&($project->raisedmoney >= $project->maxmoney)){
+                PublishedProject::insert(['pid' => $project->pid, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now(), 'materials' => 'xxx', 'fundmoney' => $project->raisedmoney, 'status' => 'pending']);
+            }
+        }
         
         //charge user's pledged money for published projects
         DB::table('project_user')->join('published_projects','project_pid','=','published_projects.pid')->update(['transaction_status' => 'posted']);

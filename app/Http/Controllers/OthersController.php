@@ -40,6 +40,7 @@ class OthersController extends Controller
         
         $creater = User::findOrFail($user_id);
         
+
         // we get the user's id that matches the username
         $creater_id = $creater->id;
         // declare some default values for variables
@@ -47,9 +48,9 @@ class OthersController extends Controller
         
         if (Auth::user()){
             // if the user tries to go to his/her own profile, redirect to user's profile action.
-            // if ($creater_id == Auth::user()->id){
-            //    return redirect('/profile');
-            // } 
+            if ($creater_id == Auth::user()->id){
+               return redirect('/profile');
+            } 
              //checkt if the current user is already following $username
             $following = DB::table('followers')->where('user_id', '=', Auth::user()->id)
                             ->Where('following_id','=',$creater_id)->get();
