@@ -7,14 +7,17 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\CreatePledgeRequest;
+use Storage;
 use App\Project;
 use Carbon\Carbon;
 use App\User;
 use App\Tag;
+use App\Like;
 use Auth;
 use Input;
 use App\PublishedProject;
 use DB;
+
 
 class ProjectController extends Controller
 {
@@ -33,6 +36,7 @@ class ProjectController extends Controller
     {
         //valid projects
         $projects = Project::orderBy('pid', 'DESC')->validproject()->get();
+
         //expired projects
         $exprojects = Project::orderBy('pid', 'DESC')->expiredproject()->get();
         //expried projects reach the minmoney
@@ -42,11 +46,15 @@ class ProjectController extends Controller
                 //the expired projects has not been inserted into published_projects
                 if($results == '[]'){
                     PublishedProject::insert(
-                        ['pid' => $exproject->pid, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now(), 'materials' => 'xxx', 'fundmoney' => $exproject->raisedmoney, 'status' => 'pending']
-                    );
+                                             ['pid' => $exproject->pid, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now(), 'materials' => 'xxx', 'fundmoney' => $exproject->raisedmoney, 'status' => 'pending']
+                                             );
                 }
             }
         }
+        
+        //charge user's pledged money for published projects
+        DB::table('project_user')->join('published_projects','project_pid','=','published_projects.pid')->update(['transaction_status' => 'posted']);
+        
         return view('projects.index',compact('projects'));
     }
     
@@ -120,7 +128,23 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
         $creater = User::findOrFail($project->user_id);
-        return view('projects.show',compact('project','creater'));
+
+        $count = Like::where('project_id', '=', $id)->count();
+        $already_like = Like::where('project_id', '=', $id)
+                            ->where('user_id', '=', Auth::user()->id)
+                            ->count();
+
+        $comments_author = DB::table('comments')
+                                ->join('users', 'users.id', '=', 'comments.user_id')
+                                ->where('comments.project_pid', '=', $id)
+                                ->select('comments.body', 'users.name', 'comments.created_at')
+                                ->get();
+        $pledge_record = DB::table('project_user')
+                             ->where('project_pid', '=', $id)
+                             ->get();
+
+        return view('projects.show',
+            compact('project','creater','count','already_like','comments_author', 'pledge_record'));
     }
 
     /**
@@ -155,8 +179,8 @@ class ProjectController extends Controller
         $tagIds = $request->input('tag_list');
         
         $project->tags()->sync($tagIds);
-               
-        return redirect('projects');
+
+        return redirect()->route('projects.show', [$id => $id]);
     }
 
     /**

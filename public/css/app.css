@@ -13,6 +13,12 @@
     	padding: 10px;
         padding-top: 15px;
     }
+    #comment{
+        padding-right: 10px;
+    }
+    #pledge{
+        padding-right: 10px;
+    }
     .tales {
         width: 100%;
     }
@@ -30,6 +36,9 @@
     .home-button-graph-button{
         position:absolute; 
         top:350px;
+    }
+    .navbar-part{
+        background:#fffefc
     }
     .recommend{
         margin-top: 50px;

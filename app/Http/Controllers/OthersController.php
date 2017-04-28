@@ -13,6 +13,7 @@ use DB;
 
 class OthersController extends Controller
 {
+    
     public function follow(){
 
         // get the id of the user to be followed 
@@ -35,8 +36,8 @@ class OthersController extends Controller
         DB::table('followers')->where('user_id', '=', $follower_id)->where('following_id', '=', $following_id)->delete();
         return back();
     }
-    public function others(Project $project){
-        $creater = User::findOrFail($project->user_id);
+    public function others(User $user_id){
+        $creater = User::findOrFail($user_id);
         
         // we get the user's id that matches the username
         $creater_id = $creater->id;
@@ -46,7 +47,7 @@ class OthersController extends Controller
         if (Auth::user()){
             // if the user tries to go to his/her own profile, redirect to user's profile action.
             if ($creater_id == Auth::user()->id){
-                return Redirect::to_action('#');
+             //  return Redirect::to_action('#');
             } 
              //checkt if the current user is already following $username
             $following = DB::table('followers')->where('user_id', '=', Auth::user()->id)
