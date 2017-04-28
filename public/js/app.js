@@ -6,6 +6,11 @@
 /*
 * Control the event of top bar
 */
+
+function funcBegin(){
+    topBar();
+    alertDisappear();
+}
 function topBar() {
                 $(document).ready(function(){
                     $("#i1").click(function(){
@@ -28,6 +33,7 @@ function alertDisappear(){
         });
     }, 2500);
 }
+
 
 
 

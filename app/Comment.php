@@ -11,6 +11,8 @@ class Comment extends Model
         'body',
         'project_pid',
         'user_id',
+        'replied_id',
+        'replied_name',
         ];
     public function projects(){
         return $this->belongsTo(Project::class);
