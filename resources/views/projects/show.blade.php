@@ -8,18 +8,6 @@
 		
 		<hr/>
 
-		<project>
-			{{$project->desp}}
-		</project>
-		
-		
-		<a class="btn" href="/projects/<?php echo $creater->id;?>/others">Creater:{{$creater->name}}</a>
-
-
-		<a class="btn" href="/projects/<?php echo $creater->id;?>/others">Creater:{{$creater->name}}</a>
-
-		<a class="btn" href="/projects/<?php echo $creater->id;?>/others">Creater:{{$creater->name}}</a>
-
 		@unless($project->tags->isEmpty())
 			<h5>Tags:</h5>
 			<ul>
@@ -70,15 +58,11 @@
 
 		<h5>Raised Money: {{$project->raisedmoney}}</h5>
 
-
+		<h5>Minimum Money: {{$project->minmoney}}</h5>
+		
 		<h5>Maximum Money: {{$project->maxmoney}}</h5>
 		
 
-		<p>pledge of {{$project->minmoney}} total</p>
-
-		<div style="padding: 15px;">
-			<a class="btn btn-primary" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
-        </div>
 
 
 		<!-- 	*************************   progress bar    ****************************** -->
@@ -203,11 +187,7 @@
 
 		<!-- 	*************************        Updates     ****************************** -->
 
-
-
-
-
-			
+		
 		</div>
 	@stop
 
