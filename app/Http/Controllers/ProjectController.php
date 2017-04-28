@@ -51,6 +51,10 @@ class ProjectController extends Controller
                 }
             }
         }
+        
+        //charge user's pledged money for published projects
+        DB::table('project_user')->join('published_projects','project_pid','=','published_projects.pid')->update(['transaction_status' => 'posted']);
+        
         return view('projects.index',compact('projects'));
     }
     
