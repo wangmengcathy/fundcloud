@@ -44,11 +44,13 @@ class Project extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
-    public function addComment($body){
+    public function addComment($body, $replied_id, $replied_name){
         Comment::create([
             'body' => $body,
             'project_pid' => $this->pid,
             'user_id' => Auth::user()->id,
+            'replied_id' => $replied_id,
+            'replied_name' => $replied_name,
           ]);
     }
     public function getTagListAttribute(){

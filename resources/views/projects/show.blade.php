@@ -138,20 +138,43 @@
 									
 								</span>
 								<div style="padding-top: 10px">
-									{{$comment->body}}
+									<span> 
+										
+										<a class='btn' href='/projects/<?php echo $comment->user_id;?>/others'>@ {{$creater->name}}:</a> {{$comment->body}}
+									</span>
+									<button class="reply-button btn btn-info" style="float:right">Reply</button>
 								</div>
 							</div>
 							</li>
+							<!-- javascript -->
+							
 						@endforeach
 						</ul>
 					</div>
 					<hr>
+
+					<script>
+						$(document).ready(function(){
+					        $(".reply-button").click(function(){
+					        	
+
+					             $("#reply-hint").append("<a class='btn' href='/projects/<?php echo $comment->user_id;?>/others'>@ {{$creater->name}}:</a>");
+					             $("#replied_id").val("{{$comment->user_id}}");
+					             $("#replied_name").val("{{$comment->name}}");
+					        })
+			   			 });
+					</script>
+
+					
 					
 					<div class="card">
 						<div class="card-block">
 							<form method="POST" action="/projects/{{$project->pid}}/comments">
 								{{csrf_field()}}
 								<div class="form-group">
+									<div id="reply-hint" name="reply_name"></div>
+									<input type="hidden" name="replied_id" id="replied_id" value=1 />
+									<input type="hidden" name="replied_name" id="replied_name" value="" />
 									<textarea name="body" placeholder="Your comment here." class="form-control"></textarea>
 								</div>
 								<div class="form-group">
@@ -159,10 +182,14 @@
 								</div>
 								@include('errors.list')
 							</form>
-							
 						</div>
 					</div>
 				</div>
+
+				<!-- //test -->
+				
+				
+				
 
 		<!-- 	*************************        Pledge     ****************************** -->
 		
