@@ -3,7 +3,7 @@
 	@section('content')
 		<h1>{{$project->pname}}</h1>
 		<p>
-			End Time: {{$project->endtime->diffForHumans()}} <a class="btn" href="/projects/<?php echo $project->pid;?>/others">Created By:{{$creater->name}}</a>
+			End Time: {{$project->endtime->diffForHumans()}} <a class="btn" href="/projects/<?php echo $creater->id;?>/others">Created By:{{$creater->name}}</a>
 		</p>
 		
 		<hr/>

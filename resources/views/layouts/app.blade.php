@@ -97,7 +97,7 @@
                                         </form>
                                     </li>
                                     <li>
-                                    <a href="/projects/<?php echo Auth::user()->id;?>/others">Profile</a>
+                                    <a href="/profile">Profile</a>
                                     </li>
                                 </ul>
                             </li>
