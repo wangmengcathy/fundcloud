@@ -21,7 +21,8 @@ Route::get('/projects/{project}/others','OthersController@others');
 Route::post('/projects/follow','OthersController@follow');
 Route::post('/projects/unfollow','OthersController@unfollow');
 
-
+Route::get('/{project}/rate','RateController@index');
+Route::post('/rate','RateController@store');
 
 Route::get('/profile','UserController@profile');
 Route::post('/profile','UserController@storeprofile');

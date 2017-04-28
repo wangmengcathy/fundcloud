@@ -57,7 +57,7 @@
 			amount: {{$pledgeproject->amount}} 
 			
 			@if(($pledgeproject->transaction_status) == 'posted')
-			<a class="btn btn-success btn-xs" href="#">Rate</a>
+			<a class="btn btn-success btn-xs" href="<?php echo$pledgeproject->pid?>/rate">Rate</a>
 			@endif
 			</li>
 		@endforeach

@@ -25,7 +25,8 @@ class UserController extends Controller
 
         $createdprojects = DB::table('projects')->where('user_id','=',$user->id)->get();
 
-        return view('projects.profile',compact('user','userprofile','pledgeprojects','createdprojects'));
+        $ratedprojects = DB::table('rates')->get();
+        return view('projects.profile',compact('user','userprofile','pledgeprojects','createdprojects','ratedprojects'));
     }
     
     public function storeprofile(CreateUserProfileRequest $request){
