@@ -15,9 +15,10 @@ use App\Tag;
 use App\Like;
 use Auth;
 use Input;
-use DB;
 use App\PublishedProject;
-    
+use DB;
+
+
 class ProjectController extends Controller
 {
     /**
@@ -35,7 +36,7 @@ class ProjectController extends Controller
     {
         //valid projects
         $projects = Project::orderBy('pid', 'DESC')->validproject()->get();
-        
+
         //expired projects
         $exprojects = Project::orderBy('pid', 'DESC')->expiredproject()->get();
         //expried projects reach the minmoney
@@ -50,10 +51,9 @@ class ProjectController extends Controller
                 }
             }
         }
-        
         return view('projects.index',compact('projects'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
