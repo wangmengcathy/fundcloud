@@ -2,6 +2,7 @@
 
 	@section('content')
 		<h1>{{$project->pname}}
+		
 		@if(Auth::user()->id == $creater->id)
 		<a class="btn btn-success" href="{{action('ProjectController@edit',[$project->pid])}}">
 			Edit

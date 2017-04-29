@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateUserProfileRequest;
 use App\User;
 use Carbon\Carbon;
 use App\Follower;
 use App\Project;
+use App\UserProfile;
 use Input;
 use Auth;
 use DB;
@@ -40,6 +42,7 @@ class OthersController extends Controller
         
         $creater = User::findOrFail($user_id);
         
+        $createrprofile = UserProfile::findOrFail($user_id->id);
 
         // we get the user's id that matches the username
         $creater_id = $creater->id;
@@ -48,9 +51,9 @@ class OthersController extends Controller
         
         if (Auth::user()){
             // if the user tries to go to his/her own profile, redirect to user's profile action.
-            // if ($creater_id == Auth::user()->id){
-            //    return redirect('/profile');
-            // } 
+             if ($creater_id == Auth::user()->id){
+                return redirect('/profile');
+            } 
              //checkt if the current user is already following $username
             $following = DB::table('followers')->where('user_id', '=', Auth::user()->id)
                             ->Where('following_id','=',$creater_id)->get();
@@ -72,6 +75,7 @@ class OthersController extends Controller
         
         $followers = Follower::where('following_id','=',$creater_id)->count();
         
-        return view('projects.others',compact('creater','following','projects','projects_count','followers'));
+       
+        return view('projects.others',compact('creater','createrprofile','following','projects','projects_count','followers'));
     }
 }

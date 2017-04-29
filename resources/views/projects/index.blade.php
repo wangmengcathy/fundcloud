@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 	@section('content')
+	
 	<div class="containers">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<h1 id = "head">Projects</h1>

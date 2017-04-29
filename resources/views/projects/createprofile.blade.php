@@ -4,8 +4,10 @@
 	<h1>Edit Profile</h1>
 	<hr/>
 		
-	{!!Form::open(['action'=>'UserController@storeprofile'])!!}
-	
+	{!!Form::open(['action'=>'UserController@storeprofile','files'=>true])!!}
+	<div class="form-group">
+	<strong>Upload Avatars</strong> {!!Form::file('profileimage')!!}
+	</div>
 	<div class="form-group">
 	{!!Form::label('hometown','Hometown:')!!}
 	{!!Form::text('hometown',null,['class'=>'form-control'])!!}
