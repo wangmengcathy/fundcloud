@@ -2,17 +2,6 @@
 
 @section('content')
 <div class="container">
-    <!-- <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">
@@ -72,6 +61,30 @@
           <div class="panel-heading">Follow feeds</div>
 <!--           <div class="panel-body">Recommended content here</div> -->
             <!-- content here !!! -->
+         </div>
+         <div class="row">
+            @if($follow_contents != '[]')
+                <?php $i = 0; ?>
+                    @foreach($follow_contents as $follow_content)
+                        <?php $i++;?>
+                        @if($i < 4)
+                            <div class="col-md-4">
+                                <div class="thumbnail">
+                                  <a href= "{{action('ProjectController@show',[$follow_content->pid])}}">
+                                    <img src="https://2dbdd5116ffa30a49aa8-c03f075f8191fb4e60e74b907071aee8.ssl.cf1.rackcdn.com/596027_1376876426.2173.jpg" alt="Lights" style="width:100%">
+                                    <div class="caption">
+                                        <p>{{$follow_content->pname}}</p>
+                                        <p>{{$follow_content->desp}}</p>
+                                    </div>
+                                  </a>
+                                </div>
+                            </div>
+                        @endif
+
+                    @endforeach
+            @else
+                <div> No Projects under following </div>
+            @endif
         </div>
     </div>
 
@@ -86,9 +99,34 @@
      <div class="popular">
         <div class="panel panel-info">
           <div class="panel-heading">What's popular now</div>
+        </div>
 <!--           <div class="panel-body">Recommended content here</div> -->
             <!-- content here !!! -->
+        <div class="row">
+            @if($popular_projects != '[]')
+                <?php $i = 0; ?>
+                    @foreach($popular_projects as $popular_project)
+                        <?php $i++;?>
+                        @if($i < 4)
+                            <div class="col-md-4">
+                                <div class="thumbnail">
+                                  <a href= "{{action('ProjectController@show',[$popular_project->project_pid])}}">
+                                    <img src="https://2dbdd5116ffa30a49aa8-c03f075f8191fb4e60e74b907071aee8.ssl.cf1.rackcdn.com/10260677_1459361980.1123.jpg" alt="Lights" style="width:100%">
+                                    <div class="caption">
+                                        <p>{{$popular_project->pname}}</p>
+                                        <p>{{$popular_project->desp}}</p>
+                                    </div>
+                                  </a>
+                                </div>
+                            </div>
+                        @endif
+
+                    @endforeach
+            @else
+                <div> No Projects under following </div>
+            @endif
         </div>
+     
     </div>
 
 </div>
