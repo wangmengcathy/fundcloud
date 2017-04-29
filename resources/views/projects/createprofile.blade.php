@@ -20,7 +20,7 @@
 	</div>
 	<div class="form-group">
 	{!!Form::label('creditcard','Credit Card:')!!}
-	{!!Form::text('creditcard',null,['class'=>'form-control'])!!}
+	{!!Form::number('creditcard',null,['class'=>'form-control'])!!}
 	</div>
 	<div class="form-group">
 	{!!Form::label('legalname','Legal Name:')!!}

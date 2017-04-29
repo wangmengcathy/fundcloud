@@ -65,7 +65,7 @@
 	</div>
 	</div>
 	
-	
+							<!--created project and show rating-->
 	<div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">Created Projects</h3>
@@ -77,8 +77,34 @@
 			<strong>{{$createdproject->pname}}</strong>
 
 			raised money: {{$createdproject->raisedmoney}} 
+			@foreach($avg_ratings as $avg_rating)
+				@if($avg_rating->project_pid == $createdproject->pid)
+					<div class="row">
+					<div class="col-sm-3">
+						<div class="rating-block">
+							<h5>Average user rating</h5>
+								@if($avg_rating->average_rates > 0 && $avg_rating->average_rates <= 1)
+									@include('projects.showrating1')
+								@endif
+								@if($avg_rating->average_rates > 1 && $avg_rating->average_rates <= 2)
+									@include('projects.showrating2')
+								@endif
+								@if($avg_rating->average_rates > 2 && $avg_rating->average_rates <= 3)
+									@include('projects.showrating3')
+								@endif
+								@if($avg_rating->average_rates > 3 && $avg_rating->average_rates <= 4)
+									@include('projects.showrating4')
+								@endif
+								@if($avg_rating->average_rates > 4 && $avg_rating->average_rates <= 5)
+									@include('projects.showrating5')
+								@endif
+							<h5 class="bold padding-bottom-7"><?php echo number_format($avg_rating->average_rates, 1, '.', ',')?> <small>/ 5</small></h5>
+						</div>
+					</div>
+					</div>
+				@endif
+			@endforeach
 			
-			@include('projects.showrating')
 			
 			</li>
 		@endforeach
