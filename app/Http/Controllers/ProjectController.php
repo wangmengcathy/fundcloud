@@ -116,13 +116,55 @@ class ProjectController extends Controller
         **/
         $request['raisedmoney'] = 0;
         $request['user_id'] = Auth::user()->id;
+        
+        
+        //store sample1
+        if($request->file('projectsample1') != null){
+            $fileName = 'user'.Auth::user()->id . 'sample1.' . 
+                $request->file('projectsample1')->getClientOriginalExtension();
+
+            $request->file('projectsample1')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request['sample1'] = $fileName;
+         }
+        
+        //store sample2
+        if($request->file('projectsample2') != null){
+            $fileName = 'user'.Auth::user()->id . 'sample2.' . 
+                $request->file('projectsample2')->getClientOriginalExtension();
+
+            $request->file('projectsample2')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request['sample2'] = $fileName;
+        }
+        
+        //store sample3
+        if($request->file('projectsample3') != null){
+            $fileName = 'user'.Auth::user()->id . 'sample3.' . 
+                $request->file('projectsample3')->getClientOriginalExtension();
+
+            $request->file('projectsample3')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request['sample3'] = $fileName;
+        }
+//        return $request->all();
         $project = new Project($request->all());
         
         Auth::user()->posts()->save($project);
         
+
         $tagIds = $request->input('tag_list');
         
+
         $project->tags()->attach($tagIds);
+        
+        DB::table('sample')->insert(['pid'=>$project->pid,'sample1'=>$request['sample1'],'sample2'=>$request['sample2'],'sample3'=>$request['sample3']]);
         
         \Session::flash('flash_message','Your project has been created!');
         
@@ -152,9 +194,11 @@ class ProjectController extends Controller
         $pledge_record = DB::table('project_user')
                              ->where('project_pid', '=', $id)
                              ->get();
+                           
+        $samples = DB::table('sample')->where('pid','=',$id)->get();
 
         return view('projects.show',
-            compact('project','creater','count','already_like','comments_author', 'pledge_record'));
+            compact('project','samples','creater','count','already_like','comments_author', 'pledge_record'));
     }
 
     /**
