@@ -148,7 +148,6 @@ class ProjectController extends Controller
         $comments_author = DB::table('comments')
                                 ->join('users', 'users.id', '=', 'comments.user_id')
                                 ->where('comments.project_pid', '=', $id)
-                                ->select('comments.body', 'users.name', 'comments.created_at', 'comments.user_id')
                                 ->get();
         $pledge_record = DB::table('project_user')
                              ->where('project_pid', '=', $id)

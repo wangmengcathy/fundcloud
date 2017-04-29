@@ -128,44 +128,50 @@
 				<div class="tab-pane" id="comment">
 				  <div class="comments">
 						<ul class="list-group">
-						@foreach ($comments_author as $comment)
-							<li class="list-group-item">
-							<div id="comment-content">
-								<span ><strong>{{$comment->name}}</strong></span>
-								<span style="padding-left:15px; color:grey">
+							@unless($comments_author == '[]')
+								<?php $i = 0;?>
+								@foreach ($comments_author as $comment)
+								<?php  $i++; ?>
+									<li class="list-group-item">
+									<div id="comment-content">
+										<span ><strong>{{$comment->name}}</strong></span>
+										<span style="padding-left:15px; color:grey">
+											
+												on {{$comment->created_at}}&nbsp;
+											
+										</span>
+										<div style="padding-top: 10px">
+											<span> 
+												@if($comment->replied_name != "")
+												<a class='btn' href='/projects/<?php echo $comment->replied_id;?>/others'>@ {{$comment->replied_name}}:</a> 
+												@endif
+												{{$comment->body}}
+
+											</span>
+											<button class="reply-button-<?php echo $i;?> btn btn-info" style="float:right">Reply</button>
+										</div>
+									</div>
+									</li>
+									<!-- javascript -->
+
+									<script>
+										$(document).ready(function(){
+									        $(".reply-button-<?php echo $i;?>").click(function(){	
+												 $("#reply-hint").html('');
+									             $("#reply-hint").append("<a class='btn' href='/projects/<?php echo $comment->user_id;?>/others'>@ {{$comment->name}}:</a>");
+									             $("#replied_id").val("{{$comment->user_id}}");
+									             $("#replied_name").val("{{$comment->name}}");
+									        })
+							   			 });
+									</script>
 									
-										on {{$comment->created_at}}&nbsp;
-									
-								</span>
-								<div style="padding-top: 10px">
-									<span> 
-										
-										<a class='btn' href='/projects/<?php echo $comment->user_id;?>/others'>@ {{$creater->name}}:</a> {{$comment->body}}
-									</span>
-									<button class="reply-button btn btn-info" style="float:right">Reply</button>
-								</div>
-							</div>
-							</li>
-							<!-- javascript -->
-							
-						@endforeach
+								@endforeach
+							@endunless
 						</ul>
+
 					</div>
 					<hr>
-
-					<script>
-						$(document).ready(function(){
-					        $(".reply-button").click(function(){
-					        	
-
-					             $("#reply-hint").append("<a class='btn' href='/projects/<?php echo $comment->user_id;?>/others'>@ {{$creater->name}}:</a>");
-					             $("#replied_id").val("{{$comment->user_id}}");
-					             $("#replied_name").val("{{$comment->name}}");
-					        })
-			   			 });
-					</script>
-
-					
+			
 					
 					<div class="card">
 						<div class="card-block">
@@ -173,7 +179,7 @@
 								{{csrf_field()}}
 								<div class="form-group">
 									<div id="reply-hint" name="reply_name"></div>
-									<input type="hidden" name="replied_id" id="replied_id" value=1 />
+									<input type="hidden" name="replied_id" id="replied_id" value="" />
 									<input type="hidden" name="replied_name" id="replied_name" value="" />
 									<textarea name="body" placeholder="Your comment here." class="form-control"></textarea>
 								</div>
