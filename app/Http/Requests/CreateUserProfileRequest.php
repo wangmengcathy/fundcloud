@@ -24,7 +24,7 @@ class CreateUserProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-        ];
+            
+          ];
     }
 }

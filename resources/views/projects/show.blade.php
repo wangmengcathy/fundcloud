@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 	@section('content')
-		<h1>{{$project->pname}}</h1>
+		<h1>{{$project->pname}}
+		@if(Auth::user()->id == $creater->id)
+		<a class="btn btn-success" href="{{action('ProjectController@edit',[$project->pid])}}">
+			Edit
+		</a>
+		@endif
+		</h1>
 		<p>
 			End Time: {{$project->endtime->diffForHumans()}} <a class="btn" href="/projects/<?php echo $creater->id;?>/others">Created By:{{$creater->name}}</a>
 		</p>
@@ -46,12 +52,7 @@
 		</p>
 
 
-		<!-- 	*************************        Edit    ****************************** -->
-			@if(Auth::user()->id === $creater->id)
-			<a class="btn btn-primary" href="{{action('ProjectController@edit',[$project->pid])}}">
-				Edit
-			</a>
-			@endif
+			
 
 
 		<!-- 	*************************        pledge    ****************************** -->

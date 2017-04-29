@@ -52,6 +52,9 @@
                     <a class="navbar-brand" href="{{ url('/projects/create') }}" id = "lefttop">
                         <span>Start a project</span>
                     </a>
+                    <a class="navbar-brand" href="{{ url('/projects') }}" id = "lefttop">
+                        <span>Project Square</span>
+                        </a>
                 </div>
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->

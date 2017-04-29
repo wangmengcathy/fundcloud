@@ -9,7 +9,7 @@
 		
 	<div class="form-group">
 		{!!Form::label('amount','Pledge Money:')!!}
-		{!!Form::text('amount', null)!!}
+		{!!Form::number('amount', 0)!!}
 		{!!Form::hidden('id', $id)!!}
 	</div>
 <!-- 	<div class="form-group"> -->
