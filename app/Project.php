@@ -17,6 +17,7 @@ class Project extends Model
         'release_time',
         'tag',
         'raisedmoney',
+        'projectcover',
     ];
     protected $dates = ['endtime'];
     public $timestamps = false;

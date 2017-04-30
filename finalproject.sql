@@ -96,7 +96,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES (1,19,'2017-04-28 22:37:22','2017-04-28 22:37:22'),(6,22,'2017-04-30 04:04:05','2017-04-30 04:04:05');
+INSERT INTO `likes` VALUES (1,19,'2017-04-28 22:37:22','2017-04-28 22:37:22'),(6,22,'2017-04-30 04:22:21','2017-04-30 04:22:21');
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +112,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +174,7 @@ CREATE TABLE `project_tag` (
 
 LOCK TABLES `project_tag` WRITE;
 /*!40000 ALTER TABLE `project_tag` DISABLE KEYS */;
-INSERT INTO `project_tag` VALUES (8,2,'2017-04-20 03:51:00','2017-04-20 03:51:00'),(9,2,'2017-04-20 04:09:22','2017-04-20 04:09:22'),(9,3,'2017-04-20 04:09:22','2017-04-20 04:09:22'),(8,4,'2017-04-21 23:25:24','2017-04-21 23:25:24'),(10,1,'2017-04-22 05:35:42','2017-04-22 05:35:42'),(10,2,'2017-04-22 05:35:42','2017-04-22 05:35:42'),(18,4,'2017-04-25 23:32:11','2017-04-25 23:32:11'),(19,1,'2017-04-27 04:07:09','2017-04-27 04:07:09'),(20,1,'2017-04-29 03:01:27','2017-04-29 03:01:27'),(20,3,'2017-04-29 03:01:27','2017-04-29 03:01:27'),(21,3,'2017-04-30 05:09:54','2017-04-30 05:09:54'),(22,3,'2017-04-30 06:37:59','2017-04-30 06:37:59');
+INSERT INTO `project_tag` VALUES (8,2,'2017-04-20 03:51:00','2017-04-20 03:51:00'),(9,2,'2017-04-20 04:09:22','2017-04-20 04:09:22'),(9,3,'2017-04-20 04:09:22','2017-04-20 04:09:22'),(8,4,'2017-04-21 23:25:24','2017-04-21 23:25:24'),(10,1,'2017-04-22 05:35:42','2017-04-22 05:35:42'),(10,2,'2017-04-22 05:35:42','2017-04-22 05:35:42'),(18,4,'2017-04-25 23:32:11','2017-04-25 23:32:11'),(19,1,'2017-04-27 04:07:09','2017-04-27 04:07:09'),(20,1,'2017-04-29 03:01:27','2017-04-29 03:01:27'),(20,3,'2017-04-29 03:01:27','2017-04-29 03:01:27'),(21,3,'2017-04-30 05:09:54','2017-04-30 05:09:54'),(22,3,'2017-04-30 06:37:59','2017-04-30 06:37:59'),(23,2,'2017-04-30 20:15:35','2017-04-30 20:15:35'),(24,1,'2017-04-30 20:43:23','2017-04-30 20:43:23'),(25,3,'2017-04-30 20:44:56','2017-04-30 20:44:56'),(26,3,'2017-04-30 21:16:44','2017-04-30 21:16:44'),(27,1,'2017-04-30 21:23:29','2017-04-30 21:23:29'),(28,3,'2017-04-30 21:31:06','2017-04-30 21:31:06'),(29,1,'2017-04-30 21:31:50','2017-04-30 21:31:50');
 /*!40000 ALTER TABLE `project_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,10 +223,11 @@ CREATE TABLE `projects` (
   `endtime` datetime NOT NULL,
   `release_time` datetime NOT NULL,
   `raisedmoney` double(10,2) NOT NULL,
+  `projectcover` varchar(45) CHARACTER SET utf8mb4 DEFAULT NULL,
   PRIMARY KEY (`pid`),
   KEY `projects_user_id_foreign` (`user_id`),
   CONSTRAINT `projects_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +236,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES (1,1,'project music','this is a music project',10000.00,20000.00,'2017-04-18 16:51:09','2017-04-27 16:51:13',10001.00),(2,2,'jiaxiang\'s project','This is a project created by jiaxiang',111.00,222.00,'2017-05-19 00:00:00','2017-06-19 00:00:00',0.00),(3,1,'cathy\'s project','cathy\'s project',100.00,200.00,'2017-06-19 00:00:00','2017-07-19 00:00:00',200.00),(4,1,'test tag','test tag',10000.00,50000.00,'2017-06-21 00:00:00','2017-04-19 00:00:00',6004.00),(5,1,'request project','this is a test',20000.00,30000.00,'2017-04-22 00:00:00','2017-04-26 00:00:00',0.00),(8,1,'test tags array','test a tags array',100.00,200.00,'2017-04-21 00:00:00','2017-04-21 00:00:00',0.00),(9,1,'4 project','4project',11100.00,222000.00,'2017-04-22 00:00:00','2017-05-20 00:00:00',5000.00),(10,1,'project 5','5th project',3300.00,4400.00,'2017-05-22 00:00:00','2017-06-22 00:00:00',4540.00),(18,1,'6th project','this is the 6th project!',8000.00,9000.00,'2017-04-27 00:00:00','2017-05-25 00:00:00',9030.00),(19,2,'project jazz','this is a jazz project',30000.00,40000.00,'2017-05-27 00:00:00','2017-06-27 00:00:00',2869.00),(20,3,'mengmeng\'s project','this is my first updated project!',10000.00,20000.00,'2017-05-28 00:00:00','2017-06-28 00:00:00',330.00),(21,6,'test the search','testaaaa',100.00,1000.00,'2017-04-30 00:00:00','2018-04-30 00:00:00',0.00),(22,6,'test111','wwwwww',100.00,1000.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00);
+INSERT INTO `projects` VALUES (1,1,'project music','this is a music project',10000.00,20000.00,'2017-04-18 16:51:09','2017-04-27 16:51:13',10001.00,'user6number7.jpg'),(2,2,'jiaxiang\'s project','This is a project created by jiaxiang',111.00,222.00,'2017-05-19 00:00:00','2017-06-19 00:00:00',0.00,'user6number8.jpg'),(3,1,'cathy\'s project','cathy\'s project',100.00,200.00,'2017-06-19 00:00:00','2017-07-19 00:00:00',200.00,'default_cover.jpg'),(4,1,'test tag','test tag',10000.00,50000.00,'2017-06-21 00:00:00','2017-04-19 00:00:00',6004.00,'default_cover.jpg'),(5,1,'request project','this is a test',20000.00,30000.00,'2017-04-22 00:00:00','2017-04-26 00:00:00',0.00,'default_cover.jpg'),(8,1,'test tags array','test a tags array',100.00,200.00,'2017-04-21 00:00:00','2017-04-21 00:00:00',0.00,'default_cover.jpg'),(9,1,'4 project','4project',11100.00,222000.00,'2017-04-22 00:00:00','2017-05-20 00:00:00',5000.00,'default_cover.jpg'),(10,1,'project 5','5th project',3300.00,4400.00,'2017-05-22 00:00:00','2017-06-22 00:00:00',4540.00,'default_cover.jpg'),(18,1,'6th project','this is the 6th project!',8000.00,9000.00,'2017-04-27 00:00:00','2017-05-25 00:00:00',9030.00,'default_cover.jpg'),(19,2,'project jazz','this is a jazz project',30000.00,40000.00,'2017-05-27 00:00:00','2017-06-27 00:00:00',2869.00,'default_cover.jpg'),(20,3,'mengmeng\'s project','this is my first updated project!',10000.00,20000.00,'2017-05-28 00:00:00','2017-06-28 00:00:00',330.00,'default_cover.jpg'),(21,6,'test the search','testaaaa',100.00,1000.00,'2017-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(22,6,'test111','wwwwww',100.00,1000.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(23,6,'test the image','test the image',100.00,10000.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(24,6,'good','eeeeee',100.00,1000.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(25,6,'11111','222222',111.00,11.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(26,6,'yyyyyyyy','refsdv',11.00,11111.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(27,6,'yyyyyyyyyyy','qewder',1231.00,11232.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(28,6,'wwwww','wwwwwww',11.00,1111.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'user6number8.jpg'),(29,6,'godddddd','sccsa',43.00,353.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'user6number9.jpg');
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,7 +311,7 @@ CREATE TABLE `sample` (
   `sample2` varchar(45) DEFAULT NULL,
   `sample3` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +320,7 @@ CREATE TABLE `sample` (
 
 LOCK TABLES `sample` WRITE;
 /*!40000 ALTER TABLE `sample` DISABLE KEYS */;
-INSERT INTO `sample` VALUES (1,22,'user6sample1.png',NULL,NULL);
+INSERT INTO `sample` VALUES (1,22,'user6sample1.png',NULL,NULL),(2,23,'user6sample1.png',NULL,NULL),(3,24,NULL,NULL,NULL),(4,25,NULL,NULL,NULL),(5,26,NULL,NULL,NULL),(6,27,NULL,NULL,NULL),(7,28,NULL,NULL,NULL),(8,29,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sample` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,7 +376,7 @@ CREATE TABLE `user_logs` (
 
 LOCK TABLES `user_logs` WRITE;
 /*!40000 ALTER TABLE `user_logs` DISABLE KEYS */;
-INSERT INTO `user_logs` VALUES (6,3,1,'2017-04-30 04:15:13','2017-04-30 04:15:13');
+INSERT INTO `user_logs` VALUES (6,2,3,'2017-04-30 04:22:32','2017-04-30 04:22:32'),(6,3,1,'2017-04-30 04:15:13','2017-04-30 04:15:13'),(6,22,5,'2017-04-30 04:22:18','2017-04-30 04:22:18'),(6,24,1,'2017-04-30 16:43:25','2017-04-30 16:43:25'),(6,29,2,'2017-04-30 17:32:34','2017-04-30 17:32:34');
 /*!40000 ALTER TABLE `user_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,4 +448,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-30  0:18:31
+-- Dump completed on 2017-04-30 14:55:47
