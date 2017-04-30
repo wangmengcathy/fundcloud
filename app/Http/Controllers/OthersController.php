@@ -48,7 +48,7 @@ class OthersController extends Controller
         $creater_id = $creater->id;
         // declare some default values for variables
         $followers = 0;
-        
+
         if (Auth::user()){
             // if the user tries to go to his/her own profile, redirect to user's profile action.
              if ($creater_id == Auth::user()->id){

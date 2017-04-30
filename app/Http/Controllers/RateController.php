@@ -14,7 +14,9 @@ class RateController extends Controller
     public function index(Project $project){
         
         $user = Auth::user();
-        return view('projects.rate',compact('project','user'));
+        $samples = DB::table('sample')->where('pid','=',$project->pid)->get();
+
+        return view('projects.rate',compact('project','user','samples'));
     }
     
     public function store(CreateRateRequest $request){

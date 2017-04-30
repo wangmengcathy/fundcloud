@@ -109,6 +109,18 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function storesample(CreateProjectRequest $request,$projectsample,$samplenum){
+        if($request->file($projectsample) != null){
+            $fileName = 'user'.Auth::user()->id . $samplenum . '.'.
+                $request->file($projectsample)->getClientOriginalExtension();
+
+            $request->file($projectsample)->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request[$samplenum] = $fileName;
+         }
+    }
     public function store(CreateProjectRequest $request)
     {
        /**
@@ -117,43 +129,13 @@ class ProjectController extends Controller
         $request['raisedmoney'] = 0;
         $request['user_id'] = Auth::user()->id;
         
+        //store samples
+        $pc = new ProjectController;
+        $pc->storesample($request,'projectsample1','sample1');
+        $pc->storesample($request,'projectsample2','sample2');
+        $pc->storesample($request,'projectsample3','sample3');   
         
-        //store sample1
-        if($request->file('projectsample1') != null){
-            $fileName = 'user'.Auth::user()->id . 'sample1.' . 
-                $request->file('projectsample1')->getClientOriginalExtension();
-
-            $request->file('projectsample1')->move(
-
-                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
-            );
-            $request['sample1'] = $fileName;
-         }
         
-        //store sample2
-        if($request->file('projectsample2') != null){
-            $fileName = 'user'.Auth::user()->id . 'sample2.' . 
-                $request->file('projectsample2')->getClientOriginalExtension();
-
-            $request->file('projectsample2')->move(
-
-                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
-            );
-            $request['sample2'] = $fileName;
-        }
-        
-        //store sample3
-        if($request->file('projectsample3') != null){
-            $fileName = 'user'.Auth::user()->id . 'sample3.' . 
-                $request->file('projectsample3')->getClientOriginalExtension();
-
-            $request->file('projectsample3')->move(
-
-                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
-            );
-            $request['sample3'] = $fileName;
-        }
-//        return $request->all();
         $project = new Project($request->all());
         
         Auth::user()->posts()->save($project);
@@ -226,50 +208,33 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    public function editsample(CreateProjectRequest $request,$editprojectsample,$samplenum,$project){
+        if($request[$editprojectsample] != null){
+            $fileName = 'user'.Auth::user()->id . $samplenum . '.'.
+                $request->file($editprojectsample)->getClientOriginalExtension();
+
+            $request->file($editprojectsample)->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request[$samplenum] = $fileName;
+            DB::table('sample')->where('pid','=',$project->pid)->update([$samplenum=>$request[$samplenum]]);
+         }
+    }
+    
     public function update($id,CreateProjectRequest $request )
     {
         $project = Project::findOrFail($id);
         
-        //edit sample1
-        if($request['editprojectsample1'] != null){
-            $fileName = 'user'.Auth::user()->id . 'sample1.' . 
-                $request->file('editprojectsample1')->getClientOriginalExtension();
-
-            $request->file('editprojectsample1')->move(
-
-                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
-            );
-            $request['sample1'] = $fileName;
-            DB::table('sample')->where('pid','=',$project->pid)->update(['sample1'=>$request['sample1']]);
-         }
+        //editsample
+        $pc = new ProjectController;
         
-        //edit sample2
-        if($request['editprojectsample2'] != null){
+        $pc->editsample($request, 'editprojectsample1', 'sample1',$project);
+        $pc->editsample($request, 'editprojectsample2', 'sample2',$project);
+        $pc->editsample($request, 'editprojectsample3', 'sample3',$project);
 
-            $fileName = 'user'.Auth::user()->id . 'sample2.' . 
-                $request->file('editprojectsample2')->getClientOriginalExtension();
-
-            $request->file('editprojectsample2')->move(
-
-                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
-            );
-            $request['sample2'] = $fileName;
-            DB::table('sample')->where('pid','=',$project->pid)->update(['sample2'=>$request['sample2']]);
-
-        }
         
-        //edit sample3
-        if($request['editprojectsample3'] != null){
-            $fileName = 'user'.Auth::user()->id . 'sample3.' . 
-                $request->file('editprojectsample3')->getClientOriginalExtension();
-
-            $request->file('editprojectsample3')->move(
-
-                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
-            );
-            $request['sample3'] = $fileName;
-            DB::table('sample')->where('pid','=',$project->pid)->update(['sample3'=>$request['sample3']]);
-        }
 
         $project->update($request->all());
         
