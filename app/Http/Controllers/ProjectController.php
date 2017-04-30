@@ -128,12 +128,35 @@ class ProjectController extends Controller
         **/
         $request['raisedmoney'] = 0;
         $request['user_id'] = Auth::user()->id;
+<<<<<<< HEAD
         
         //store samples
         $pc = new ProjectController;
         $pc->storesample($request,'projectsample1','sample1');
         $pc->storesample($request,'projectsample2','sample2');
         $pc->storesample($request,'projectsample3','sample3');   
+=======
+
+        //store the cover of project
+        if($request->file('cover1') != null){
+            $userid = Auth::user()->id;
+            $number = DB::table('projects')
+                        ->where('projects.user_id', '=', $userid)
+                        ->count();
+            $number = $number + 1;
+            $fileName = 'user'.Auth::user()->id . 'number' . $number .'.'.
+                $request->file('cover1')->getClientOriginalExtension();
+            $request->file('cover1')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectcovers', $fileName
+            );
+            $request['projectcover'] = $fileName;
+                       
+         }else{
+            $request['projectcover'] = "default_cover.jpg";
+         }
+         print_r($request['projectcover']);
+>>>>>>> origin/master
         
         
         $project = new Project($request->all());
@@ -161,6 +184,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
+        //update the user log
+        app('App\Http\Controllers\UserLogController')->store($id,1);
         $project = Project::findOrFail($id);
         $creater = User::findOrFail($project->user_id);
 
@@ -171,6 +196,7 @@ class ProjectController extends Controller
 
         $comments_author = DB::table('comments')
                                 ->join('users', 'users.id', '=', 'comments.user_id')
+                                ->join('user_profiles', 'user_profiles.id','=','users.id')
                                 ->where('comments.project_pid', '=', $id)
                                 ->get();
         $pledge_record = DB::table('project_user')

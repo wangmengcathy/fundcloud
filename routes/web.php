@@ -39,3 +39,9 @@ Route::get('/home', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home/search/{search_content}', 'HomeController@search');
+
+Route::get('/home/follows', 'HomeController@follows');
+
+Route::get('/home/recommend', 'HomeController@recommend');
+
+Route::get('/home/popular', 'HomeController@popular');

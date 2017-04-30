@@ -23,7 +23,7 @@
             <div class="item">
                 <img src="https://www.w3schools.com/bootstrap/img_flower2.jpg" alt="Chania" class = "tales">
                 <div class="home-button-graph-div">
-                    <button type="button" class="btn btn-warning home-button-graph-button">Edit Profile</button>
+                    <a href="/profile" class="btn btn-warning home-button-graph-button" role="button">My Profile</a>
                 </div>
             </div>
 
@@ -53,15 +53,14 @@
           </a>
     </div>
 
-    <!-- <hr/> -->
-    <!-- recommend region -->
+    <!-- ****************************** Follow feeds ****************************** -->
 
     <div class="recommend">
-        <div class="panel panel-info">
-          <div class="panel-heading">Follow feeds</div>
-<!--           <div class="panel-body">Recommended content here</div> -->
-            <!-- content here !!! -->
-         </div>
+        <a href="{{action('HomeController@follows')}}">
+            <div class="panel panel-info">
+              <div class="panel-heading">Follow feeds</div>
+             </div>
+         </a>
          <div class="row">
             @if($follow_contents != '[]')
                 <?php $i = 0; ?>
@@ -71,7 +70,7 @@
                             <div class="col-md-4">
                                 <div class="thumbnail">
                                   <a href= "{{action('ProjectController@show',[$follow_content->pid])}}">
-                                    <img src="https://2dbdd5116ffa30a49aa8-c03f075f8191fb4e60e74b907071aee8.ssl.cf1.rackcdn.com/596027_1376876426.2173.jpg" alt="Lights" style="width:100%">
+                                    <img src="/public/projectcovers/<?php echo $follow_content->projectcover?>" alt="Lights" style="width:100%">
                                     <div class="caption">
                                         <p>{{$follow_content->pname}}</p>
                                         <p>{{$follow_content->desp}}</p>
@@ -83,23 +82,52 @@
 
                     @endforeach
             @else
-                <div> No Projects under following </div>
+                <div> <span id = "no_follow">No Projects under following </span></div>
             @endif
         </div>
     </div>
 
+    <!-- ****************************** Recommended ****************************** -->
     <div class="recommend">
-        <div class="panel panel-info">
-          <div class="panel-heading">Recommended For You</div>
-<!--           <div class="panel-body">Recommended content here</div> -->
-            <!-- content here !!! -->
-        </div>
-    </div>
+        <a href="{{action('HomeController@recommend')}}">
+            <div class="panel panel-info">
+              <div class="panel-heading">Recommended For You</div>
+            </div>
+         </a>
+             <div class="row">
+                @if($recommends != '[]')
+                    <?php $i = 0; ?>
+                        @foreach($recommends as $recommend)
+                            <?php $i++;?>
+                            @if($i < 4)
+                                <div class="col-md-4">
+                                    <div class="thumbnail">
+                                      <a href= "{{action('ProjectController@show',[$recommend->project_pid])}}">
+                                        <img src="/public/projectcovers/<?php echo $recommend->projectcover?>" alt="Lights" style="width:100%">
+                                        <div class="caption">
+                                            <p>{{$recommend->pname}}</p>
+                                            <p>{{$recommend->desp}}</p>
+                                        </div>
+                                      </a>
+                                    </div>
+                                </div>
+                            @endif
 
+                        @endforeach
+                @else
+                    <div> No Relevant Recommends for you </div>
+                @endif    
+            </div>
+     </div>
+
+
+   <!-- ****************************** Popular ****************************** -->
      <div class="popular">
-        <div class="panel panel-info">
-          <div class="panel-heading">What's popular now</div>
-        </div>
+        <a href="{{action('HomeController@popular')}}">
+            <div class="panel panel-info">
+              <div class="panel-heading">What's popular now</div>
+            </div>
+        </a>
 <!--           <div class="panel-body">Recommended content here</div> -->
             <!-- content here !!! -->
         <div class="row">
@@ -111,7 +139,7 @@
                             <div class="col-md-4">
                                 <div class="thumbnail">
                                   <a href= "{{action('ProjectController@show',[$popular_project->project_pid])}}">
-                                    <img src="https://2dbdd5116ffa30a49aa8-c03f075f8191fb4e60e74b907071aee8.ssl.cf1.rackcdn.com/10260677_1459361980.1123.jpg" alt="Lights" style="width:100%">
+                                    <img src="/public/projectcovers/<?php echo $popular_project->projectcover?>" alt="Lights" style="width:100%">
                                     <div class="caption">
                                         <p>{{$popular_project->pname}}</p>
                                         <p>{{$popular_project->desp}}</p>
@@ -120,7 +148,6 @@
                                 </div>
                             </div>
                         @endif
-
                     @endforeach
             @else
                 <div> No Projects under following </div>

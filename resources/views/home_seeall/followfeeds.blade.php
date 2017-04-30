@@ -3,18 +3,18 @@
 	@section('content')
 	<div class="containers">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<h1 id = "head">Search Result</h1>
+		<h1 id = "head">Follow Feeds</h1>
 		<hr/>
-		@if($search_result != '[]')
+		@if($follow_contents != '[]')
 			<?php $i = 0;?>
 			@while(true)
 				<div class="row">
 					<?php $max = $i+3;?>
 		            @for (; $i < $max; $i++)
-		            		@if($i >= count($search_result)) 
+		            		@if($i >= count($follow_contents)) 
 		            			@break;
 		            		@endif
-		                    <?php $result = $search_result[$i];?>                   
+		                    <?php $result = $follow_contents[$i];?>                   
 		                            <div class="col-md-4">
 		                                <div class="thumbnail">
 		                                  <a href= "{{action('ProjectController@show',[$result->pid])}}">
@@ -33,9 +33,8 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No relevant content. </div>
+                <div> No Following Content. </div>
        	@endif
-<!-- 		<p> {{$search_result}}</p> -->
 	</div>
 	@endsection
 
