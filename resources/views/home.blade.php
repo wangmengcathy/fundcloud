@@ -56,9 +56,11 @@
     <!-- ****************************** Follow feeds ****************************** -->
 
     <div class="recommend">
-        <div class="panel panel-info">
-          <div class="panel-heading">Follow feeds</div>
-         </div>
+        <a href="{{action('HomeController@follows')}}">
+            <div class="panel panel-info">
+              <div class="panel-heading">Follow feeds</div>
+             </div>
+         </a>
          <div class="row">
             @if($follow_contents != '[]')
                 <?php $i = 0; ?>
@@ -87,9 +89,11 @@
 
     <!-- ****************************** Recommended ****************************** -->
     <div class="recommend">
-        <div class="panel panel-info">
-          <div class="panel-heading">Recommended For You</div>
-        </div>
+        <a href="{{action('HomeController@recommend')}}">
+            <div class="panel panel-info">
+              <div class="panel-heading">Recommended For You</div>
+            </div>
+         </a>
              <div class="row">
                 @if($recommends != '[]')
                     <?php $i = 0; ?>
@@ -119,9 +123,11 @@
 
    <!-- ****************************** Popular ****************************** -->
      <div class="popular">
-        <div class="panel panel-info">
-          <div class="panel-heading">What's popular now</div>
-        </div>
+        <a href="{{action('HomeController@popular')}}">
+            <div class="panel panel-info">
+              <div class="panel-heading">What's popular now</div>
+            </div>
+        </a>
 <!--           <div class="panel-body">Recommended content here</div> -->
             <!-- content here !!! -->
         <div class="row">
