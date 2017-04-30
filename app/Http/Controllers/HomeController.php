@@ -47,4 +47,23 @@ class HomeController extends Controller
         return view('search/index', compact('search_result'));
 
     }
+
+    public function follows()
+    {
+        $follower_id = Auth::user()->id;
+        $follow_contents = DB::table('followers')->join('projects', 'followers.following_id','=','projects.user_id')->where('followers.user_id', '=', $follower_id)->get();
+        return view('home_seeall/followfeeds', compact('follow_contents'));
+    }
+
+    public function recommend()
+    {
+        $recommends = app('App\Http\Controllers\UserLogController')->recommend();
+        return view('home_seeall/recommends', compact('recommends'));
+    }
+
+    public function popular()
+    {
+        $popular_projects = DB::table('projects')->join('project_user','projects.pid', '=', 'project_user.project_pid')->orderBy('updated_at', 'DESC')->get();
+        return view('home_seeall/populars', compact('popular_projects'));
+    }
 }
