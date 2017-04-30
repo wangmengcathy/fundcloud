@@ -59,8 +59,6 @@
     <div class="recommend">
         <div class="panel panel-info">
           <div class="panel-heading">Follow feeds</div>
-<!--           <div class="panel-body">Recommended content here</div> -->
-            <!-- content here !!! -->
          </div>
          <div class="row">
             @if($follow_contents != '[]')
@@ -83,7 +81,7 @@
 
                     @endforeach
             @else
-                <div> No Projects under following </div>
+                <div> <span id = "no_follow">No Projects under following </span></div>
             @endif
         </div>
     </div>
@@ -91,10 +89,32 @@
     <div class="recommend">
         <div class="panel panel-info">
           <div class="panel-heading">Recommended For You</div>
-<!--           <div class="panel-body">Recommended content here</div> -->
-            <!-- content here !!! -->
         </div>
-    </div>
+             <div class="row">
+                @if($recommends != '[]')
+                    <?php $i = 0; ?>
+                        @foreach($recommends as $recommend)
+                            <?php $i++;?>
+                            @if($i < 4)
+                                <div class="col-md-4">
+                                    <div class="thumbnail">
+                                      <a href= "{{action('ProjectController@show',[$recommend->project_pid])}}">
+                                        <img src="https://2dbdd5116ffa30a49aa8-c03f075f8191fb4e60e74b907071aee8.ssl.cf1.rackcdn.com/10260677_1459361980.1123.jpg" alt="Lights" style="width:100%">
+                                        <div class="caption">
+                                            <p>{{$recommend->pname}}</p>
+                                            <p>{{$recommend->desp}}</p>
+                                        </div>
+                                      </a>
+                                    </div>
+                                </div>
+                            @endif
+
+                        @endforeach
+                @else
+                    <div> No Relevant Recommends for you </div>
+                @endif    
+            </div>
+     </div>
 
      <div class="popular">
         <div class="panel panel-info">
@@ -120,7 +140,6 @@
                                 </div>
                             </div>
                         @endif
-
                     @endforeach
             @else
                 <div> No Projects under following </div>

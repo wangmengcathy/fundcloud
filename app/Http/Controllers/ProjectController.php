@@ -179,6 +179,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
+        //update the user log
+        app('App\Http\Controllers\UserLogController')->store($id,1);
         $project = Project::findOrFail($id);
         $creater = User::findOrFail($project->user_id);
 

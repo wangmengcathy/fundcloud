@@ -29,6 +29,12 @@ class OthersController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             ]);
+        //update the user log -> add all projects of following to table weight+1
+        $followingProjects = DB::table('projects')->where('user_id','=', $following_id)
+        ->get();
+        foreach($followingProjects as $followingProject){
+            app('App\Http\Controllers\UserLogController')->store($followingProject->pid,1);
+        }
         return back();
     }
     public function unfollow(){
