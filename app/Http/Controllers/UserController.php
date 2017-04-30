@@ -25,7 +25,7 @@ class UserController extends Controller
 
         $avg_ratings = DB::table('projects')->where('projects.user_id','=',$user->id)->leftjoin('rates','projects.pid','=','rates.project_pid')->select('rates.project_pid',DB::raw('avg(rating) as average_rates'))->groupBy('project_pid')->get();
         $createdprojects = DB::table('projects')->where('projects.user_id','=',$user->id)->get();
-//        return $avg_ratings;
+
         return view('projects.profile',compact('user','userprofile','pledgeprojects','createdprojects','ratedprojects','avg_ratings'));
     }
     
@@ -33,7 +33,15 @@ class UserController extends Controller
 
         $id = Auth::user()->id;
         
-        DB::table('user_profiles')->insert(['id' => $id, 'hometown' => $request['hometown'],
+        $imageName = 'user'.$id . '.' . 
+            $request->file('profileimage')->getClientOriginalExtension();
+
+        $request->file('profileimage')->move(
+
+            $_SERVER["DOCUMENT_ROOT"].'/public/photo', $imageName
+        );
+        
+        DB::table('user_profiles')->insert(['id' => $id, 'imagename' => $imageName,'hometown' => $request['hometown'],
         'birthday' => $request['birthday'], 'interest' => $request['interest'], 
         'creditcard' => $request['creditcard'], 'legalname' => $request['legalname']
         ]);

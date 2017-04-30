@@ -116,13 +116,55 @@ class ProjectController extends Controller
         **/
         $request['raisedmoney'] = 0;
         $request['user_id'] = Auth::user()->id;
+        
+        
+        //store sample1
+        if($request->file('projectsample1') != null){
+            $fileName = 'user'.Auth::user()->id . 'sample1.' . 
+                $request->file('projectsample1')->getClientOriginalExtension();
+
+            $request->file('projectsample1')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request['sample1'] = $fileName;
+         }
+        
+        //store sample2
+        if($request->file('projectsample2') != null){
+            $fileName = 'user'.Auth::user()->id . 'sample2.' . 
+                $request->file('projectsample2')->getClientOriginalExtension();
+
+            $request->file('projectsample2')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request['sample2'] = $fileName;
+        }
+        
+        //store sample3
+        if($request->file('projectsample3') != null){
+            $fileName = 'user'.Auth::user()->id . 'sample3.' . 
+                $request->file('projectsample3')->getClientOriginalExtension();
+
+            $request->file('projectsample3')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request['sample3'] = $fileName;
+        }
+//        return $request->all();
         $project = new Project($request->all());
         
         Auth::user()->posts()->save($project);
         
+
         $tagIds = $request->input('tag_list');
         
+
         $project->tags()->attach($tagIds);
+        
+        DB::table('sample')->insert(['pid'=>$project->pid,'sample1'=>$request['sample1'],'sample2'=>$request['sample2'],'sample3'=>$request['sample3']]);
         
         \Session::flash('flash_message','Your project has been created!');
         
@@ -152,9 +194,11 @@ class ProjectController extends Controller
         $pledge_record = DB::table('project_user')
                              ->where('project_pid', '=', $id)
                              ->get();
+                           
+        $samples = DB::table('sample')->where('pid','=',$id)->get();
 
         return view('projects.show',
-            compact('project','creater','count','already_like','comments_author', 'pledge_record'));
+            compact('project','samples','creater','count','already_like','comments_author', 'pledge_record'));
     }
 
     /**
@@ -169,7 +213,9 @@ class ProjectController extends Controller
         
         $project = Project::findOrFail($id);
         
-        return view('projects.edit',compact('project','tags'));
+        $samples = DB::table('sample')->where('pid','=',$id)->get();
+        
+        return view('projects.edit',compact('project','tags','samples'));
     }
     
 
@@ -184,13 +230,55 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
         
+        //edit sample1
+        if($request['editprojectsample1'] != null){
+            $fileName = 'user'.Auth::user()->id . 'sample1.' . 
+                $request->file('editprojectsample1')->getClientOriginalExtension();
+
+            $request->file('editprojectsample1')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request['sample1'] = $fileName;
+            DB::table('sample')->where('pid','=',$project->pid)->update(['sample1'=>$request['sample1']]);
+         }
+        
+        //edit sample2
+        if($request['editprojectsample2'] != null){
+
+            $fileName = 'user'.Auth::user()->id . 'sample2.' . 
+                $request->file('editprojectsample2')->getClientOriginalExtension();
+
+            $request->file('editprojectsample2')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request['sample2'] = $fileName;
+            DB::table('sample')->where('pid','=',$project->pid)->update(['sample2'=>$request['sample2']]);
+
+        }
+        
+        //edit sample3
+        if($request['editprojectsample3'] != null){
+            $fileName = 'user'.Auth::user()->id . 'sample3.' . 
+                $request->file('editprojectsample3')->getClientOriginalExtension();
+
+            $request->file('editprojectsample3')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectfiles', $fileName
+            );
+            $request['sample3'] = $fileName;
+            DB::table('sample')->where('pid','=',$project->pid)->update(['sample3'=>$request['sample3']]);
+        }
+
         $project->update($request->all());
         
         $tagIds = $request->input('tag_list');
         
         $project->tags()->sync($tagIds);
 
-        return redirect()->route('projects.show', [$id => $id]);
+        return redirect()->route('projects.show', [$id => $project->pid]);
+        
     }
 
     /**
