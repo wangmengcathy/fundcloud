@@ -128,14 +128,14 @@ class ProjectController extends Controller
         **/
         $request['raisedmoney'] = 0;
         $request['user_id'] = Auth::user()->id;
-<<<<<<< HEAD
+
         
         //store samples
         $pc = new ProjectController;
         $pc->storesample($request,'projectsample1','sample1');
         $pc->storesample($request,'projectsample2','sample2');
         $pc->storesample($request,'projectsample3','sample3');   
-=======
+
 
         //store the cover of project
         if($request->file('cover1') != null){
@@ -156,7 +156,7 @@ class ProjectController extends Controller
             $request['projectcover'] = "default_cover.jpg";
          }
          print_r($request['projectcover']);
->>>>>>> origin/master
+
         
         
         $project = new Project($request->all());
