@@ -147,13 +147,17 @@
 								<?php  $i++; ?>
 									<li class="list-group-item">
 									<div id="comment-content">
-										<span ><strong>{{$comment->name}}</strong></span>
-										<span style="padding-left:15px; color:grey">
-											
-												on {{$comment->created_at}}&nbsp;
-											
-										</span>
-										<div style="padding-top: 10px">
+										
+											<img alt="User Pic" src="/public/photo/<?php echo $comment->imagename?>" style="border-radius: 50%; float:left" class="img-responsive" height="25px" width="30px">
+										
+											<span style="padding-left:15px"><strong>{{$comment->name}}</strong></span>
+											<span style="padding-left:15px; color:grey">
+												
+													on {{$comment->created_at}}&nbsp;
+												
+											</span>
+									
+										<div style="padding-top: 10px; padding-left: 4%">
 											<span> 
 												@if($comment->replied_name != "")
 												<a class='btn' href='/projects/<?php echo $comment->replied_id;?>/others'>@ {{$comment->replied_name}}:</a> 

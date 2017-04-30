@@ -32,7 +32,7 @@ CREATE TABLE `comments` (
   `replied_id` int(11) DEFAULT NULL,
   `replied_name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,18,1,'my first comment','2017-04-25 19:42:21','2017-04-25 19:42:26',NULL,NULL),(2,18,1,'here is my comment','2017-04-26 00:21:50','2017-04-26 00:21:50',NULL,NULL),(4,10,1,'I\'m commenting the 5th project','2017-04-26 00:38:45','2017-04-26 00:38:45',NULL,NULL),(5,10,1,'another comments','2017-04-26 00:43:26','2017-04-26 00:43:26',NULL,NULL),(6,10,1,'another try!','2017-04-26 00:49:09','2017-04-26 00:49:09',NULL,NULL),(7,18,1,'cathy leaves a comment here.','2017-04-26 00:49:44','2017-04-26 00:49:44',NULL,NULL),(8,19,1,'cathy leaves a comment here','2017-04-29 00:56:58','2017-04-29 00:56:58',NULL,NULL),(9,19,2,'Jiaxiang leaves a comment here','2017-04-29 02:06:38','2017-04-29 02:06:38',1,NULL),(10,19,2,'hi!','2017-04-29 02:07:06','2017-04-29 02:07:06',2,'Jiaxiang Lin'),(11,4,1,'hi','2017-04-28 22:10:18','2017-04-28 22:10:20',NULL,NULL),(12,20,3,'hi','2017-04-28 23:02:02','2017-04-28 23:02:04',NULL,NULL);
+INSERT INTO `comments` VALUES (1,18,1,'my first comment','2017-04-25 19:42:21','2017-04-25 19:42:26',NULL,NULL),(2,18,1,'here is my comment','2017-04-26 00:21:50','2017-04-26 00:21:50',NULL,NULL),(4,10,1,'I\'m commenting the 5th project','2017-04-26 00:38:45','2017-04-26 00:38:45',NULL,NULL),(5,10,1,'another comments','2017-04-26 00:43:26','2017-04-26 00:43:26',NULL,NULL),(6,10,1,'another try!','2017-04-26 00:49:09','2017-04-26 00:49:09',NULL,NULL),(7,18,1,'cathy leaves a comment here.','2017-04-26 00:49:44','2017-04-26 00:49:44',NULL,NULL),(8,19,1,'cathy leaves a comment here','2017-04-29 00:56:58','2017-04-29 00:56:58',NULL,NULL),(9,19,2,'Jiaxiang leaves a comment here','2017-04-29 02:06:38','2017-04-29 02:06:38',1,NULL),(10,19,2,'hi!','2017-04-29 02:07:06','2017-04-29 02:07:06',2,'Jiaxiang Lin'),(11,4,1,'hi','2017-04-28 22:10:18','2017-04-28 22:10:20',NULL,NULL),(12,20,3,'hi','2017-04-28 23:02:02','2017-04-28 23:02:04',NULL,NULL),(13,22,6,'www','2017-04-30 07:36:25','2017-04-30 07:36:25',NULL,NULL),(14,22,6,'good','2017-04-30 07:53:35','2017-04-30 07:53:35',6,'katelyn1');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +67,7 @@ CREATE TABLE `followers` (
 
 LOCK TABLES `followers` WRITE;
 /*!40000 ALTER TABLE `followers` DISABLE KEYS */;
-INSERT INTO `followers` VALUES (3,2,'2017-04-28 23:34:24','2017-04-28 23:34:24'),(6,1,'2017-04-30 02:55:12','2017-04-30 02:55:12'),(6,2,'2017-04-29 21:48:33','2017-04-29 21:48:33');
+INSERT INTO `followers` VALUES (3,2,'2017-04-28 23:34:24','2017-04-28 23:34:24'),(6,2,'2017-04-29 21:48:33','2017-04-29 21:48:33');
 /*!40000 ALTER TABLE `followers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES (1,19,'2017-04-28 22:37:22','2017-04-28 22:37:22');
+INSERT INTO `likes` VALUES (1,19,'2017-04-28 22:37:22','2017-04-28 22:37:22'),(6,22,'2017-04-30 04:04:05','2017-04-30 04:04:05');
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,7 +375,7 @@ CREATE TABLE `user_logs` (
 
 LOCK TABLES `user_logs` WRITE;
 /*!40000 ALTER TABLE `user_logs` DISABLE KEYS */;
-INSERT INTO `user_logs` VALUES (6,1,1,'2017-04-30 02:55:12','2017-04-30 02:55:12'),(6,3,1,'2017-04-30 02:55:12','2017-04-30 02:55:12'),(6,4,5,'2017-04-30 02:14:50','2017-04-30 02:14:50'),(6,5,3,'2017-04-30 02:14:50','2017-04-30 02:14:50'),(6,8,3,'2017-04-30 02:14:50','2017-04-30 02:14:50'),(6,9,1,'2017-04-30 02:55:12','2017-04-30 02:55:12'),(6,10,1,'2017-04-30 02:55:12','2017-04-30 02:55:12'),(6,18,1,'2017-04-30 02:55:12','2017-04-30 02:55:12'),(6,19,1,'2017-04-30 02:54:54','2017-04-30 02:54:54'),(6,20,1,'2017-04-30 02:54:26','2017-04-30 02:54:26'),(6,21,2,'2017-04-30 02:14:50','2017-04-30 02:14:50'),(6,22,2,'2017-04-30 02:54:14','2017-04-30 02:54:14');
+INSERT INTO `user_logs` VALUES (6,3,1,'2017-04-30 04:15:13','2017-04-30 04:15:13');
 /*!40000 ALTER TABLE `user_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -393,6 +393,7 @@ CREATE TABLE `user_profiles` (
   `interest` varchar(255) DEFAULT NULL,
   `creditcard` varchar(255) DEFAULT NULL,
   `legalname` varchar(255) DEFAULT NULL,
+  `imagename` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -403,7 +404,7 @@ CREATE TABLE `user_profiles` (
 
 LOCK TABLES `user_profiles` WRITE;
 /*!40000 ALTER TABLE `user_profiles` DISABLE KEYS */;
-INSERT INTO `user_profiles` VALUES (1,'Shenzhen','1993-10-08 00:00:00','gym','123456','cathy wang'),(2,'Harbin','1992-11-06 00:00:00','movie','234567','Jiaxiang Lin'),(3,'new york','2017-04-28 00:00:00','reading','456789','meng wang');
+INSERT INTO `user_profiles` VALUES (1,'Shenzhen','1993-10-08 00:00:00','gym','123456','cathy wang',NULL),(2,'Harbin','1992-11-06 00:00:00','movie','234567','Jiaxiang Lin',NULL),(3,'new york','2017-04-28 00:00:00','reading','456789','meng wang',NULL),(6,'beijing','2017-04-30 00:00:00','music','1123444','yiqin','user6.JPG');
 /*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -446,4 +447,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-29 22:59:56
+-- Dump completed on 2017-04-30  0:18:31

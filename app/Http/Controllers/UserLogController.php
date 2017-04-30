@@ -31,9 +31,19 @@ class UserLogController extends Controller
 		        ->get();
     	if($log != '[]'){
     		DB::table('user_logs')
-    		->where('user_id','=',$user_id)
-	        ->where('project_pid', '=', $project_id)
-	        ->increment('count', $count);
+        		->where('user_id','=',$user_id)
+                ->where('project_pid', '=', $project_id)
+                ->increment('count', $count);
+            $change = DB::table('user_logs')
+                        ->where('user_id','=',$user_id)
+                        ->where('project_pid', '=', $project_id)
+                        ->first();
+            if($change->count == 0){
+                DB::table('user_logs')
+                        ->where('user_id','=',$user_id)
+                        ->where('project_pid', '=', $project_id)
+                        ->delete();
+            }
     	}else{
     		UserLog::create([
             'user_id' => $user_id,

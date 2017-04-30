@@ -42,6 +42,12 @@ class OthersController extends Controller
         $following_id = Input::get('id');
         $follower_id = Auth::user()->id;
         DB::table('followers')->where('user_id', '=', $follower_id)->where('following_id', '=', $following_id)->delete();
+        $followingProjects = DB::table('projects')->where('user_id','=', $following_id)
+        ->get();
+        foreach($followingProjects as $followingProject){
+            app('App\Http\Controllers\UserLogController')->store($followingProject->pid,-1);
+        }
+
         return back();
     }
     public function others(User $user_id){
