@@ -23,7 +23,7 @@
             <div class="item">
                 <img src="https://www.w3schools.com/bootstrap/img_flower2.jpg" alt="Chania" class = "tales">
                 <div class="home-button-graph-div">
-                    <button type="button" class="btn btn-warning home-button-graph-button">Edit Profile</button>
+                    <a href="/profile" class="btn btn-warning home-button-graph-button" role="button">My Profile</a>
                 </div>
             </div>
 
