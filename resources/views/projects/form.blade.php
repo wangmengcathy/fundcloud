@@ -5,6 +5,11 @@
 </div>
 
 <div class="form-group">
+<!-- {!!Form::label('projectcover','Project Cover:')!!} -->
+{!!Form::file('cover1')!!}
+</div>
+
+<div class="form-group">
 	{!!Form::label('desp','Description:')!!}
 	{!!Form::textarea('desp',null,['class'=>'form-control'])!!}
 </div>

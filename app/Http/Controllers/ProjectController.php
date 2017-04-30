@@ -116,7 +116,26 @@ class ProjectController extends Controller
         **/
         $request['raisedmoney'] = 0;
         $request['user_id'] = Auth::user()->id;
-        
+
+        //store the cover of project
+        if($request->file('cover1') != null){
+            $userid = Auth::user()->id;
+            $number = DB::table('projects')
+                        ->where('projects.user_id', '=', $userid)
+                        ->count();
+            $number = $number + 1;
+            $fileName = 'user'.Auth::user()->id . 'number' . $number .'.'.
+                $request->file('cover1')->getClientOriginalExtension();
+            $request->file('cover1')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectcovers', $fileName
+            );
+            $request['projectcover'] = $fileName;
+                       
+         }else{
+            $request['projectcover'] = "default_cover.jpg";
+         }
+         print_r($request['projectcover']);
         
         //store sample1
         if($request->file('projectsample1') != null){
