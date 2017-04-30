@@ -103,7 +103,7 @@
                                 <div class="col-md-4">
                                     <div class="thumbnail">
                                       <a href= "{{action('ProjectController@show',[$recommend->project_pid])}}">
-                                        <img src="/public/projectcovers/<?php echo $recommend->projectcover?>" alt="Lights" style="width:100%">
+                                        <img src="/public/projectcovers/<?php echo $recommend->projectcover?>" alt="Lights" width="800px" height="533px">
                                         <div class="caption">
                                             <p>{{$recommend->pname}}</p>
                                             <p>{{$recommend->desp}}</p>
@@ -139,7 +139,7 @@
                             <div class="col-md-4">
                                 <div class="thumbnail">
                                   <a href= "{{action('ProjectController@show',[$popular_project->project_pid])}}">
-                                    <img src="/public/projectcovers/<?php echo $popular_project->projectcover?>" alt="Lights" style="width:100%">
+                                    <img src="/public/projectcovers/<?php echo $popular_project->projectcover?>" alt="Lights" width="800px" height="533px">
                                     <div class="caption">
                                         <p>{{$popular_project->pname}}</p>
                                         <p>{{$popular_project->desp}}</p>

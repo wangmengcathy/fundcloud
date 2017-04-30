@@ -6,7 +6,7 @@
 
 <div class="form-group">
 <!-- {!!Form::label('projectcover','Project Cover:')!!} -->
-{!!Form::file('cover1')!!}
+<strong>Upload a Project Cover</strong> {!!Form::file('cover1')!!}
 </div>
 
 <div class="form-group">

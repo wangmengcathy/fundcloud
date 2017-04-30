@@ -6,7 +6,7 @@
 	
 	
 	<!--projects presentation-->
-	
+	@include('projects.sample')
 	
 	
 	{!!Form::open(['action'=>'RateController@store'])!!}
