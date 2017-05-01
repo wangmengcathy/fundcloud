@@ -14,7 +14,7 @@
 	
 	<div class="form-group">
 		{!!Form::label('rating','Rating:')!!}
-		{!!Form::select('rating',['1','2','3','4','5'], ['class'=>'form-control'])!!}
+		{!!Form::select('rating',['0','1','2','3','4','5'], ['class'=>'form-control'])!!}
 		{!!Form::hidden('user_id', $user->id)!!}
 		{!!Form::hidden('project_pid', $project->pid)!!}
 	</div>	
