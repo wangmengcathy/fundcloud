@@ -10,6 +10,8 @@ class Posting extends Model
         'project_pid',
         'posting_desp',
         'material',
+        'audio',
+        'video',
         'created_at',
         'updated_at',
     ];

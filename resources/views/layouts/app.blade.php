@@ -89,18 +89,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
+                                <ul class="dropdown-menu" role="menu">                               
                                     <li>
                                     <a href="/profile">Profile</a>
                                     </li>
@@ -118,6 +107,17 @@
                                     </li>
                                     <li>
                                     <a href="/home/recommend">Recommend Feeds</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                                     </li>
                                 </ul>
                             </li>
@@ -138,17 +138,17 @@
         </div>
         <div class="content2">
             @yield('content2')
-        </div>
-        
-        
+        </div> 
     </div>
-    <hr/> 
+
+
     <div class="social-buttons">
         <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
         <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
         <a href="https://www.google.com/" class="fa fa-google"></a>
         <a href="https://www.linkedin.com" class="fa fa-linkedin"></a>
     </div>
+    
 
     <!-- Scripts -->
        

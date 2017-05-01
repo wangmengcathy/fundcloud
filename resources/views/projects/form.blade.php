@@ -13,6 +13,12 @@
 	{!!Form::label('desp','Description:')!!}
 	{!!Form::textarea('desp',null,['class'=>'form-control'])!!}
 </div>
+
+<strong>Upload files in Description</strong>
+	<div style="padding-top: 10px"><p>Upload image file</p>{!!Form::file('projectsample1')!!} </div>
+	<div style="padding-top: 10px"><p>Upload audio file</p>{!!Form::file('projectsample2')!!}</div>
+	<div style="padding-top: 10px"><p>Upload video file</p>{!!Form::file('projectsample3')!!}</div>
+
 <div class="form-group">
 	{!!Form::label('endtime','Fund Ends At:')!!}
 	{!!Form::input('date','endtime',date('Y-m-d'), ['class'=>'form-control'])!!}

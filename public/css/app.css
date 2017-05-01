@@ -1,7 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-	
-    h1{
-        
+	.sample{
+        padding-top: 25px;
+    }
+    #app{
+        background-color: #fffaea
+    }
+    .timeline-p{
+        font-size:15px;
     }
 	#search-bar{
         display: none;
@@ -10,6 +15,9 @@
     }
     #i1{
         cursor: pointer;
+    }
+    .rating-block{
+        padding-left: 10px;
     }
     .content{
         margin: 10px;
@@ -54,6 +62,7 @@
     .social-buttons{
         margin-right: 8%;
         float:right;
+        bottom: 0;
     }
     .fa {
         padding: 15px;

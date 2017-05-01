@@ -11,7 +11,13 @@
 	</div>
 	<input type="hidden" name="project_pid" id="postvalue" value="{{$project->pid}}" />
 	<div style="padding-top: 20px; padding-bottom: 20px;">
-		<strong>Upload files</strong>{!!Form::file('posting1')!!} 
+		<strong>Upload image</strong>{!!Form::file('posting1')!!} 
+	</div>
+	<div style="padding-top: 20px; padding-bottom: 20px;">
+		<strong>Upload audio</strong>{!!Form::file('audio1')!!} 
+	</div>
+	<div style="padding-top: 20px; padding-bottom: 20px;">
+		<strong>Upload video</strong>{!!Form::file('video1')!!} 
 	</div>
 	{!!Form::submit('Post',['class' => 'btn btn-primary form-control'])!!}
 	{!!Form::close()!!}

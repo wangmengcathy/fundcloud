@@ -52,11 +52,11 @@
 		<ul class="list-group">
 		@foreach ($pledgeprojects as $pledgeproject)
 			<li class="list-group-item">
-			Pledged <strong>{{$pledgeproject->pname}}</strong>
+			Pledged <a href="projects/<?php echo$pledgeproject->pid?>"><strong>{{$pledgeproject->pname}}</strong></a>
 
 			amount: {{$pledgeproject->amount}} 
 			
-			@if(($pledgeproject->transaction_status) == 'posted')
+			@if(($pledgeproject->transaction_status) == 'posted' && $pledgeproject->status == 'finished')
 			<a class="btn btn-success btn-xs" href="<?php echo$pledgeproject->pid?>/rate">Rate</a>
 			@endif
 			</li>
@@ -74,7 +74,7 @@
 		<ul class="list-group">
 		@foreach ($createdprojects as $createdproject)
 			<li class="list-group-item">
-			<strong>{{$createdproject->pname}}</strong>
+			<a href="projects/<?php echo$createdproject->pid?>"><strong>{{$createdproject->pname}}</strong></a>
 
 			raised money: {{$createdproject->raisedmoney}} 
 			@foreach($avg_ratings as $avg_rating)

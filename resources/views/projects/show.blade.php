@@ -18,59 +18,59 @@
 			End Time: {{$project->endtime->diffForHumans()}} <a class="btn" href="/projects/<?php echo $creater->id;?>/others">Created By:{{$creater->name}}</a>
 		</p>
 		<div class="row">
-		<div class="col-md-4 col-lg-4 "> <img alt="User Pic" src="/public/projectcovers/<?php echo $project->projectcover?>" width="300px" height="300px" class="img-responsive"> 
-		</div>
+			<div class="col-md-4 col-lg-4 "> <img alt="User Pic" src="/public/projectcovers/<?php echo $project->projectcover?>" width="300px" height="300px" class="img-responsive"> 
+			</div>
 		
-		<div class=" col-md-8 col-lg-8 "> 
+			<div class=" col-md-8 col-lg-8 "> 
 		
-			<!--tags-->
-			@unless($project->tags->isEmpty())
-				<h5>Tags:
-					@foreach($project->tags as $tag)
-						<span>{{$tag->name}}</span>
-					@endforeach
-				</h5>
-			@endunless
+				<!--tags-->
+				@unless($project->tags->isEmpty())
+					<h5>Tags:
+						@foreach($project->tags as $tag)
+							<span>{{$tag->name}}</span>
+						@endforeach
+					</h5>
+				@endunless
 			
 		<!-- 	*************************        Like    ****************************** -->
 
-			<p>  
+				<p>  
+					
+					@if (Auth::user() && $already_like == 0)
+						{!!Form::open(['action'=>'LikeController@like'])!!}			
+						{!!Form::token()!!}
+						<input type="hidden" name="project_id" id="postvalue" value="{{$project->pid}}" />
+							<button type="sumbit" style="all:none">
+								<img src="http://www.stickylife.com/images/u/fc35d68ad835449f961625e7e31dbede-800.png" width = "20px" height = "20px">
+							</button> {{$count}}
+						{!!Form::close()!!}
+						@include('errors.list')
+					@endif
+
+					@if (Auth::user() && $already_like > 0)
+						{!!Form::open(['action'=>'LikeController@unlike'])!!}			
+						{!!Form::token()!!}
+						<input type="hidden" name="project_id" id="postvalue" value="{{$project->pid}}" />
+							<button type="sumbit" style="all:none">
+								<img src='https://s.w.org/images/core/emoji/2.2.1/svg/2764.svg' width = "20px" height = "20px">
+							</button> {{$count}}
+
+						{!!Form::close()!!}
+						@include('errors.list')
+					@endif
+				</p>
+
+
 				
-				@if (Auth::user() && $already_like == 0)
-					{!!Form::open(['action'=>'LikeController@like'])!!}			
-					{!!Form::token()!!}
-					<input type="hidden" name="project_id" id="postvalue" value="{{$project->pid}}" />
-						<button type="sumbit" style="all:none">
-							<img src="http://www.stickylife.com/images/u/fc35d68ad835449f961625e7e31dbede-800.png" width = "20px" height = "20px">
-						</button> {{$count}}
-					{!!Form::close()!!}
-					@include('errors.list')
-				@endif
-
-				@if (Auth::user() && $already_like > 0)
-					{!!Form::open(['action'=>'LikeController@unlike'])!!}			
-					{!!Form::token()!!}
-					<input type="hidden" name="project_id" id="postvalue" value="{{$project->pid}}" />
-						<button type="sumbit" style="all:none">
-							<img src='https://s.w.org/images/core/emoji/2.2.1/svg/2764.svg' width = "20px" height = "20px">
-						</button> {{$count}}
-
-					{!!Form::close()!!}
-					@include('errors.list')
-				@endif
-			</p>
 
 
+				<!-- 	*************************        pledge    ****************************** -->
+
+				<h5>Raised Money: {{$project->raisedmoney}}</h5>
+
+				<h5>Minimum Money: {{$project->minmoney}}</h5>
 				
-
-
-			<!-- 	*************************        pledge    ****************************** -->
-
-			<h5>Raised Money: {{$project->raisedmoney}}</h5>
-
-			<h5>Minimum Money: {{$project->minmoney}}</h5>
-			
-			<h5>Maximum Money: {{$project->maxmoney}}</h5>
+				<h5>Maximum Money: {{$project->maxmoney}}</h5>
 			
 
 
@@ -78,18 +78,18 @@
 			<!-- 	*************************   progress bar    ****************************** -->
 
 
-			<div class="progress">
-				<div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar" aria-valuenow="70"
-				aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($project->raisedmoney)/($project->maxmoney)*100;?>%">
-					{{($project->raisedmoney)/($project->maxmoney)*100}}%
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar" aria-valuenow="70"
+					aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($project->raisedmoney)/($project->maxmoney)*100;?>%">
+						{{($project->raisedmoney)/($project->maxmoney)*100}}%
+					</div>
 				</div>
-			</div>
 
-			
-			<a class="btn btn-success" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
+				
+				<a class="btn btn-success" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
 
-		</div>
-		</div>
+			</div> <!-- 8 -->
+		</div> <!-- row -->
 	@stop
 
 
@@ -128,11 +128,12 @@
 
 
 				<div class="tab-pane active" id="desp">
-				  <p>
-				   {{$project-> desp}}
-				  </p>
-				  <!--samples-->
-				@include('projects.sample')
+					<div class="panel panel-default">
+    					<div class="panel-body">{{$project-> desp}}</div>
+					</div>
+					  <!--samples-->
+						@include('projects.sample')
+					
 				</div>
 
 
@@ -240,9 +241,9 @@
 				<div class="tab-pane" id="update">
 					<div class="update-record">
 						<div align="center">
-						@if(Auth::user()->id == $creater->id)
-							<a class="btn btn-success" href="/<?php echo $project->pid;?>/posting">Add Posting</a>
-						@endif
+							@if(Auth::user()->id == $creater->id)
+								<a class="btn btn-success" href="/<?php echo $project->pid;?>/posting">Add Posting</a>
+							@endif
 						</div>
 						
 
@@ -255,8 +256,23 @@
 									<img src="/public/img/Photo-icon2.jpg" alt="Picture">
 								</div> <!-- cd-timeline-img -->
 								<div class="cd-timeline-content">
-									 <h2 style="font-size:15px">{{$posting->posting_desp}} </h2>
-									 <img alt="User Pic" src="/public/projectpostings/<?php echo $posting->material?>" width="350px" height="350px" class="img-responsive"> 
+									 <h2 style="font-size:20px">{{$posting->posting_desp}} </h2>
+									 @if($posting->material != '')
+										 <p class="timeline-p"><strong>Image File:</strong></p>
+										 <img alt="User Pic" src="/public/projectpostings/<?php echo $posting->material?>" width="350px" height="350px" class="img-responsive"> 
+									 @endif
+									 @if($posting->audio != '')
+										<p class="timeline-p"><strong>Audio File:</strong></p>
+										<audio controls>
+											<source src="/public/projectpostings/<?php echo $posting->audio?>" type="audio/mpeg">
+										</audio>
+									@endif
+									@if($posting->video != '')
+										<p class="timeline-p"><strong>Video File:</strong></p>
+										<video width="300" height="300" controls>
+											<source src="/public/projectpostings/<?php echo $posting->video?>" type="video/mp4">
+										</video>
+									@endif
 									<span class="cd-date">{{$posting->created_at}}</span>
 								</div> <!-- cd-timeline-content -->
 							</div> <!-- cd-timeline-block -->
@@ -273,13 +289,27 @@
 
 				 @if($rates != '[]')
 					<div class="tab-pane" id="rates">
-						<div>Average Rating</div>
-						<div class="progress">
-							<div class="progress-bar progress-bar-success active" role="progressbar" aria-valuenow="70"
-							aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($rate_avg)/(5)*100;?>%">
-								{{$rate_avg}}/5
-							</div>
+
+						<div class="rating-block">
+							<h5>Average user rating</h5>
+								@if($rate_avg > 0 && $rate_avg <= 1)
+									@include('projects.showrating1')
+								@endif
+								@if($rate_avg > 1 && $rate_avg <= 2)
+									@include('projects.showrating2')
+								@endif
+								@if($rate_avg > 2 && $rate_avg <= 3)
+									@include('projects.showrating3')
+								@endif
+								@if($rate_avg > 3 && $rate_avg <= 4)
+									@include('projects.showrating4')
+								@endif
+								@if($rate_avg > 4 && $rate_avg <= 5)
+									@include('projects.showrating5')
+								@endif
+							<h5 class="bold padding-bottom-7"><?php echo number_format($rate_avg, 1, '.', ',')?> <small>/ 5</small></h5>
 						</div>
+
 						<ul class="list-group">
 							@foreach($rates as $rate)
 								<li class="list-group-item">
@@ -292,6 +322,6 @@
 						</ul>
 					</div>
 				@endif
-		</div>
+	</div>
 	@stop
 

@@ -4,7 +4,7 @@
 	
 	<div class="containers">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<h1 id = "head">Projects</h1>
+		<h1 id = "head">Projects Square</h1>
 		<hr/>
 		<table class="table table-striped">
 		    <thead>
