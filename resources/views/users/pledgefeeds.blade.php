@@ -3,18 +3,18 @@
 	@section('content')
 	<div class="containers">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<h1 id = "head">Recommends For You</h1>
+		<h1 id = "head">Pledge Feeds</h1>
 		<hr/>
-		@if($recommends != '[]')
+		@if($pledgefeeds != '[]')
 			<?php $i = 0;?>
 			@while(true)
 				<div class="row">
 					<?php $max = $i+3;?>
 		            @for (; $i < $max; $i++)
-		            		@if($i >= count($recommends)) 
+		            		@if($i >= count($pledgefeeds)) 
 		            			@break;
 		            		@endif
-		                    <?php $result = $recommends[$i];?>                   
+		                    <?php $result = $pledgefeeds[$i];?>                   
 		                            <div class="col-md-4">
 		                                <div class="thumbnail">
 		                                  <a href= "{{action('ProjectController@show',[$result->pid])}}">
@@ -33,12 +33,10 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No recommends. Please fill more information of yourself  </div>
+                <div> No Pledge Content. </div>
        	@endif
 	</div>
 	@endsection
 
-
-	
 
 	

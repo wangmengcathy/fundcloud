@@ -3,24 +3,24 @@
 	@section('content')
 	<div class="containers">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<h1 id = "head">What's now popular</h1>
+		<h1 id = "head">My Projects</h1>
 		<hr/>
-		@if($popular_projects != '[]')
+		@if($myprojects != '[]')
 			<?php $i = 0;?>
 			@while(true)
 				<div class="row">
 					<?php $max = $i+3;?>
 		            @for (; $i < $max; $i++)
-		            		@if($i >= count($popular_projects)) 
+		            		@if($i >= count($myprojects)) 
 		            			@break;
 		            		@endif
-		                    <?php $result = $popular_projects[$i];?>                   
+		                    <?php $result = $myprojects[$i];?>                   
 		                            <div class="col-md-4">
 		                                <div class="thumbnail">
 		                                  <a href= "{{action('ProjectController@show',[$result->pid])}}">
-		                                    <img src="https://2dbdd5116ffa30a49aa8-c03f075f8191fb4e60e74b907071aee8.ssl.cf1.rackcdn.com/10260677_1459361980.1123.jpg" alt="Lights" style="width:100%">
+		                                    <img src="/public/projectcovers/<?php echo $result->projectcover?>" alt="Lights" style="width:100%" height="300px">
 		                                    <div class="caption">
-		                                        <p>{{$result->pname}}</p>
+		                                        <p><strong>{{$result->pname}}</strong></p>
 		                                        <p>{{$result->desp}}</p>
 		                                    </div>
 		                                  </a>
@@ -33,7 +33,7 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No popular projects now. </div>
+                <div> No Project built. </div>
        	@endif
 	</div>
 	@endsection

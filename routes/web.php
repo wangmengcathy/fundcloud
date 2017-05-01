@@ -24,6 +24,11 @@ Route::post('/projects/unfollow','OthersController@unfollow');
 Route::get('/{project}/rate','RateController@index');
 Route::post('/rate','RateController@store');
 
+Route::get('/{project}/finish','ProjectController@announceFinish');
+
+Route::get('/{project}/posting','PostingsController@edit');
+Route::post('/posting','PostingsController@storeposting');
+
 Route::get('/profile','UserController@profile');
 Route::post('/profile','UserController@storeprofile');
 
@@ -45,3 +50,9 @@ Route::get('/home/follows', 'HomeController@follows');
 Route::get('/home/recommend', 'HomeController@recommend');
 
 Route::get('/home/popular', 'HomeController@popular');
+
+Route::get('/home/likefeeds', 'UserController@likefeeds');
+
+Route::get('/home/pledgefeeds', 'UserController@pledgefeeds');
+
+Route::get('/home/myprojects', 'UserController@myprojects');

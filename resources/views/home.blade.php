@@ -35,9 +35,9 @@
             </div>
 
             <div class="item">
-                <img src="https://www.roughguides.com/wp-content/uploads/2016/03/Sings-660x420.jpg" alt="Flower" class = "tales">
+                <img src="https://www.roughguides.com/wp-content/uploads/2016/03/Sings-660x420.jpg" alt="Sign" class = "tales">
                 <div class="home-button-graph-div">
-                    <button type="button" class="btn btn-warning home-button-graph-button">Update projects</button>
+                    <a href="{{action('UserController@myprojects')}}" role="button" class="btn btn-warning home-button-graph-button">Update projects</a>
                 </div>
             </div>
           </div>
@@ -70,9 +70,9 @@
                             <div class="col-md-4">
                                 <div class="thumbnail">
                                   <a href= "{{action('ProjectController@show',[$follow_content->pid])}}">
-                                    <img src="/public/projectcovers/<?php echo $follow_content->projectcover?>" alt="Lights" style="width:100%">
+                                    <img src="/public/projectcovers/<?php echo $follow_content->projectcover?>" alt="Lights" height="300px">
                                     <div class="caption">
-                                        <p>{{$follow_content->pname}}</p>
+                                        <p><strong>{{$follow_content->pname}}</strong></p>
                                         <p>{{$follow_content->desp}}</p>
                                     </div>
                                   </a>
@@ -103,9 +103,9 @@
                                 <div class="col-md-4">
                                     <div class="thumbnail">
                                       <a href= "{{action('ProjectController@show',[$recommend->project_pid])}}">
-                                        <img src="/public/projectcovers/<?php echo $recommend->projectcover?>" alt="Lights" width="800px" height="533px">
+                                        <img src="/public/projectcovers/<?php echo $recommend->projectcover?>" alt="Lights" height="300px">
                                         <div class="caption">
-                                            <p>{{$recommend->pname}}</p>
+                                            <p><strong>{{$recommend->pname}}</strong></p>
                                             <p>{{$recommend->desp}}</p>
                                         </div>
                                       </a>
@@ -139,9 +139,9 @@
                             <div class="col-md-4">
                                 <div class="thumbnail">
                                   <a href= "{{action('ProjectController@show',[$popular_project->project_pid])}}">
-                                    <img src="/public/projectcovers/<?php echo $popular_project->projectcover?>" alt="Lights" width="800px" height="533px">
+                                    <img src="/public/projectcovers/<?php echo $popular_project->projectcover?>" alt="Lights" height="300px">
                                     <div class="caption">
-                                        <p>{{$popular_project->pname}}</p>
+                                        <p><strong>{{$popular_project->pname}}</strong></p>
                                         <p>{{$popular_project->desp}}</p>
                                     </div>
                                   </a>
