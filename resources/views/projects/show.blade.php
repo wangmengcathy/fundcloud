@@ -257,16 +257,22 @@
 								</div> <!-- cd-timeline-img -->
 								<div class="cd-timeline-content">
 									 <h2 style="font-size:20px">{{$posting->posting_desp}} </h2>
-									 <p class="timeline-p"><strong>Image File:</strong></p>
-									 <img alt="User Pic" src="/public/projectpostings/<?php echo $posting->material?>" width="350px" height="350px" class="img-responsive"> 
-									 <p class="timeline-p"><strong>Audio File:</strong></p>
-									<audio controls>
-										<source src="/public/projectpostings/<?php echo $posting->audio?>" type="audio/mpeg">
-									</audio>
-									<p class="timeline-p"><strong>Video File:</strong></p>
-									<video width="300" height="300" controls>
-										<source src="/public/projectpostings/<?php echo $posting->video?>" type="video/mp4">
-									</video>
+									 @if($posting->material != '')
+										 <p class="timeline-p"><strong>Image File:</strong></p>
+										 <img alt="User Pic" src="/public/projectpostings/<?php echo $posting->material?>" width="350px" height="350px" class="img-responsive"> 
+									 @endif
+									 @if($posting->audio != '')
+										<p class="timeline-p"><strong>Audio File:</strong></p>
+										<audio controls>
+											<source src="/public/projectpostings/<?php echo $posting->audio?>" type="audio/mpeg">
+										</audio>
+									@endif
+									@if($posting->video != '')
+										<p class="timeline-p"><strong>Video File:</strong></p>
+										<video width="300" height="300" controls>
+											<source src="/public/projectpostings/<?php echo $posting->video?>" type="video/mp4">
+										</video>
+									@endif
 									<span class="cd-date">{{$posting->created_at}}</span>
 								</div> <!-- cd-timeline-content -->
 							</div> <!-- cd-timeline-block -->
