@@ -72,7 +72,7 @@
                                   <a href= "{{action('ProjectController@show',[$follow_content->pid])}}">
                                     <img src="/public/projectcovers/<?php echo $follow_content->projectcover?>" alt="Lights" height="300px">
                                     <div class="caption">
-                                        <p>{{$follow_content->pname}}</p>
+                                        <p><strong>{{$follow_content->pname}}</strong></p>
                                         <p>{{$follow_content->desp}}</p>
                                     </div>
                                   </a>
@@ -105,7 +105,7 @@
                                       <a href= "{{action('ProjectController@show',[$recommend->project_pid])}}">
                                         <img src="/public/projectcovers/<?php echo $recommend->projectcover?>" alt="Lights" height="300px">
                                         <div class="caption">
-                                            <p>{{$recommend->pname}}</p>
+                                            <p><strong>{{$recommend->pname}}</strong></p>
                                             <p>{{$recommend->desp}}</p>
                                         </div>
                                       </a>
@@ -141,7 +141,7 @@
                                   <a href= "{{action('ProjectController@show',[$popular_project->project_pid])}}">
                                     <img src="/public/projectcovers/<?php echo $popular_project->projectcover?>" alt="Lights" height="300px">
                                     <div class="caption">
-                                        <p>{{$popular_project->pname}}</p>
+                                        <p><strong>{{$popular_project->pname}}</strong></p>
                                         <p>{{$popular_project->desp}}</p>
                                     </div>
                                   </a>

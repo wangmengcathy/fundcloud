@@ -64,6 +64,9 @@ class UserController extends Controller
 
         $pledgefeeds = DB::table('project_user')
                         ->join('projects','projects.pid','=','project_user.project_pid')
+                        ->where('project_user.user_id','=',$user->id)
+                        ->select('projects.pid','project_user.user_id','projects.pname','projects.desp', 'projects.projectcover')
+                        ->distinct()
                         ->get();
          return view('users.pledgefeeds',compact('pledgefeeds'));
     }

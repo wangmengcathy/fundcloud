@@ -100,7 +100,7 @@
                                     <a href="/home/likefeeds">Like Feeds</a>
                                     </li>
                                     <li>
-                                    <a href="/home/likefeeds">Pledge Feeds</a>
+                                    <a href="/home/pledgefeeds">Pledge Feeds</a>
                                     </li>
                                     <li>
                                     <a href="/home/follows">Follow Feeds</a>
