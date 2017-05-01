@@ -63,6 +63,7 @@ class PostingsController extends Controller
 
     	DB::table('postings')->insert([
     		'project_pid' => $project_pid, 'material'=> $request['material'], 'audio' => $request['audio'],'video' => $request['video'],'posting_desp' => $request['posting_desp'],
+
     		'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
     	return redirect()->action('ProjectController@show', ['id' => $project_pid]);
     }
