@@ -64,6 +64,6 @@ class HomeController extends Controller
     public function popular()
     {
         $popular_projects = DB::table('projects')->join('project_user','projects.pid', '=', 'project_user.project_pid')->orderBy('updated_at', 'DESC')->get();
-        return view('home_seeall/populars', compact('popular_projects'));
+        return view('home_seeall/popular', compact('popular_projects'));
     }
 }
