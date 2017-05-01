@@ -14,6 +14,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/autocomplete.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -102,6 +104,21 @@
                                     <li>
                                     <a href="/profile">Profile</a>
                                     </li>
+                                    <li>
+                                    <a href="/home/myprojects">My Projects</a>
+                                    </li>
+                                    <li>
+                                    <a href="/home/likefeeds">Like Feeds</a>
+                                    </li>
+                                    <li>
+                                    <a href="/home/likefeeds">Pledge Feeds</a>
+                                    </li>
+                                    <li>
+                                    <a href="/home/follows">Follow Feeds</a>
+                                    </li>
+                                    <li>
+                                    <a href="/home/recommend">Recommend Feeds</a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif
@@ -137,6 +154,8 @@
        
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/autocomplete.js') }}"></script>
+    <script src="{{ asset('js/modernizr.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <script>
             $(document).ready(funcBegin); 
             

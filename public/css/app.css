@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 	
-    
+    h1{
+        
+    }
 	#search-bar{
         display: none;
         padding-top: 10px;

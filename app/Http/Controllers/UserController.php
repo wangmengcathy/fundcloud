@@ -48,6 +48,33 @@ class UserController extends Controller
         
         return redirect('/profile');
     }
+
+    public function likefeeds(){
+        $user = Auth::user();
+
+        $likefeeds = DB::table('likes')
+                        ->join('projects','projects.pid','=','likes.project_id')
+                        ->where('likes.user_id','=',$user->id)
+                        ->get();
+         return view('users.likefeeds',compact('likefeeds'));
+    }
+
+    public function pledgefeeds(){
+        $user = Auth::user();
+
+        $pledgefeeds = DB::table('project_user')
+                        ->join('projects','projects.pid','=','project_user.project_pid')
+                        ->get();
+         return view('users.pledgefeeds',compact('pledgefeeds'));
+    }
+    public function myprojects(){
+        $user = Auth::user();
+
+        $myprojects = DB::table('projects')
+                        ->where('projects.user_id','=',$user->id)
+                        ->get();
+         return view('users.myprojects',compact('myprojects'));
+    }
     
 
 }

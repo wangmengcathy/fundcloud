@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\User;
 use App\Tag;
 use App\Like;
+use App\Rate;
 use Auth;
 use Input;
 use App\PublishedProject;
@@ -35,7 +36,7 @@ class ProjectController extends Controller
     public function index()
     {
         //valid projects
-        $projects = Project::orderBy('pid', 'DESC')->validproject()->get();
+        $projects = Project::orderBy('pid', 'DESC')->validproject()->orderBy('pname', 'ASC')->get();
 
         //expired projects
         $exprojects = Project::orderBy('pid', 'DESC')->expiredproject()->get();
@@ -101,7 +102,7 @@ class ProjectController extends Controller
         ->update(['raisedmoney' => ($project->raisedmoney)+$amount]);
         
         \Session::flash('flash_message', "Thanks for your sponsorship!");
-        return redirect('projects');
+        return redirect()->action('ProjectController@show', ['id' => $project->pid]);
     }
     /**
      * Store a newly created resource in storage.
@@ -155,7 +156,6 @@ class ProjectController extends Controller
          }else{
             $request['projectcover'] = "default_cover.jpg";
          }
-         print_r($request['projectcover']);
 
         
         
@@ -205,8 +205,25 @@ class ProjectController extends Controller
                            
         $samples = DB::table('sample')->where('pid','=',$id)->get();
 
+        $postings = DB::table('postings')->where('project_pid','=',$id)->get();
+
+        $rates = DB::table('rates')
+                    ->join('published_projects','published_projects.pid','=','rates.project_pid')
+                    ->join('users', 'users.id','=','rates.user_id')
+                    ->where('published_projects.status','=','finished')
+                    ->where('rates.project_pid','=',$id)->get();
+        $rate_avg = DB::table('rates')
+                    ->join('published_projects','published_projects.pid','=','rates.project_pid')
+                    ->join('users', 'users.id','=','rates.user_id')
+                    ->where('published_projects.status','=','finished')
+                    ->where('rates.project_pid','=',$id)
+                    ->avg('rating');
+        $published_pro = DB::table('published_projects')
+                            ->where('published_projects.pid','=',$id)
+                            ->get();
+
         return view('projects.show',
-            compact('project','samples','creater','count','already_like','comments_author', 'pledge_record'));
+            compact('project','samples','creater','count','already_like','comments_author', 'pledge_record', 'postings','rates', 'rate_avg', 'published_pro'));
     }
 
     /**
@@ -272,6 +289,11 @@ class ProjectController extends Controller
         
     }
 
+    public function announceFinish($pid){
+        DB::table('published_projects')->where('published_projects.pid', '=', $pid)->update(['status' => 'finished']);
+         \Session::flash('flash_message', "Announce successfully");
+        return redirect()->action('ProjectController@show', ['id' => $pid]);
+    }
     /**
      * Remove the specified resource from storage.
      *
