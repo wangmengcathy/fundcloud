@@ -21,11 +21,9 @@ class UserController extends Controller
             return view('projects.createprofile',compact('user'));
         }
         //show the profile
-<<<<<<< HEAD
-        $pledgeprojects = DB::table('project_user')->join('projects','project_user.project_pid','=','projects.pid')->where('project_user.user_id','=',$user->id)->get();
-=======
+
         $pledgeprojects = DB::table('project_user')->where('project_user.user_id','=',$user->id)->join('projects','project_pid','=','projects.pid')->leftjoin('published_projects', 'projects.pid','=','published_projects.pid')->get();
->>>>>>> origin/master
+
 
         $avg_ratings = DB::table('projects')->where('projects.user_id','=',$user->id)->leftjoin('rates','projects.pid','=','rates.project_pid')->select('rates.project_pid',DB::raw('avg(rating) as average_rates'))->groupBy('project_pid')->get();
         $createdprojects = DB::table('projects')->where('projects.user_id','=',$user->id)->get();
