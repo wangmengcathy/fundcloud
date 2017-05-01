@@ -14,6 +14,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/autocomplete.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -87,7 +89,25 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu" role="menu">                               
+                                    <li>
+                                    <a href="/profile">Profile</a>
+                                    </li>
+                                    <li>
+                                    <a href="/home/myprojects">My Projects</a>
+                                    </li>
+                                    <li>
+                                    <a href="/home/likefeeds">Like Feeds</a>
+                                    </li>
+                                    <li>
+                                    <a href="/home/likefeeds">Pledge Feeds</a>
+                                    </li>
+                                    <li>
+                                    <a href="/home/follows">Follow Feeds</a>
+                                    </li>
+                                    <li>
+                                    <a href="/home/recommend">Recommend Feeds</a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -98,9 +118,6 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
-                                    <li>
-                                    <a href="/profile">Profile</a>
                                     </li>
                                 </ul>
                             </li>
@@ -121,22 +138,24 @@
         </div>
         <div class="content2">
             @yield('content2')
-        </div>
-        
-        
+        </div> 
     </div>
-    <hr/> 
+
+
     <div class="social-buttons">
         <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
         <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
         <a href="https://www.google.com/" class="fa fa-google"></a>
         <a href="https://www.linkedin.com" class="fa fa-linkedin"></a>
     </div>
+    
 
     <!-- Scripts -->
        
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/autocomplete.js') }}"></script>
+    <script src="{{ asset('js/modernizr.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <script>
             $(document).ready(funcBegin); 
             
