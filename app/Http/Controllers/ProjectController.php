@@ -18,6 +18,7 @@ use Auth;
 use Input;
 use App\PublishedProject;
 use DB;
+use Log;
 
 
 class ProjectController extends Controller
@@ -187,6 +188,15 @@ class ProjectController extends Controller
         //update the user log
         app('App\Http\Controllers\UserLogController')->store($id,1);
         $project = Project::findOrFail($id);
+
+        $result = PublishedProject::select('pid')->where('pid','=',$id)->first();
+        if($result == null && ($project->raisedmoney >= $project->maxmoney)){
+            PublishedProject::insert(['pid' => $id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now(), 'materials' => 'xxx', 'fundmoney' => $project->raisedmoney, 'status' => 'pending']);
+        }
+
+        //charge user's pledged money for published projects
+        DB::table('project_user')->join('published_projects','project_pid','=','published_projects.pid')->update(['transaction_status' => 'posted']);
+
         $creater = User::findOrFail($project->user_id);
 
         $count = Like::where('project_id', '=', $id)->count();
@@ -201,17 +211,23 @@ class ProjectController extends Controller
                                 ->get();
         $pledge_record = DB::table('project_user')
                              ->where('project_pid', '=', $id)
+                             ->orderBy('project_user.created_at', 'DESC')
                              ->get();
                            
         $samples = DB::table('sample')->where('pid','=',$id)->get();
 
-        $postings = DB::table('postings')->where('project_pid','=',$id)->get();
+        $postings = DB::table('postings')
+                        ->where('project_pid','=',$id)
+                        ->orderBy('postings.created_at', 'DESC')
+                        ->get();
 
         $rates = DB::table('rates')
                     ->join('published_projects','published_projects.pid','=','rates.project_pid')
                     ->join('users', 'users.id','=','rates.user_id')
                     ->where('published_projects.status','=','finished')
-                    ->where('rates.project_pid','=',$id)->get();
+                    ->where('rates.project_pid','=',$id)
+                    ->orderBy('rates.created_at', 'DESC')
+                    ->get();
         $rate_avg = DB::table('rates')
                     ->join('published_projects','published_projects.pid','=','rates.project_pid')
                     ->join('users', 'users.id','=','rates.user_id')
@@ -221,9 +237,13 @@ class ProjectController extends Controller
         $published_pro = DB::table('published_projects')
                             ->where('published_projects.pid','=',$id)
                             ->get();
-
+        $already_pledge= DB::table('project_user')
+                            ->where('project_user.project_pid','=', $id)
+                            ->where('project_user.user_id','=',Auth::user()->id)
+                            ->first();
+    
         return view('projects.show',
-            compact('project','samples','creater','count','already_like','comments_author', 'pledge_record', 'postings','rates', 'rate_avg', 'published_pro'));
+            compact('project','samples','creater','count','already_like','comments_author', 'pledge_record', 'postings','rates', 'rate_avg', 'published_pro','already_pledge'));
     }
 
     /**

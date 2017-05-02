@@ -21,7 +21,7 @@ Route::get('/projects/{user_id}/others','OthersController@others');
 Route::post('/projects/follow','OthersController@follow');
 Route::post('/projects/unfollow','OthersController@unfollow');
 
-Route::get('/{project}/rate','RateController@index');
+Route::get('projects/{project}/rate','RateController@index');
 Route::post('/rate','RateController@store');
 
 Route::get('/{project}/finish','ProjectController@announceFinish');

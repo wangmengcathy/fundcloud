@@ -32,7 +32,7 @@ CREATE TABLE `comments` (
   `replied_id` int(11) DEFAULT NULL,
   `replied_name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,18,1,'my first comment','2017-04-25 19:42:21','2017-04-25 19:42:26',NULL,NULL),(2,18,1,'here is my comment','2017-04-26 00:21:50','2017-04-26 00:21:50',NULL,NULL),(4,10,1,'I\'m commenting the 5th project','2017-04-26 00:38:45','2017-04-26 00:38:45',NULL,NULL),(5,10,1,'another comments','2017-04-26 00:43:26','2017-04-26 00:43:26',NULL,NULL),(6,10,1,'another try!','2017-04-26 00:49:09','2017-04-26 00:49:09',NULL,NULL),(7,18,1,'cathy leaves a comment here.','2017-04-26 00:49:44','2017-04-26 00:49:44',NULL,NULL),(8,19,1,'cathy leaves a comment here','2017-04-29 00:56:58','2017-04-29 00:56:58',NULL,NULL),(9,19,2,'Jiaxiang leaves a comment here','2017-04-29 02:06:38','2017-04-29 02:06:38',1,NULL),(10,19,2,'hi!','2017-04-29 02:07:06','2017-04-29 02:07:06',2,'Jiaxiang Lin'),(11,4,1,'hi','2017-04-28 22:10:18','2017-04-28 22:10:20',NULL,NULL),(12,20,3,'hi','2017-04-28 23:02:02','2017-04-28 23:02:04',NULL,NULL),(13,22,6,'www','2017-04-30 07:36:25','2017-04-30 07:36:25',NULL,NULL),(14,22,6,'good','2017-04-30 07:53:35','2017-04-30 07:53:35',6,'katelyn1'),(15,3,6,'good','2017-05-01 07:58:56','2017-05-01 07:58:56',NULL,NULL);
+INSERT INTO `comments` VALUES (1,18,1,'my first comment','2017-04-25 19:42:21','2017-04-25 19:42:26',NULL,NULL),(2,18,1,'here is my comment','2017-04-26 00:21:50','2017-04-26 00:21:50',NULL,NULL),(4,10,1,'I\'m commenting the 5th project','2017-04-26 00:38:45','2017-04-26 00:38:45',NULL,NULL),(5,10,1,'another comments','2017-04-26 00:43:26','2017-04-26 00:43:26',NULL,NULL),(6,10,1,'another try!','2017-04-26 00:49:09','2017-04-26 00:49:09',NULL,NULL),(7,18,1,'cathy leaves a comment here.','2017-04-26 00:49:44','2017-04-26 00:49:44',NULL,NULL),(8,19,1,'cathy leaves a comment here','2017-04-29 00:56:58','2017-04-29 00:56:58',NULL,NULL),(9,19,2,'Jiaxiang leaves a comment here','2017-04-29 02:06:38','2017-04-29 02:06:38',1,NULL),(10,19,2,'hi!','2017-04-29 02:07:06','2017-04-29 02:07:06',2,'Jiaxiang Lin'),(11,4,1,'hi','2017-04-28 22:10:18','2017-04-28 22:10:20',NULL,NULL),(12,20,3,'hi','2017-04-28 23:02:02','2017-04-28 23:02:04',NULL,NULL),(13,22,6,'www','2017-04-30 07:36:25','2017-04-30 07:36:25',NULL,NULL),(14,22,6,'good','2017-04-30 07:53:35','2017-04-30 07:53:35',6,'katelyn1'),(15,3,6,'good','2017-05-01 07:58:56','2017-05-01 07:58:56',NULL,NULL),(16,30,6,'111','2017-05-02 00:40:22','2017-05-02 00:40:22',NULL,NULL),(17,30,6,'hekko','2017-05-02 00:40:29','2017-05-02 00:40:29',6,'katelyn1');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +67,7 @@ CREATE TABLE `followers` (
 
 LOCK TABLES `followers` WRITE;
 /*!40000 ALTER TABLE `followers` DISABLE KEYS */;
-INSERT INTO `followers` VALUES (3,2,'2017-04-28 23:34:24','2017-04-28 23:34:24'),(6,1,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,2,'2017-04-29 21:48:33','2017-04-29 21:48:33'),(6,3,'2017-04-30 19:22:04','2017-04-30 19:22:04');
+INSERT INTO `followers` VALUES (3,2,'2017-04-28 23:34:24','2017-04-28 23:34:24'),(6,1,'2017-05-02 00:08:28','2017-05-02 00:08:28'),(6,2,'2017-04-29 21:48:33','2017-04-29 21:48:33'),(6,3,'2017-04-30 19:22:04','2017-04-30 19:22:04');
 /*!40000 ALTER TABLE `followers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES (1,19,'2017-04-28 22:37:22','2017-04-28 22:37:22'),(6,22,'2017-04-30 04:22:21','2017-04-30 04:22:21'),(6,19,'2017-04-30 19:03:02','2017-04-30 19:03:02');
+INSERT INTO `likes` VALUES (1,19,'2017-04-28 22:37:22','2017-04-28 22:37:22'),(6,19,'2017-04-30 19:03:02','2017-04-30 19:03:02'),(6,1,'2017-05-01 20:02:15','2017-05-01 20:02:15'),(6,32,'2017-05-01 21:33:15','2017-05-01 21:33:15'),(6,22,'2017-05-02 00:10:27','2017-05-02 00:10:27');
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +168,7 @@ CREATE TABLE `postings` (
   PRIMARY KEY (`posting_id`),
   KEY `project_pid_idx` (`project_pid`),
   CONSTRAINT `project_pid` FOREIGN KEY (`project_pid`) REFERENCES `projects` (`pid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +177,7 @@ CREATE TABLE `postings` (
 
 LOCK TABLES `postings` WRITE;
 /*!40000 ALTER TABLE `postings` DISABLE KEYS */;
-INSERT INTO `postings` VALUES (1,22,'project22number2.jpg','test desp','2017-05-01 01:10:08','2017-05-01 01:10:08',NULL,NULL),(2,22,'project22number2.jpg','test desp','2017-05-01 01:13:34','2017-05-01 01:13:34',NULL,NULL),(3,22,'project22number2.jpg','test desp','2017-05-01 01:13:47','2017-05-01 01:13:47',NULL,NULL),(4,22,'project22number2.jpg','test desp1','2017-05-01 01:16:52','2017-05-01 01:16:52',NULL,NULL),(5,22,'project22number2.jpg','dddddd','2017-05-01 01:22:25','2017-05-01 01:22:25',NULL,NULL),(6,22,'project22number2.jpg','dddddd','2017-05-01 01:23:47','2017-05-01 01:23:47',NULL,NULL),(7,30,'project30imagenumber2.jpg','test posting','2017-05-01 19:03:06','2017-05-01 19:03:06','project30audionumber2.mp3','project30videonumber2.mp4'),(8,30,NULL,'goooodddd','2017-05-01 19:03:33','2017-05-01 19:03:33',NULL,NULL);
+INSERT INTO `postings` VALUES (1,22,'project22number2.jpg','test desp','2017-05-01 01:10:08','2017-05-01 01:10:08',NULL,NULL),(2,22,'project22number2.jpg','test desp','2017-05-01 01:13:34','2017-05-01 01:13:34',NULL,NULL),(3,22,'project22number2.jpg','test desp','2017-05-01 01:13:47','2017-05-01 01:13:47',NULL,NULL),(4,22,'project22number2.jpg','test desp1','2017-05-01 01:16:52','2017-05-01 01:16:52',NULL,NULL),(5,22,'project22number2.jpg','dddddd','2017-05-01 01:22:25','2017-05-01 01:22:25',NULL,NULL),(6,22,'project22number2.jpg','dddddd','2017-05-01 01:23:47','2017-05-01 01:23:47',NULL,NULL),(7,30,'project30imagenumber2.jpg','test posting','2017-05-01 19:03:06','2017-05-01 19:03:06','project30audionumber2.mp3','project30videonumber2.mp4'),(8,30,NULL,'goooodddd','2017-05-01 19:03:33','2017-05-01 19:03:33',NULL,NULL),(9,32,'project32imagenumber2.jpg','update','2017-05-01 22:26:26','2017-05-01 22:26:26','project32audionumber2.mp3','project32videonumber2.mp4'),(10,32,'project32imagenumber2.jpg','gotcha','2017-05-01 22:28:46','2017-05-01 22:28:46',NULL,NULL);
 /*!40000 ALTER TABLE `postings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +206,7 @@ CREATE TABLE `project_tag` (
 
 LOCK TABLES `project_tag` WRITE;
 /*!40000 ALTER TABLE `project_tag` DISABLE KEYS */;
-INSERT INTO `project_tag` VALUES (8,2,'2017-04-20 03:51:00','2017-04-20 03:51:00'),(9,2,'2017-04-20 04:09:22','2017-04-20 04:09:22'),(9,3,'2017-04-20 04:09:22','2017-04-20 04:09:22'),(8,4,'2017-04-21 23:25:24','2017-04-21 23:25:24'),(10,1,'2017-04-22 05:35:42','2017-04-22 05:35:42'),(10,2,'2017-04-22 05:35:42','2017-04-22 05:35:42'),(18,4,'2017-04-25 23:32:11','2017-04-25 23:32:11'),(19,1,'2017-04-27 04:07:09','2017-04-27 04:07:09'),(20,1,'2017-04-29 03:01:27','2017-04-29 03:01:27'),(20,3,'2017-04-29 03:01:27','2017-04-29 03:01:27'),(21,3,'2017-04-30 05:09:54','2017-04-30 05:09:54'),(22,3,'2017-04-30 06:37:59','2017-04-30 06:37:59'),(23,2,'2017-04-30 20:15:35','2017-04-30 20:15:35'),(24,1,'2017-04-30 20:43:23','2017-04-30 20:43:23'),(25,3,'2017-04-30 20:44:56','2017-04-30 20:44:56'),(26,3,'2017-04-30 21:16:44','2017-04-30 21:16:44'),(27,1,'2017-04-30 21:23:29','2017-04-30 21:23:29'),(28,3,'2017-04-30 21:31:06','2017-04-30 21:31:06'),(29,1,'2017-04-30 21:31:50','2017-04-30 21:31:50'),(30,2,'2017-05-01 21:57:18','2017-05-01 21:57:18'),(31,2,'2017-05-01 22:14:19','2017-05-01 22:14:19');
+INSERT INTO `project_tag` VALUES (8,2,'2017-04-20 03:51:00','2017-04-20 03:51:00'),(9,2,'2017-04-20 04:09:22','2017-04-20 04:09:22'),(9,3,'2017-04-20 04:09:22','2017-04-20 04:09:22'),(8,4,'2017-04-21 23:25:24','2017-04-21 23:25:24'),(10,1,'2017-04-22 05:35:42','2017-04-22 05:35:42'),(10,2,'2017-04-22 05:35:42','2017-04-22 05:35:42'),(18,4,'2017-04-25 23:32:11','2017-04-25 23:32:11'),(19,1,'2017-04-27 04:07:09','2017-04-27 04:07:09'),(20,1,'2017-04-29 03:01:27','2017-04-29 03:01:27'),(20,3,'2017-04-29 03:01:27','2017-04-29 03:01:27'),(21,3,'2017-04-30 05:09:54','2017-04-30 05:09:54'),(22,3,'2017-04-30 06:37:59','2017-04-30 06:37:59'),(23,2,'2017-04-30 20:15:35','2017-04-30 20:15:35'),(24,1,'2017-04-30 20:43:23','2017-04-30 20:43:23'),(25,3,'2017-04-30 20:44:56','2017-04-30 20:44:56'),(26,3,'2017-04-30 21:16:44','2017-04-30 21:16:44'),(27,1,'2017-04-30 21:23:29','2017-04-30 21:23:29'),(28,3,'2017-04-30 21:31:06','2017-04-30 21:31:06'),(29,1,'2017-04-30 21:31:50','2017-04-30 21:31:50'),(30,2,'2017-05-01 21:57:18','2017-05-01 21:57:18'),(31,2,'2017-05-01 22:14:19','2017-05-01 22:14:19'),(32,1,'2017-05-02 00:45:03','2017-05-02 00:45:03'),(33,1,'2017-05-02 01:57:30','2017-05-02 01:57:30');
 /*!40000 ALTER TABLE `project_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +234,7 @@ CREATE TABLE `project_user` (
 
 LOCK TABLES `project_user` WRITE;
 /*!40000 ALTER TABLE `project_user` DISABLE KEYS */;
-INSERT INTO `project_user` VALUES (1,3,'2017-04-27 23:03:32','2017-04-27 23:03:32',10.00,'posted'),(1,3,'2017-04-27 23:31:20','2017-04-27 23:31:20',40.00,'posted'),(3,4,'2017-04-28 23:15:20','2017-04-28 23:15:20',100.00,'pending'),(3,4,'2017-04-28 23:30:07','2017-04-28 23:30:07',34.00,'pending'),(3,19,'2017-04-28 23:29:58','2017-04-28 23:29:58',52.00,'pending'),(3,20,'2017-04-28 23:12:59','2017-04-28 23:12:59',20.00,'pending'),(6,3,'2017-05-01 02:42:17','2017-05-01 02:42:17',10.00,'posted'),(6,3,'2017-05-01 02:44:48','2017-05-01 02:44:48',4.00,'posted'),(6,3,'2017-05-01 02:44:58','2017-05-01 02:44:58',5.00,'posted'),(6,3,'2017-05-01 04:58:57','2017-05-01 04:58:57',5.00,'posted'),(6,3,'2017-05-01 04:59:02','2017-05-01 04:59:02',5.00,'posted'),(6,19,'2017-05-01 04:57:23','2017-05-01 04:57:23',30000.00,'pending'),(6,22,'2017-05-01 03:24:14','2017-05-01 03:24:14',100.00,'posted'),(6,22,'2017-05-01 03:28:32','2017-05-01 03:28:32',10000.00,'posted'),(6,23,'2017-05-01 04:56:48','2017-05-01 04:56:48',100.00,'pending'),(6,25,'2017-05-01 17:32:35','2017-05-01 17:32:35',100.00,'posted'),(6,25,'2017-05-01 17:33:33','2017-05-01 17:33:33',120.00,'posted');
+INSERT INTO `project_user` VALUES (1,3,'2017-04-27 23:03:32','2017-04-27 23:03:32',10.00,'posted'),(1,3,'2017-04-27 23:31:20','2017-04-27 23:31:20',40.00,'posted'),(3,4,'2017-04-28 23:15:20','2017-04-28 23:15:20',100.00,'pending'),(3,4,'2017-04-28 23:30:07','2017-04-28 23:30:07',34.00,'pending'),(3,19,'2017-04-28 23:29:58','2017-04-28 23:29:58',52.00,'pending'),(3,20,'2017-04-28 23:12:59','2017-04-28 23:12:59',20.00,'pending'),(6,1,'2017-05-01 20:23:42','2017-05-01 20:23:42',100.00,'posted'),(6,3,'2017-05-01 02:42:17','2017-05-01 02:42:17',10.00,'posted'),(6,3,'2017-05-01 02:44:48','2017-05-01 02:44:48',4.00,'posted'),(6,3,'2017-05-01 02:44:58','2017-05-01 02:44:58',5.00,'posted'),(6,3,'2017-05-01 04:58:57','2017-05-01 04:58:57',5.00,'posted'),(6,3,'2017-05-01 04:59:02','2017-05-01 04:59:02',5.00,'posted'),(6,19,'2017-05-01 04:57:23','2017-05-01 04:57:23',30000.00,'pending'),(6,22,'2017-05-01 03:24:14','2017-05-01 03:24:14',100.00,'posted'),(6,22,'2017-05-01 03:28:32','2017-05-01 03:28:32',10000.00,'posted'),(6,23,'2017-05-01 04:56:48','2017-05-01 04:56:48',100.00,'pending'),(6,25,'2017-05-01 17:32:35','2017-05-01 17:32:35',100.00,'posted'),(6,25,'2017-05-01 17:33:33','2017-05-01 17:33:33',120.00,'posted'),(6,30,'2017-05-01 20:40:41','2017-05-01 20:40:41',100.00,'posted'),(6,30,'2017-05-01 20:40:51','2017-05-01 20:40:51',1200.00,'posted'),(6,32,'2017-05-01 21:04:46','2017-05-01 21:04:46',110.00,'posted'),(6,32,'2017-05-01 21:05:06','2017-05-01 21:05:06',1000.00,'posted'),(6,33,'2017-05-01 21:57:37','2017-05-01 21:57:37',120.00,'posted');
 /*!40000 ALTER TABLE `project_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,7 +259,7 @@ CREATE TABLE `projects` (
   PRIMARY KEY (`pid`),
   KEY `projects_user_id_foreign` (`user_id`),
   CONSTRAINT `projects_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,7 +268,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES (1,1,'project music','this is a music project',10000.00,20000.00,'2017-04-18 16:51:09','2017-04-27 16:51:13',10001.00,'user6number7.jpg'),(2,2,'jiaxiang\'s project','This is a project created by jiaxiang',111.00,222.00,'2017-05-19 00:00:00','2017-06-19 00:00:00',0.00,'user6number8.jpg'),(3,1,'cathy\'s project','cathy\'s project',100.00,200.00,'2017-06-19 00:00:00','2017-07-19 00:00:00',229.00,'default_cover.jpg'),(4,1,'test tag','test tag',10000.00,50000.00,'2017-06-21 00:00:00','2017-04-19 00:00:00',6004.00,'default_cover.jpg'),(5,1,'request project','this is a test',20000.00,30000.00,'2017-04-22 00:00:00','2017-04-26 00:00:00',0.00,'default_cover.jpg'),(8,1,'test tags array','test a tags array',100.00,200.00,'2017-04-21 00:00:00','2017-04-21 00:00:00',0.00,'default_cover.jpg'),(9,1,'4 project','4project',11100.00,222000.00,'2017-04-22 00:00:00','2017-05-20 00:00:00',5000.00,'default_cover.jpg'),(10,1,'project 5','5th project',3300.00,4400.00,'2017-05-22 00:00:00','2017-06-22 00:00:00',4540.00,'default_cover.jpg'),(18,1,'6th project','this is the 6th project!',8000.00,9000.00,'2017-04-27 00:00:00','2017-05-25 00:00:00',9030.00,'default_cover.jpg'),(19,2,'project jazz','this is a jazz project',30000.00,40000.00,'2017-05-27 00:00:00','2017-06-27 00:00:00',32869.00,'default_cover.jpg'),(20,3,'mengmeng\'s project','this is my first updated project!',10000.00,20000.00,'2017-05-28 00:00:00','2017-06-28 00:00:00',330.00,'default_cover.jpg'),(21,6,'test the search','testaaaa',100.00,1000.00,'2017-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(22,6,'test111','wwwwww',100.00,1000.00,'2017-05-01 00:00:00','2017-05-01 00:00:00',10100.00,'default_cover.jpg'),(23,6,'test the image','test the image',100.00,10000.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',100.00,'default_cover.jpg'),(24,6,'good','eeeeee',100.00,1000.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(25,6,'11111','222222',111.00,11.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',220.00,'default_cover.jpg'),(26,6,'yyyyyyyy','refsdv',11.00,11111.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(27,6,'yyyyyyyyyyy','qewder',1231.00,11232.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(28,6,'wwwww','wwwwwww',11.00,1111.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'user6number8.jpg'),(29,6,'godddddd','sccsa',43.00,353.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'user6number9.jpg'),(30,6,'test audio','test desp',100.00,1000.00,'2018-05-01 00:00:00','2018-05-01 00:00:00',0.00,'user6number10.png'),(31,6,'test video','test desp',100.00,10000.00,'2018-05-01 00:00:00','2018-05-01 00:00:00',0.00,'user6number11.jpg');
+INSERT INTO `projects` VALUES (1,1,'project music','this is a music project',10000.00,20000.00,'2017-04-18 16:51:09','2017-04-27 16:51:13',10101.00,'user6number7.jpg'),(2,2,'jiaxiang\'s project','This is a project created by jiaxiang',111.00,222.00,'2017-05-19 00:00:00','2017-06-19 00:00:00',0.00,'user6number8.jpg'),(3,1,'cathy\'s project','cathy\'s project',100.00,200.00,'2017-06-19 00:00:00','2017-07-19 00:00:00',229.00,'default_cover.jpg'),(4,1,'test tag','test tag',10000.00,50000.00,'2017-06-21 00:00:00','2017-04-19 00:00:00',6004.00,'default_cover.jpg'),(5,1,'request project','this is a test',20000.00,30000.00,'2017-04-22 00:00:00','2017-04-26 00:00:00',0.00,'default_cover.jpg'),(8,1,'test tags array','test a tags array',100.00,200.00,'2017-04-21 00:00:00','2017-04-21 00:00:00',0.00,'default_cover.jpg'),(9,1,'4 project','4project',11100.00,222000.00,'2017-04-22 00:00:00','2017-05-20 00:00:00',5000.00,'default_cover.jpg'),(10,1,'project 5','5th project',3300.00,4400.00,'2017-05-22 00:00:00','2017-06-22 00:00:00',4540.00,'default_cover.jpg'),(18,1,'6th project','this is the 6th project!',8000.00,9000.00,'2017-04-27 00:00:00','2017-05-25 00:00:00',9030.00,'default_cover.jpg'),(19,2,'project jazz','this is a jazz project',30000.00,40000.00,'2017-05-27 00:00:00','2017-06-27 00:00:00',32869.00,'default_cover.jpg'),(20,3,'mengmeng\'s project','this is my first updated project!',10000.00,20000.00,'2017-05-28 00:00:00','2017-06-28 00:00:00',330.00,'default_cover.jpg'),(21,6,'test the search','testaaaa',100.00,1000.00,'2017-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(22,6,'test111','wwwwww',100.00,1000.00,'2017-05-01 00:00:00','2017-05-01 00:00:00',10100.00,'default_cover.jpg'),(23,6,'test the image','test the image',100.00,10000.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',100.00,'default_cover.jpg'),(24,6,'good','eeeeee',100.00,1000.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(25,6,'11111','222222',111.00,11.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',220.00,'default_cover.jpg'),(26,6,'yyyyyyyy','refsdv',11.00,11111.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(27,6,'yyyyyyyyyyy','qewder',1231.00,11232.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'default_cover.jpg'),(28,6,'wwwww','wwwwwww',11.00,1111.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'user6number8.jpg'),(29,6,'godddddd','sccsa',43.00,353.00,'2018-04-30 00:00:00','2018-04-30 00:00:00',0.00,'user6number9.jpg'),(30,6,'test audio','test desp',100.00,1000.00,'2018-05-01 00:00:00','2018-05-01 00:00:00',1300.00,'user6number10.png'),(31,6,'test video','test desp',100.00,10000.00,'2018-05-01 00:00:00','2018-05-01 00:00:00',0.00,'user6number11.jpg'),(32,6,'shanshan','tttttttt',100.00,1000.00,'2018-05-01 00:00:00','2018-05-01 00:00:00',1110.00,'user6number12.jpg'),(33,6,'now','ddddddd',100.00,120.00,'2018-05-01 00:00:00','2018-05-01 00:00:00',120.00,'user6number13.jpg');
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +296,7 @@ CREATE TABLE `published_projects` (
 
 LOCK TABLES `published_projects` WRITE;
 /*!40000 ALTER TABLE `published_projects` DISABLE KEYS */;
-INSERT INTO `published_projects` VALUES (1,'2017-04-28 23:25:16','2017-04-28 23:25:16','xxx',10001.00,'pending'),(3,'2017-04-28 23:25:16','2017-04-28 23:25:16','xxx',200.00,'finished'),(10,'2017-04-28 23:25:16','2017-04-28 23:25:16','xxx',4540.00,'pending'),(18,'2017-04-28 23:25:16','2017-04-28 23:25:16','xxx',9030.00,'pending'),(22,'2017-05-01 03:28:32','2017-05-01 03:28:32','xxx',10100.00,'finished'),(25,'2017-05-01 17:39:14','2017-05-01 17:39:14','xxx',220.00,'finished');
+INSERT INTO `published_projects` VALUES (1,'2017-04-28 23:25:16','2017-04-28 23:25:16','xxx',10001.00,'pending'),(3,'2017-04-28 23:25:16','2017-04-28 23:25:16','xxx',200.00,'finished'),(10,'2017-04-28 23:25:16','2017-04-28 23:25:16','xxx',4540.00,'pending'),(18,'2017-04-28 23:25:16','2017-04-28 23:25:16','xxx',9030.00,'pending'),(22,'2017-05-01 03:28:32','2017-05-01 03:28:32','xxx',10100.00,'finished'),(25,'2017-05-01 17:39:14','2017-05-01 17:39:14','xxx',220.00,'finished'),(30,'2017-05-01 20:42:05','2017-05-01 20:42:05','xxx',1300.00,'pending'),(32,'2017-05-01 21:05:11','2017-05-01 21:05:11','xxx',1110.00,'finished'),(33,'2017-05-01 21:57:37','2017-05-01 21:57:37','xxx',120.00,'finished');
 /*!40000 ALTER TABLE `published_projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,6 +311,7 @@ CREATE TABLE `rates` (
   `user_id` int(11) NOT NULL,
   `project_pid` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
+  `rate_content` varchar(45) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`,`project_pid`,`rating`,`created_at`),
@@ -325,7 +326,7 @@ CREATE TABLE `rates` (
 
 LOCK TABLES `rates` WRITE;
 /*!40000 ALTER TABLE `rates` DISABLE KEYS */;
-INSERT INTO `rates` VALUES (1,3,3,'2017-04-29 01:28:19','2017-04-29 01:28:19'),(1,3,4,'2017-04-29 01:25:40','2017-04-29 01:25:40'),(1,4,4,'2017-04-28 04:39:14','2017-04-28 04:39:14'),(1,4,5,'2017-04-28 20:26:17','2017-04-28 20:26:20'),(1,19,4,'2017-04-28 04:40:39','2017-04-28 04:40:39'),(6,3,4,'2017-05-01 02:42:32','2017-05-01 02:42:32'),(6,22,2,'2017-05-01 16:51:34','2017-05-01 16:51:34'),(6,22,2,'2017-05-01 16:51:52','2017-05-01 16:51:52'),(6,22,4,'2017-05-01 16:52:38','2017-05-01 16:52:38');
+INSERT INTO `rates` VALUES (1,3,3,NULL,'2017-04-29 01:28:19','2017-04-29 01:28:19'),(1,3,4,NULL,'2017-04-29 01:25:40','2017-04-29 01:25:40'),(1,4,4,NULL,'2017-04-28 04:39:14','2017-04-28 04:39:14'),(1,4,5,NULL,'2017-04-28 20:26:17','2017-04-28 20:26:20'),(1,19,4,NULL,'2017-04-28 04:40:39','2017-04-28 04:40:39'),(6,3,4,NULL,'2017-05-01 02:42:32','2017-05-01 02:42:32'),(6,22,1,'great','2017-05-01 22:22:50','2017-05-01 22:22:50'),(6,22,2,NULL,'2017-05-01 16:51:34','2017-05-01 16:51:34'),(6,22,2,NULL,'2017-05-01 16:51:52','2017-05-01 16:51:52'),(6,22,4,NULL,'2017-05-01 16:52:38','2017-05-01 16:52:38'),(6,32,2,'good','2017-05-01 21:20:19','2017-05-01 21:20:19'),(6,32,3,NULL,'2017-05-01 21:05:43','2017-05-01 21:05:43'),(6,33,3,'great','2017-05-01 22:19:48','2017-05-01 22:19:48'),(6,33,3,'great','2017-05-01 22:20:38','2017-05-01 22:20:38'),(6,33,3,'great','2017-05-01 22:21:04','2017-05-01 22:21:04'),(6,33,3,'great','2017-05-01 22:22:26','2017-05-01 22:22:26');
 /*!40000 ALTER TABLE `rates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -343,7 +344,7 @@ CREATE TABLE `sample` (
   `sample2` varchar(45) DEFAULT NULL,
   `sample3` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -352,7 +353,7 @@ CREATE TABLE `sample` (
 
 LOCK TABLES `sample` WRITE;
 /*!40000 ALTER TABLE `sample` DISABLE KEYS */;
-INSERT INTO `sample` VALUES (1,22,'user6sample1.png',NULL,NULL),(2,23,'user6sample1.png',NULL,NULL),(3,24,NULL,NULL,NULL),(4,25,NULL,NULL,NULL),(5,26,NULL,NULL,NULL),(6,27,NULL,NULL,NULL),(7,28,NULL,NULL,NULL),(8,29,NULL,NULL,NULL),(9,30,NULL,'user6sample2.mp4',NULL),(10,31,'user6sample1.jpg','user6sample2.mp3','user6sample3.mp4');
+INSERT INTO `sample` VALUES (1,22,'user6sample1.png',NULL,NULL),(2,23,'user6sample1.png',NULL,NULL),(3,24,NULL,NULL,NULL),(4,25,NULL,NULL,NULL),(5,26,NULL,NULL,NULL),(6,27,NULL,NULL,NULL),(7,28,NULL,NULL,NULL),(8,29,NULL,NULL,NULL),(9,30,NULL,'user6sample2.mp4',NULL),(10,31,'user6sample1.jpg','user6sample2.mp3','user6sample3.mp4'),(11,32,NULL,NULL,'user6sample3.mp4'),(12,33,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sample` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,7 +409,7 @@ CREATE TABLE `user_logs` (
 
 LOCK TABLES `user_logs` WRITE;
 /*!40000 ALTER TABLE `user_logs` DISABLE KEYS */;
-INSERT INTO `user_logs` VALUES (6,1,13,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,2,4,'2017-04-30 04:22:32','2017-04-30 04:22:32'),(6,3,87,'2017-04-30 04:15:13','2017-04-30 04:15:13'),(6,4,6,'2017-04-30 19:22:23','2017-04-30 19:22:23'),(6,5,5,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,8,4,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,9,1,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,10,1,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,18,1,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,19,21,'2017-04-30 19:02:39','2017-04-30 19:02:39'),(6,20,2,'2017-04-30 19:22:01','2017-04-30 19:22:01'),(6,21,3,'2017-04-30 19:45:47','2017-04-30 19:45:47'),(6,22,77,'2017-04-30 04:22:18','2017-04-30 04:22:18'),(6,23,6,'2017-04-30 19:45:47','2017-04-30 19:45:47'),(6,24,1,'2017-04-30 16:43:25','2017-04-30 16:43:25'),(6,25,9,'2017-05-01 17:32:30','2017-05-01 17:32:30'),(6,26,1,'2017-04-30 19:21:42','2017-04-30 19:21:42'),(6,29,9,'2017-04-30 17:32:34','2017-04-30 17:32:34'),(6,30,37,'2017-05-01 17:57:21','2017-05-01 17:57:21'),(6,31,19,'2017-05-01 18:14:21','2017-05-01 18:14:21');
+INSERT INTO `user_logs` VALUES (6,1,43,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,2,4,'2017-04-30 04:22:32','2017-04-30 04:22:32'),(6,3,96,'2017-04-30 04:15:13','2017-04-30 04:15:13'),(6,4,19,'2017-04-30 19:22:23','2017-04-30 19:22:23'),(6,5,6,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,8,5,'2017-04-30 19:22:27','2017-04-30 19:22:27'),(6,9,1,'2017-05-02 00:08:28','2017-05-02 00:08:28'),(6,10,1,'2017-05-02 00:08:28','2017-05-02 00:08:28'),(6,18,1,'2017-05-02 00:08:28','2017-05-02 00:08:28'),(6,19,21,'2017-04-30 19:02:39','2017-04-30 19:02:39'),(6,20,2,'2017-04-30 19:22:01','2017-04-30 19:22:01'),(6,21,4,'2017-04-30 19:45:47','2017-04-30 19:45:47'),(6,22,102,'2017-04-30 04:22:18','2017-04-30 04:22:18'),(6,23,9,'2017-04-30 19:45:47','2017-04-30 19:45:47'),(6,24,1,'2017-04-30 16:43:25','2017-04-30 16:43:25'),(6,25,13,'2017-05-01 17:32:30','2017-05-01 17:32:30'),(6,26,1,'2017-04-30 19:21:42','2017-04-30 19:21:42'),(6,27,1,'2017-05-01 22:39:59','2017-05-01 22:39:59'),(6,29,10,'2017-04-30 17:32:34','2017-04-30 17:32:34'),(6,30,48,'2017-05-01 17:57:21','2017-05-01 17:57:21'),(6,31,32,'2017-05-01 18:14:21','2017-05-01 18:14:21'),(6,32,46,'2017-05-01 20:45:07','2017-05-01 20:45:07'),(6,33,26,'2017-05-01 21:57:32','2017-05-01 21:57:32');
 /*!40000 ALTER TABLE `user_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -467,7 +468,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'cathy','cathy@gmail.com','$2y$10$RFjU.e3X/jNQqymcDr4jaejK1tVyCvGKzz8AOQr577kxrttTzlOby','739wGsM90JA0SKnMuFKhw43S20YsnE4a62SuvbJNisdhDgEc6RGhRzfoX0ov','2017-04-20 00:45:56','2017-04-20 00:45:56'),(2,'Jiaxiang Lin','jiaxiang.lin@nyu.edu','$2y$10$a2zUhrRAxKHgCIYT2.u/3OKG.rpJcgOEfYBgj6fyaBXC9i.0V3tGG','s6t1KrXYGh7aBCI4Q1g1JMZEuEsQYHuQWNLeqD1ZikLsy7OIp1M8J2BWQOc3','2017-04-20 00:50:57','2017-04-20 00:50:57'),(3,'mengmeng','mengmeng@gmail.com','$2y$10$AVa/oUD2iovbjzdYyfSPJ.s/A2iFLjKtTsFSa4qW1GF22vUOqrKIi','wgd77g0hhgpljxfxcaYS7uhp5IzWt2u2JeI0i92jO9HRAVmerE1trnT9LoJi','2017-04-29 03:00:51','2017-04-29 03:00:51'),(4,'Yi Qin','yq468@nyu.edu','$2y$10$WY8tOjt8casHEy4yepmyKOTyQFNiQYX4kFT3uTY0trUg4XSgNJhIS','tfyW4fDipHoMuAN836XTEUWLlxxb3sU9aUiW0bgQ26c64AiWQd23YhLxuZjU','2017-04-29 19:00:22','2017-04-29 19:00:22'),(5,'Katelyn','qinyi468@gmail.com','$2y$10$TXJrsGghFbSz9OOnmPlZvevIex.4z8c.3mEw7Yf0YIUvdz7MO6WDu','EIstCNfsFrPpGiSNBHfVhjCcl0JQ1Jf7gVpCaEr6vo8CUIzi3tazEWgwbqXj','2017-04-29 19:02:39','2017-04-29 19:02:39'),(6,'katelyn1','qinyi4681@gmail.com','$2y$10$F8O8clgRrEKYM2IWjdhlqOqxaWm1HcNZRT9hVM7Ss5hCSSS9cdS8S','kRdLo04YzsQalB7zB1Ol0HOmJsdi4t8szwpOv7Qsy5rKtv8WSBzYLkISSL7V','2017-04-29 19:05:15','2017-04-29 19:05:15');
+INSERT INTO `users` VALUES (1,'cathy','cathy@gmail.com','$2y$10$RFjU.e3X/jNQqymcDr4jaejK1tVyCvGKzz8AOQr577kxrttTzlOby','739wGsM90JA0SKnMuFKhw43S20YsnE4a62SuvbJNisdhDgEc6RGhRzfoX0ov','2017-04-20 00:45:56','2017-04-20 00:45:56'),(2,'Jiaxiang Lin','jiaxiang.lin@nyu.edu','$2y$10$a2zUhrRAxKHgCIYT2.u/3OKG.rpJcgOEfYBgj6fyaBXC9i.0V3tGG','s6t1KrXYGh7aBCI4Q1g1JMZEuEsQYHuQWNLeqD1ZikLsy7OIp1M8J2BWQOc3','2017-04-20 00:50:57','2017-04-20 00:50:57'),(3,'mengmeng','mengmeng@gmail.com','$2y$10$AVa/oUD2iovbjzdYyfSPJ.s/A2iFLjKtTsFSa4qW1GF22vUOqrKIi','wgd77g0hhgpljxfxcaYS7uhp5IzWt2u2JeI0i92jO9HRAVmerE1trnT9LoJi','2017-04-29 03:00:51','2017-04-29 03:00:51'),(4,'Yi Qin','yq468@nyu.edu','$2y$10$WY8tOjt8casHEy4yepmyKOTyQFNiQYX4kFT3uTY0trUg4XSgNJhIS','tfyW4fDipHoMuAN836XTEUWLlxxb3sU9aUiW0bgQ26c64AiWQd23YhLxuZjU','2017-04-29 19:00:22','2017-04-29 19:00:22'),(5,'Katelyn','qinyi468@gmail.com','$2y$10$TXJrsGghFbSz9OOnmPlZvevIex.4z8c.3mEw7Yf0YIUvdz7MO6WDu','EIstCNfsFrPpGiSNBHfVhjCcl0JQ1Jf7gVpCaEr6vo8CUIzi3tazEWgwbqXj','2017-04-29 19:02:39','2017-04-29 19:02:39'),(6,'katelyn1','qinyi4681@gmail.com','$2y$10$F8O8clgRrEKYM2IWjdhlqOqxaWm1HcNZRT9hVM7Ss5hCSSS9cdS8S','WFeI8U5pRk0YcoK9bsUMiDOy6YXwR1CypW2TFHQzHAyAjA4AN9QvDsInd0f2','2017-04-29 19:05:15','2017-04-29 19:05:15');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -480,4 +481,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-01 15:22:50
+-- Dump completed on 2017-05-01 20:15:59

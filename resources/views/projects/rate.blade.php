@@ -6,15 +6,20 @@
 	
 	
 	<!--projects presentation-->
-	@include('projects.sample')
+	<div>
+		@include('projects.sample')
+	</div>
 	
 	
 	{!!Form::open(['action'=>'RateController@store'])!!}
 	
 	
-	<div class="form-group">
+	<div class="form-group col-sm-9"; style="padding-top:20px;">
 		{!!Form::label('rating','Rating:')!!}
-		{!!Form::select('rating',['0','1','2','3','4','5'], ['class'=>'form-control'])!!}
+		{!!Form::selectRange('rating', 1, 5)!!}
+		<br/>
+		{!!Form::label('rate_content','Description:')!!}
+		{!!Form::textarea('rate_content',null,['class'=>'form-control'])!!}
 		{!!Form::hidden('user_id', $user->id)!!}
 		{!!Form::hidden('project_pid', $project->pid)!!}
 	</div>	

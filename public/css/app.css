@@ -60,9 +60,11 @@
         padding: 10px;
     }
     .social-buttons{
+        padding-top: 20px;
         margin-right: 8%;
         float:right;
         bottom: 0;
+      /*  border:1px solid red;*/
     }
     .fa {
         padding: 15px;
