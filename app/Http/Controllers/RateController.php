@@ -21,7 +21,7 @@ class RateController extends Controller
     
     public function store(CreateRateRequest $request){
  
-        DB::table('rates')->insert(['user_id'=>$request['user_id'],'project_pid'=>$request['project_pid'],'rating'=>$request['rating'],'created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
-        return redirect('/profile');
+        DB::table('rates')->insert(['user_id'=>$request['user_id'],'project_pid'=>$request['project_pid'],'rating'=>$request['rating'],'rate_content'=>$request['rate_content'], 'created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]);
+        return redirect()->action('ProjectController@show', ['id' => $request['project_pid']]);
     }
 }

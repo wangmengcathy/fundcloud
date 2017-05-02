@@ -13,6 +13,11 @@
 				</a>
 			@endif
 		@endif
+		@if($already_pledge != null)
+			@if($already_pledge->transaction_status == 'posted')
+			<a class="btn btn-warning" href="<?php echo$project->pid?>/rate">Rate</a>
+			@endif
+		@endif
 		</h1>
 		<p>
 			End Time: {{$project->endtime->diffForHumans()}} <a class="btn" href="/projects/<?php echo $creater->id;?>/others">Created By:{{$creater->name}}</a>
@@ -79,14 +84,14 @@
 
 
 				<div class="progress">
-					<div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar" aria-valuenow="70"
+					<div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="70"
 					aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($project->raisedmoney)/($project->maxmoney)*100;?>%">
 						{{($project->raisedmoney)/($project->maxmoney)*100}}%
 					</div>
 				</div>
 
 				
-				<a class="btn btn-success" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
+				<a class="btn btn-primary" href="/projects/<?php echo $project->pid;?>/pledge">Pledge</a>
 
 			</div> <!-- 8 -->
 		</div> <!-- row -->
@@ -315,8 +320,29 @@
 								<li class="list-group-item">
 									<img src="http://www.webweaver.nu/clipart/img/nature/planets/shooting-star.png" width = "20px" height = "20px">
 									<span>{{$rate -> name}}</span>
-							        <span>give rate:  {{$rate->rating}}/5</span>
+							        <span>give rate: </span> 
+							        <span>
+												@if($rate -> rating > 0 && $rate -> rating <= 1)
+													@include('projects.showrating1')
+												@endif
+												@if($rate -> rating > 1 && $rate -> rating <= 2)
+													@include('projects.showrating2')
+												@endif
+												@if($rate -> rating > 2 && $rate -> rating <= 3)
+													@include('projects.showrating3')
+												@endif
+												@if($rate -> rating > 3 && $rate -> rating <= 4)
+													@include('projects.showrating4')
+												@endif
+												@if($rate -> rating > 4 && $rate -> rating <= 5)
+													@include('projects.showrating5')
+												@endif
+							        </span>
 							        <span style="color:grey; padding-left:15px;">on {{$rate->updated_at}}</span>
+							        <div style="padding-left: 10px; padding-top: 5px;">
+							        <!-- 	<h5>Rate Content:</h5> -->
+							        	<p style="padding-left: 5px;padding-top: 5px">{{$rate->rate_content}}</p>
+							        </div>
 							     </li>
 						    @endforeach
 						</ul>

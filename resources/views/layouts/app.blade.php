@@ -140,13 +140,13 @@
             @yield('content2')
         </div> 
     </div>
-
-
-    <div class="social-buttons">
-        <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
-        <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
-        <a href="https://www.google.com/" class="fa fa-google"></a>
-        <a href="https://www.linkedin.com" class="fa fa-linkedin"></a>
+    <div class="col-sm-12">
+        <div class="social-buttons">
+            <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+            <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
+            <a href="https://www.google.com/" class="fa fa-google"></a>
+            <a href="https://www.linkedin.com" class="fa fa-linkedin"></a>
+        </div>
     </div>
     
 
@@ -157,9 +157,8 @@
     <script src="{{ asset('js/modernizr.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
-            $(document).ready(funcBegin); 
-            
             var words = ['boat', 'dog', 'drink', 'drink a coffee', 'elephant', 'fruit', 'London'];
+            $(document).ready(funcBegin); 
             $(document).ready(function(){
                 $('#search-bar').autocomplete({
                     hints: words,
