@@ -43,7 +43,7 @@
 			</div>
 		</div>
 	</div>
-	
+						<!--Pledge History-->
 	<div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">Pledge History</h3>
@@ -56,9 +56,11 @@
 
 			amount: {{$pledgeproject->amount}} 
 			
+
 			@if(($pledgeproject->transaction_status) == 'posted' && $pledgeproject->status == 'finished')
 			<a class="btn btn-success btn-xs" href="projects/<?php echo$pledgeproject->pid?>/rate">Rate</a>
 			@endif
+
 			</li>
 		@endforeach
 		</ul>
