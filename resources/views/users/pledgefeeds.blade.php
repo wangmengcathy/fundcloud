@@ -33,7 +33,7 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No Pledge Content. </div>
+                <div align="center"> No Pledge Content. </div>
        	@endif
 	</div>
 	@endsection

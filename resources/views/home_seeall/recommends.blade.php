@@ -33,7 +33,7 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No recommends. Please fill more information of yourself  </div>
+                <div align="center"> No recommends. Please fill more information of yourself  </div>
        	@endif
 	</div>
 	@endsection

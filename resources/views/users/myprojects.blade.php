@@ -33,7 +33,7 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No Project built. </div>
+                <div align="center"> No Project built. </div>
        	@endif
 	</div>
 	@endsection

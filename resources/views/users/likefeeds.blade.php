@@ -33,7 +33,7 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No Like Content. </div>
+                <div align="center"> No Like Content. </div>
        	@endif
 	</div>
 	@endsection

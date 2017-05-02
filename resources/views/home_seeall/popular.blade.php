@@ -33,7 +33,7 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No popular projects now. </div>
+                <div align="center"> No popular projects now. </div>
        	@endif
 	</div>
 	@endsection

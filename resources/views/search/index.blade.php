@@ -33,7 +33,7 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No relevant content. </div>
+                <div align="center"> No relevant content. </div>
        	@endif
 <!-- 		<p> {{$search_result}}</p> -->
 	</div>
