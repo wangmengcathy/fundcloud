@@ -82,7 +82,7 @@
 
                     @endforeach
             @else
-                <div> <span id = "no_follow">No Projects under following </span></div>
+                <div align="center"> <span id = "no_follow">No Projects under following </span></div>
             @endif
         </div>
     </div>
@@ -115,7 +115,7 @@
 
                         @endforeach
                 @else
-                    <div> No Relevant Recommends for you </div>
+                    <div align="center"> No Relevant Recommends for you </div>
                 @endif    
             </div>
      </div>
@@ -150,7 +150,7 @@
                         @endif
                     @endforeach
             @else
-                <div> No Projects under following </div>
+                <div align="center"> No Projects under following </div>
             @endif
         </div>
      

@@ -33,7 +33,7 @@
 		        </div>        
 	        @endwhile
       	@else
-                <div> No Following Content. </div>
+                <div align="center"> No Following Content. </div>
        	@endif
 	</div>
 	@endsection

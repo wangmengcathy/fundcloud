@@ -1,11 +1,9 @@
 @extends('layouts.app')
 	@section('content')
 		
-		<div class="span4 offset4">
-			<div class="row">
-				<div class="span4 well">
+	
 					<div class="row">
-						<div class="span3">
+		
 							<h1 id = "head">{{$creater->name}}'s Profile</h1>
 							<hr/>
 							<div class="panel panel-info">
@@ -51,13 +49,10 @@
 									</div>
 								</div>
 							</div>
-							
-							
-							
-							
-							
-							
-							
+							</div>
+
+
+
 							<!--Follow or Unfollow-->
 							@if ( Auth::user() && ($following == false))
 								{!!Form::open(['action'=>'OthersController@follow'])!!}
@@ -83,12 +78,59 @@
 								@include('errors.list')
 							@endif
 							
+
+
+
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">{{$creater->name}}'s Projects</h3>
+							</div>
+							<div class="panel-body">
+								<ul class="list-group">
+									@foreach ($createdprojects as $createdproject)
+										<li class="list-group-item">
+										<a href="../../projects/<?php echo$createdproject->pid?>"><strong>{{$createdproject->pname}}</strong></a>
+
+										raised money: {{$createdproject->raisedmoney}} 
+										@foreach($avg_ratings as $avg_rating)
+											@if($avg_rating->project_pid == $createdproject->pid)
+												<div class="row">
+												<div class="col-sm-3">
+													<div class="rating-block">
+														<h5>Average user rating</h5>
+															@if($avg_rating->average_rates > 0 && $avg_rating->average_rates <= 1)
+																@include('projects.showrating1')
+															@endif
+															@if($avg_rating->average_rates > 1 && $avg_rating->average_rates <= 2)
+																@include('projects.showrating2')
+															@endif
+															@if($avg_rating->average_rates > 2 && $avg_rating->average_rates <= 3)
+																@include('projects.showrating3')
+															@endif
+															@if($avg_rating->average_rates > 3 && $avg_rating->average_rates <= 4)
+																@include('projects.showrating4')
+															@endif
+															@if($avg_rating->average_rates > 4 && $avg_rating->average_rates <= 5)
+																@include('projects.showrating5')
+															@endif
+														<h5 class="bold padding-bottom-7"><?php echo number_format($avg_rating->average_rates, 1, '.', ',')?> <small>/ 5</small></h5>
+													</div>
+												</div>
+												</div>
+											@endif
+										@endforeach
+										
+										
+										</li>
+									@endforeach
+									</ul>
+							</div>
+							</div>
 							
-						</div>
+				
 					</div>
-				</div>
-			</div>
-		</div>
+
+
 		
 	@endsection
 	

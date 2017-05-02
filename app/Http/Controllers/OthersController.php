@@ -87,7 +87,10 @@ class OthersController extends Controller
         
         $followers = Follower::where('following_id','=',$creater_id)->count();
         
-       
-        return view('projects.others',compact('creater','createrprofile','following','projects','projects_count','followers'));
+        $createdprojects = DB::table('projects')->where('projects.user_id','=',$creater_id)->get();
+
+        $avg_ratings = DB::table('projects')->where('projects.user_id','=',$creater_id)->leftjoin('rates','projects.pid','=','rates.project_pid')->select('rates.project_pid',DB::raw('avg(rating) as average_rates'))->groupBy('project_pid')->get();
+
+        return view('projects.others',compact('creater','createrprofile','following','projects','projects_count','followers', 'createdprojects','avg_ratings'));
     }
 }
