@@ -16,7 +16,7 @@
 	
 	<div class="form-group col-sm-9"; style="padding-top:20px;">
 		{!!Form::label('rating','Rating:')!!}
-		{!!Form::selectRange('rating', 1, 5)!!}
+		{!!Form::selectRange('rating', 0, 5)!!}
 		<br/>
 		{!!Form::label('rate_content','Description:')!!}
 		{!!Form::textarea('rate_content',null,['class'=>'form-control'])!!}

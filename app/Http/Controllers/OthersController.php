@@ -33,7 +33,7 @@ class OthersController extends Controller
         $followingProjects = DB::table('projects')->where('user_id','=', $following_id)
         ->get();
         foreach($followingProjects as $followingProject){
-            app('App\Http\Controllers\UserLogController')->store($followingProject->pid,1);
+            app('App\Http\Controllers\UserLogController')->store($followingProject->pid,2);
         }
         return back();
     }

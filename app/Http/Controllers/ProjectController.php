@@ -37,8 +37,13 @@ class ProjectController extends Controller
     public function index()
     {
         //valid projects
-        $projects = Project::orderBy('pid', 'DESC')->validproject()->orderBy('pname', 'ASC')->get();
-
+        $projects = Project::orderBy('projects.pid', 'DESC')
+                    ->validproject()
+                    ->leftjoin('published_projects','projects.pid','=','published_projects.pid')
+                    ->where('published_projects.status','=', 'pending')
+                    ->orwhere('published_projects.status','=', null)
+                    ->get();
+        // return $projects;
         //expired projects
         $exprojects = Project::orderBy('pid', 'DESC')->expiredproject()->get();
         //expried projects reach the minmoney
@@ -190,7 +195,7 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
 
         $result = PublishedProject::select('pid')->where('pid','=',$id)->first();
-        if($result == null && ($project->raisedmoney >= $project->maxmoney)){
+        if($result == null && ($project->raisedmoney >= $project->minmoney)){
             PublishedProject::insert(['pid' => $id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now(), 'materials' => 'xxx', 'fundmoney' => $project->raisedmoney, 'status' => 'pending']);
         }
 
@@ -209,6 +214,7 @@ class ProjectController extends Controller
                                 ->join('user_profiles', 'user_profiles.id','=','users.id')
                                 ->where('comments.project_pid', '=', $id)
                                 ->get();
+       
         $pledge_record = DB::table('project_user')
                              ->where('project_pid', '=', $id)
                              ->orderBy('project_user.created_at', 'DESC')
@@ -293,9 +299,9 @@ class ProjectController extends Controller
         //editsample
         $pc = new ProjectController;
         
-        $pc->editsample($request, 'editprojectsample1', 'sample1',$project);
-        $pc->editsample($request, 'editprojectsample2', 'sample2',$project);
-        $pc->editsample($request, 'editprojectsample3', 'sample3',$project);
+        $pc->editsample($request, 'projectsample1', 'sample1',$project);
+        $pc->editsample($request, 'projectsample2', 'sample2',$project);
+        $pc->editsample($request, 'projectsample3', 'sample3',$project);
 
         
 
