@@ -13,11 +13,11 @@
 				</a>
 			@endif
 		@endif
-		@if($already_pledge != null)
+<!-- 		@if($already_pledge != null)
 			@if($already_pledge->transaction_status == 'posted')
 			<a class="btn btn-warning" href="<?php echo$project->pid?>/rate">Rate</a>
 			@endif
-		@endif
+		@endif -->
 		</h1>
 		<p>
 			End Time: {{$project->endtime->diffForHumans()}} <a class="btn" href="/projects/<?php echo $creater->id;?>/others">Created By:{{$creater->name}}</a>

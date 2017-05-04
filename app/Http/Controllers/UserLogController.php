@@ -20,6 +20,7 @@ class UserLogController extends Controller
                             ->join('projects', 'user_logs.project_pid', '=', 'projects.pid')
                             ->where('user_logs.user_id','=',$user_id)
     						->orderBy('count','DESC')
+                            ->limit(20)
     						->get();
     	return $userLog;
     }
