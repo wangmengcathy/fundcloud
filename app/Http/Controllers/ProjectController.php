@@ -39,11 +39,13 @@ class ProjectController extends Controller
         //valid projects
         $projects = Project::orderBy('projects.pid', 'DESC')
                     ->validproject()
-                    ->leftjoin('published_projects','projects.pid','=','published_projects.pid')
+                    ->select('projects.*')
+                    ->leftJoin('published_projects','published_projects.pid','=','projects.pid')
                     ->where('published_projects.status','=', 'pending')
                     ->orwhere('published_projects.status','=', null)
                     ->get();
-        // return $projects;
+       // $projects = Project::orderBy('pid', 'DESC')->validproject()->orderBy('pname', 'ASC')->get();
+       //return $projects;
         //expired projects
         $exprojects = Project::orderBy('pid', 'DESC')->expiredproject()->get();
         //expried projects reach the minmoney
@@ -280,6 +282,7 @@ class ProjectController extends Controller
     
     public function editsample(CreateProjectRequest $request,$editprojectsample,$samplenum,$project){
         if($request[$editprojectsample] != null){
+          //  return $request[$editprojectsample];
             $fileName = 'user'.Auth::user()->id . $samplenum . '.'.
                 $request->file($editprojectsample)->getClientOriginalExtension();
 
@@ -291,6 +294,7 @@ class ProjectController extends Controller
             DB::table('sample')->where('pid','=',$project->pid)->update([$samplenum=>$request[$samplenum]]);
          }
     }
+
     
     public function update($id,CreateProjectRequest $request )
     {
@@ -299,10 +303,36 @@ class ProjectController extends Controller
         //editsample
         $pc = new ProjectController;
         
-        $pc->editsample($request, 'projectsample1', 'sample1',$project);
-        $pc->editsample($request, 'projectsample2', 'sample2',$project);
-        $pc->editsample($request, 'projectsample3', 'sample3',$project);
+        $pc->editsample($request, 'editprojectsample1', 'sample1',$project);
+        $pc->editsample($request, 'editprojectsample2', 'sample2',$project);
+        $pc->editsample($request, 'editprojectsample3', 'sample3',$project);
 
+        if($request->file('cover1') != null){
+            $userid = Auth::user()->id;
+
+            $profile_name = DB::table('projects')->where('projects.projectcover', '=', 'default_cover.jpg')
+                                                ->where('projects.pid','=',$project->pid)
+                                                ->get();
+
+            $number = DB::table('projects')
+                        ->where('projects.user_id', '=', $userid)
+                        ->count();
+            $number = $number + 1;
+            if($profile_name != '[]'){
+                 $fileName = 'user'.Auth::user()->id . 'number' . $number .'.'. $request->file('cover1')->getClientOriginalExtension();
+            }else{
+                 $profile_name = DB::table('projects')
+                                    ->where('projects.pid','=',$project->pid)
+                                    ->first();
+                $fileName = $profile_name->projectcover;
+            }
+            $request->file('cover1')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/projectcovers', $fileName
+            );
+            $request['projectcover'] = $fileName;
+            DB::table('projects')->where('pid','=',$project->pid)->update(['projectcover'=>$request['projectcover']]); 
+         }
         
 
         $project->update($request->all());
