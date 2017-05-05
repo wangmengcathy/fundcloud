@@ -34,15 +34,19 @@ class UserController extends Controller
     public function storeprofile(CreateUserProfileRequest $request){
 
         $id = Auth::user()->id;
-        
-        $imageName = 'user'.$id . '.' . 
-            $request->file('profileimage')->getClientOriginalExtension();
 
-        $request->file('profileimage')->move(
-
-            $_SERVER["DOCUMENT_ROOT"].'/public/photo', $imageName
-        );
+        if($request->file('profileimage') != null){
         
+            $imageName = 'user'.$id . '.' . 
+                $request->file('profileimage')->getClientOriginalExtension();
+
+            $request->file('profileimage')->move(
+
+                $_SERVER["DOCUMENT_ROOT"].'/public/photo', $imageName
+            );
+        }else{
+            $imageName = 'default_profile.jpg';
+        }
         DB::table('user_profiles')->insert(['id' => $id, 'imagename' => $imageName,'hometown' => $request['hometown'],
         'birthday' => $request['birthday'], 'interest' => $request['interest'], 
         'creditcard' => $request['creditcard'], 'legalname' => $request['legalname']
