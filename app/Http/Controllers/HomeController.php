@@ -76,6 +76,7 @@ class HomeController extends Controller
 
     public function popular()
     {
+
         $popular_projects_array = DB::table('projects')->join('project_user','projects.pid', '=', 'project_user.project_pid')->orderBy('project_user.updated_at', 'DESC')->get();
         $dic = [];
         $unique = [];
@@ -86,6 +87,8 @@ class HomeController extends Controller
             }
         }
         $popular_projects = $unique;
+        $popular_projects = DB::table('projects')->join('project_user','projects.pid', '=', 'project_user.project_pid')->get();
+
         return view('home_seeall/popular', compact('popular_projects'));
     }
 }

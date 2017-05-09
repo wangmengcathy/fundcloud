@@ -18,7 +18,7 @@
 		                            <div class="col-md-4">
 		                                <div class="thumbnail">
 		                                  <a href= "{{action('ProjectController@show',[$result->pid])}}">
-		                                    <img src="/public/projectcovers/<?php echo $result->projectcover?>" alt="Lights" style="width:100%" height="300px">
+		                                    <img src="/public/projectcovers/<?php echo $result->projectcover?>" alt="Lights" height="300px">
 		                                    <div class="caption">
 		                                        <p><strong>{{$result->pname}}</strong></p>
 		                                        <p>{{$result->desp}}</p>
